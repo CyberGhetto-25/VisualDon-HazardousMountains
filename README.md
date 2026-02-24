@@ -4,7 +4,12 @@ Repo GitHub pour le projet dans le cadre du cours "Visualisation des données"
 # Contexte
 Les sets de données utilisés pour ce projet sont les suivantes: 
 
+Chemin de randonnée hivernale en Suisse : https://s.geo.admin.ch/ejvf3bnqlg9f 
+Rapport annuel du SAS (Secours Alpin Suisse) : https://www.secoursalpin.ch/publications/rapport-annuel
+Rapport et statistiques de l'OCVS : https://www.ocvs.ch/documents/
 
+## Recherches
+Article du 24Heures sur les dangers en montagnes : https://www.24heures.ch/randonnee-en-suisse-les-zones-les-plus-dangereuses-399173683979 
 
 # Description
 Deux idées: 
