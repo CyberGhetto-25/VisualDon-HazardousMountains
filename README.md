@@ -1,4 +1,4 @@
-# VisualDon-projet
+# VisualDon-HazardousMountains
 Repo GitHub pour le projet dans le cadre du cours "Visualisation des données"
 
 # Contexte
