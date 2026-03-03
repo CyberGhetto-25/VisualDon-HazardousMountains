@@ -2,7 +2,7 @@
 Repo GitHub pour le projet dans le cadre du cours "Visualisation des données"
 
 # Contexte
-
+La pratique de la haute montagne est une quête d'adrénaline qui exige une profonde humilité. Si certains passionnés ont compris l'équilibre entre recherche de sensations et respect des enjeux naturels, d'autres ignorent encore les conséquences d'une préparation défaillante. Cette réalité invisible est pourtant documentée : des organismes comme le Secours Alpin Suisse (SAS), l'OCVS ou l'association de défense des montagnes récoltent chaque année des milliers de données sur les interventions et les accidents. Si ces statistiques existent, ce n'est pas seulement pour la gestion administrative des risques, mais pour transformer des tragédies vécues, comme celles qui touchent de nombreuses familles valaisannes, en outils de prévention concrets. En analysant ces chiffres, on réalise que la montagne ne se dompte pas ; on apprend à mieux la lire. Car derrière chaque point sur une carte ou chaque courbe de tendance, il y a un rappel essentiel : en altitude, l'improvisation est le premier facteur de danger.
 
 ## Limites des données
 - Les données ne documentent pas les pratiques informelles
