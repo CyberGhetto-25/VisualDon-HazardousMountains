@@ -8,12 +8,12 @@ Les sets de données et les articles pertinents utilisés pour ce projet.
 Chemin de randonnée hivernale en Suisse : https://s.geo.admin.ch/ejvf3bnqlg9f 
 
 Rapport annuel du SAS (Secours Alpin Suisse) : https://www.secoursalpin.ch/publications/rapport-annuel
-→ Organisation mandatée pour les secours en montagne.
-→ Objectif : documenter les interventions, améliorer prévention et coordination.
+- Organisation mandatée pour les secours en montagne.
+- Objectif : documenter les interventions, améliorer prévention et coordination.
 
 Rapport et statistiques de l'OCVS : https://www.ocvs.ch/documents/
-→ Données administratives.
-→ Objectif : statistiques publiques, gestion des risques.
+- Données statistiques relatives aux sauvetages en montagnes
+- Objectif : statistiques publiques, gestion des risques.
 
 DB rapports incidents/accidents sport montagne Alpes : https://www.camptocamp.org/serac
 
@@ -35,6 +35,20 @@ Association de défense des montagnes : https://mountainwilderness.ch/fr/
 Deux idées: 
 1. Carte interactive avec les trançons représentés sous différentes couleurs en fonction de leur dangerosité.
 2. Scrollytelling montrant et rappelant les risques et accidents mortels en montagne. Nous y aborderons également les sujets de société liés au respect ou non de la montagne comme le surtourisme, la pratique de sports à risque malgré un niveau débutant, la déterioration des glaciers par l'homme dans un but économique, ...
+
+## Formats et types de données
+Beaucoup de rapports PDF comportent des statistiques sur les variables suivantes: 
+- Date
+- Type d'accidents (ski, alpinisme, randonnée)
+- Causes (chutes, avalanches, malaise)
+- Gravité (blessé, mortel)
+- Coordonnées GPS
+
+## Storytelling
+1. Historique et état actuel des montagnes et introduction à la problématique
+2. Les cas d'accidents dans nos montagnes
+3. Sauveteurs en montagnes, ces héros oubliés
+4. Ce qu'on ne veut plus voir dans nos montagnes
 
 # But
 **Peut-on vraiment dompter la montagne ?**
