@@ -22,6 +22,107 @@ Beaucoup de rapports PDF comportent des statistiques sur les variables suivantes
 - Causes (chutes, avalanches, malaise)
 - Gravité (blessé, mortel)
 - Coordonnées GPS
+- Région
+
+Voici un exemple d'objet JSON qui pourrait être utilisé dans le cadre de notre projet. (généré à l'aide de ChatGPT 5.2)
+
+```JSON
+{
+  "type": "regionRisk",
+  "id": "ch-vs-canton-2024-winter",
+  "region": {
+    "level": "canton",
+    "code": "VS",
+    "name_fr": "Valais",
+    "name_en": "Valais",
+    "parent": { "level": "country", "code": "CH" }
+  },
+  "time": {
+    "year": 2024,
+    "season": "winter"
+  },
+  "sports": [
+    { "code": "ski_touring", "label_fr": "Ski de randonnée", "label_en": "Ski touring" },
+    { "code": "freeride", "label_fr": "Freeride", "label_en": "Freeride" },
+    { "code": "alpinism", "label_fr": "Alpinisme", "label_en": "Alpinism" }
+  ],
+  "geometry": {
+    "type": "Feature",
+    "properties": {
+      "region_level": "canton",
+      "region_code": "VS"
+    },
+    "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [7.0, 46.0],
+            [7.2, 46.0],
+            [7.2, 46.2],
+            [7.0, 46.2],
+            [7.0, 46.0]
+          ]
+        ]
+      ]
+    }
+  },
+  "metrics": {
+    "accidents_total": 128,
+    "fatalities_total": 9,
+    "injuries_total": 54,
+    "danger_score": 72,
+    "danger_level": "high"
+  },
+  "causes": [
+    { "code": "fall", "label_fr": "Chute", "accidents": 49, "fatalities": 2 },
+    { "code": "avalanche", "label_fr": "Avalanche", "accidents": 22, "fatalities": 5 },
+    { "code": "medical", "label_fr": "Malaise / médical", "accidents": 18, "fatalities": 1 },
+    { "code": "lost_orientation", "label_fr": "Perte d’orientation", "accidents": 15, "fatalities": 0 },
+    { "code": "rockfall", "label_fr": "Chute de pierres", "accidents": 9, "fatalities": 1 },
+    { "code": "crevasse", "label_fr": "Crevasse", "accidents": 4, "fatalities": 0 },
+    { "code": "weather", "label_fr": "Météo / conditions", "accidents": 3, "fatalities": 0 },
+    { "code": "equipment_failure", "label_fr": "Défaillance matériel", "accidents": 2, "fatalities": 0 },
+    { "code": "collision", "label_fr": "Collision", "accidents": 3, "fatalities": 0 },
+    { "code": "water", "label_fr": "Chute / incident eau", "accidents": 1, "fatalities": 0 },
+    { "code": "other", "label_fr": "Autre", "accidents": 2, "fatalities": 0 }
+  ],
+  "data_provenance": {
+    "geometry_sources": [
+      {
+        "kind": "official",
+        "label": "Couche administrative (ex: geo.admin / BFS)",
+        "url": null,
+        "retrieved_at": null
+      },
+      {
+        "kind": "manual",
+        "label": "Ajustements manuels (si nécessaire)",
+        "tool": "QGIS",
+        "notes": "Corrections ponctuelles de limites ou simplification géométrique."
+      }
+    ],
+    "statistics_sources": [
+      {
+        "label": "Secours Alpin Suisse - Rapport annuel",
+        "url": "https://www.secoursalpin.ch/publications/rapport-annuel"
+      },
+      {
+        "label": "OCVS - Documents / statistiques",
+        "url": "https://www.ocvs.ch/documents/"
+      }
+    ]
+  },
+  "notes": {
+    "aggregation_rule": "Agrégé par region.level + region.code + year + season. Causes regroupées via vocabulaire contrôlé.",
+    "limitations": [
+      "Sous-déclaration possible selon la gravité et le canal de déclaration.",
+      "Non normalisé par la fréquentation : une zone très fréquentée peut apparaître plus dangereuse.",
+      "Différences de catégorisation des causes selon la source."
+    ]
+  }
+}
+```
 
 ## Storytelling
 1. Historique et état actuel des montagnes et introduction à la problématique
