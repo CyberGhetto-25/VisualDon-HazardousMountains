@@ -2,34 +2,13 @@
 Repo GitHub pour le projet dans le cadre du cours "Visualisation des données"
 
 # Contexte
-Les sets de données et les articles pertinents utilisés pour ce projet.  
 
-## Sets de données
-Chemin de randonnée hivernale en Suisse : https://s.geo.admin.ch/ejvf3bnqlg9f 
 
-Rapport annuel du SAS (Secours Alpin Suisse) : https://www.secoursalpin.ch/publications/rapport-annuel
-- Organisation mandatée pour les secours en montagne.
-- Objectif : documenter les interventions, améliorer prévention et coordination.
-
-Rapport et statistiques de l'OCVS : https://www.ocvs.ch/documents/
-- Données statistiques relatives aux sauvetages en montagnes
-- Objectif : statistiques publiques, gestion des risques.
-
-DB rapports incidents/accidents sport montagne Alpes : https://www.camptocamp.org/serac
-
-### Limites des données
+## Limites des données
 - Les données ne documentent pas les pratiques informelles
 - Les décès médiatisés sont surreprésentés
 - Les accidents bénins sont sous-déclarés
 
-## Recherches
-Article du 24Heures sur les dangers en montagnes : https://www.24heures.ch/randonnee-en-suisse-les-zones-les-plus-dangereuses-399173683979
-
-Statistiques 2019 des accidents de montagne : https://www.sac-cas.ch/fr/les-alpes/de-nouveau-moins-daccidents-23166/
-
-Randonnée et sports de montagne : https://www.bfu.ch/fr/dossiers/sports-de-montagne-randonnee#:~:text=les%20accidents%20augmentent.-,Plus%20de%2045%20000,56%20d'entre%20elles%20mortellement
-
-Association de défense des montagnes : https://mountainwilderness.ch/fr/
 
 # Description
 Deux idées: 
@@ -60,10 +39,32 @@ Originaires du Valais, région montagneuse, nous avons tout les deux été confr
 Un autre pan de notre projet est la mise en lumière des sujets actuels de société liés au contexte de la montagne (pelleteuses sur le glacier à Zermatt, conséquence du surtourisme dans nos montagne, débutants s'adonnant à des pratiques de sport extrême) 
 
 # Références
-**Inspiration** 
+## Inspiration 
 
 Scrollytelling dans lequel on monte en altitude en découvrant ce qui s'y trouve : https://neal.fun/space-elevator/ 
 
 Dataviz des cas de morts lors de l'ascension de l'Everest : https://www.datawrapper.de/blog/mount-everest-deaths
 
 Map interactive répertoriant les chemins de randonnée, spots de grimpe, stations de skis, etc. aux USA : https://www.onxmaps.com/backcountry/app
+
+## Sets de données
+Chemin de randonnée hivernale en Suisse : https://s.geo.admin.ch/ejvf3bnqlg9f 
+
+Rapport annuel du SAS (Secours Alpin Suisse) : https://www.secoursalpin.ch/publications/rapport-annuel
+- Organisation mandatée pour les secours en montagne.
+- Objectif : documenter les interventions, améliorer prévention et coordination.
+
+Rapport et statistiques de l'OCVS : https://www.ocvs.ch/documents/
+- Données statistiques relatives aux sauvetages en montagnes
+- Objectif : statistiques publiques, gestion des risques.
+
+DB rapports incidents/accidents sport montagne Alpes : https://www.camptocamp.org/serac
+
+## Recherches
+Article du 24Heures sur les dangers en montagnes : https://www.24heures.ch/randonnee-en-suisse-les-zones-les-plus-dangereuses-399173683979
+
+Statistiques 2019 des accidents de montagne : https://www.sac-cas.ch/fr/les-alpes/de-nouveau-moins-daccidents-23166/
+
+Randonnée et sports de montagne : https://www.bfu.ch/fr/dossiers/sports-de-montagne-randonnee#:~:text=les%20accidents%20augmentent.-,Plus%20de%2045%20000,56%20d'entre%20elles%20mortellement
+
+Association de défense des montagnes : https://mountainwilderness.ch/fr/
