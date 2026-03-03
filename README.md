@@ -10,6 +10,8 @@ Rapport et statistiques de l'OCVS : https://www.ocvs.ch/documents/
 
 ## Recherches
 Article du 24Heures sur les dangers en montagnes : https://www.24heures.ch/randonnee-en-suisse-les-zones-les-plus-dangereuses-399173683979 
+Stats : https://www.sac-cas.ch/fr/les-alpes/de-nouveau-moins-daccidents-23166/ 
+https://www.bfu.ch/fr/dossiers/sports-de-montagne-randonnee#:~:text=les%20accidents%20augmentent.-,Plus%20de%2045%20000,56%20d'entre%20elles%20mortellement
 
 # Description
 Deux idées: 
@@ -24,3 +26,7 @@ Alpinisme de haute montagne, ski freeride, grimpe, Via-Ferrata, randonnées : to
 Dans ce projet, nous souhaitons sensibiliser le spectateur aux risques encourrus lors de la pratique de ces différentes activités en Suisse.
 Originaires du Valais, région montagneuse, nous avons tout les deux été confrontés à la disparitions de proches dans des accidents mortels en montagne.
 Un autre pan de notre projet est la mise en lumière des sujets actuels de société liés au contexte de la montagne (pelleteuses sur le glacier à Zermatt, conséquence du surtourisme dans nos montagne, débutants s'adonnant à des pratiques de sport extrême) 
+
+# Références
+Inspiration : https://neal.fun/space-elevator/ 
+https://pudding.cool/
