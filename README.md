@@ -169,3 +169,6 @@ Statistiques 2019 des accidents de montagne : https://www.sac-cas.ch/fr/les-alpe
 Randonnée et sports de montagne : https://www.bfu.ch/fr/dossiers/sports-de-montagne-randonnee#:~:text=les%20accidents%20augmentent.-,Plus%20de%2045%20000,56%20d'entre%20elles%20mortellement
 
 Association de défense des montagnes : https://mountainwilderness.ch/fr/
+
+# Wireframe
+Lien du projet figma : https://www.figma.com/design/Grn8ji6KCugtJDIM52EEeX/VisualDon-HazardousMountains?node-id=0-1&t=5Id5V14uTAr5P8vq-1
