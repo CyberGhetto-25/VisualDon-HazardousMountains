@@ -1,0 +1,181 @@
+{
+  "metadata": {
+    "source": "Secours Alpin Suisse (SAS)",
+    "coverage": "Toute la Suisse SAUF le Valais (couvert par l'OCVS)",
+    "reports_used": [2020, 2021, 2022, 2023, 2024],
+    "historical_data_from_charts": [2017, 2018, 2019],
+    "last_updated": "2025-03-28"
+  },
+
+  "yearly_overview": [
+    { "year": 2017, "total_operations": 739, "total_persons": 782 },
+    { "year": 2018, "total_operations": 861, "total_persons": 1117 },
+    { "year": 2019, "total_operations": 822, "total_persons": 1055 },
+    { "year": 2020, "total_operations": 999, "total_persons": 1319 },
+    { "year": 2021, "total_operations": 1071, "total_persons": 1294 },
+    { "year": 2022, "total_operations": 1292, "total_persons": 1546 },
+    { "year": 2023, "total_operations": 1475, "total_persons": 1695 },
+    { "year": 2024, "total_operations": 1487, "total_persons": 1742 }
+  ],
+
+  "monthly_operations": [
+    {
+      "year": 2020,
+      "months": { "jan":61,"feb":47,"mar":30,"apr":59,"may":84,"jun":65,"jul":180,"aug":137,"sep":135,"oct":57,"nov":87,"dec":57 },
+      "total": 999
+    },
+    {
+      "year": 2021,
+      "months": { "jan":99,"feb":73,"mar":79,"apr":52,"may":77,"jun":96,"jul":131,"aug":153,"sep":121,"oct":94,"nov":38,"dec":58 },
+      "total": 1071
+    },
+    {
+      "year": 2022,
+      "months": { "jan":72,"feb":98,"mar":96,"apr":82,"may":91,"jun":137,"jul":214,"aug":174,"sep":128,"oct":98,"nov":41,"dec":61 },
+      "total": 1292
+    },
+    {
+      "year": 2023,
+      "months": { "jan":77,"feb":69,"mar":72,"apr":105,"may":106,"jun":144,"jul":221,"aug":188,"sep":208,"oct":132,"nov":74,"dec":79 },
+      "total": 1475
+    },
+    {
+      "year": 2024,
+      "months": { "jan":82,"feb":82,"mar":88,"apr":84,"may":120,"jun":147,"jul":222,"aug":227,"sep":150,"oct":108,"nov":78,"dec":99 },
+      "total": 1487
+    }
+  ],
+
+  "regions": {
+    "definitions": [
+      { "code": "SARO", "name": "Secours Alpin Romand" },
+      { "code": "ARBE", "name": "Secours Alpin Bernois" },
+      { "code": "ARZ",  "name": "Secours Alpin de Suisse centrale" },
+      { "code": "SATI", "name": "Secours Alpin du Tessin" },
+      { "code": "ARGL", "name": "Secours Alpin de Glaris" },
+      { "code": "ARO",  "name": "Secours Alpin de Suisse orientale" },
+      { "code": "ARG",  "name": "Secours Alpin des Grisons" }
+    ],
+    "interventions_by_region": [
+      { "year": 2020, "SARO":160, "ARBE":234, "ARZ":153, "SATI":108, "ARGL":51, "ARO":100, "ARG":193 },
+      { "year": 2021, "SARO":165, "ARBE":240, "ARZ":147, "SATI":101, "ARGL":46, "ARO":116, "ARG":256 },
+      { "year": 2022, "SARO":175, "ARBE":292, "ARZ":178, "SATI":122, "ARGL":65, "ARO":146, "ARG":314 },
+      { "year": 2023, "SARO":217, "ARBE":287, "ARZ":199, "SATI":144, "ARGL":53, "ARO":136, "ARG":439 },
+      { "year": 2024, "SARO":190, "ARBE":262, "ARZ":177, "SATI":156, "ARGL":50, "ARO":164, "ARG":484, "unattributed":4 }
+    ]
+  },
+
+  "activities_percent": [
+    {
+      "year": 2020, "total_persons": 1319,
+      "escalade_via_ferrata": 14.2, "randonnee_haute_montagne": 12.6, "randonnee": 18.9, "randonnee_alpine": 18.7,
+      "loisirs_ete_autres": 4.6, "loisirs_eau": 2.1, "loisirs_aeriens": 4.2, "loisirs_hiver": 8.6,
+      "autres_mobilisations": 13.2, "travail": 1.8, "trafic": 1.1
+    },
+    {
+      "year": 2021, "total_persons": 1294,
+      "escalade_via_ferrata": 12.1, "randonnee_haute_montagne": 8.3, "randonnee": 16.1, "randonnee_alpine": 17.3,
+      "loisirs_ete_autres": 3.5, "loisirs_eau": 1.3, "loisirs_aeriens": 5.8, "loisirs_hiver": 17.1,
+      "autres_mobilisations": 16.1, "travail": 1.8, "trafic": 0.7
+    },
+    {
+      "year": 2022, "total_persons": 1546,
+      "escalade_via_ferrata": 12.5, "randonnee_haute_montagne": 9.7, "randonnee": 15.3, "randonnee_alpine": 14.9,
+      "loisirs_ete_autres": 4.3, "loisirs_eau": 1.1, "loisirs_aeriens": 5.8, "loisirs_hiver": 11.3,
+      "autres_mobilisations": 21.4, "travail": 2.0, "trafic": 1.7
+    },
+    {
+      "year": 2023, "total_persons": 1695,
+      "escalade_via_ferrata": 11, "randonnee_haute_montagne": 9, "randonnee": 18, "randonnee_alpine": 12,
+      "loisirs_ete_autres": 3, "loisirs_eau": 1, "loisirs_aeriens": 6, "loisirs_hiver": 7,
+      "autres_mobilisations": 28, "travail": 3, "trafic": 2
+    },
+    {
+      "year": 2024, "total_persons": 1742,
+      "escalade_via_ferrata": 9, "randonnee_haute_montagne": 8, "randonnee": 18, "randonnee_alpine": 14,
+      "loisirs_ete_autres": 3, "loisirs_eau": 2, "loisirs_aeriens": 4, "loisirs_hiver": 9,
+      "autres_deploiements_first_responders": 19, "autres_deploiements_divers": 10, "travail": 2, "trafic": 2,
+      "note": "En 2024, 'Autres mobilisations' scindé en First Responders (19%) et divers (10%)"
+    }
+  ],
+
+  "first_responders": [
+    {
+      "year": 2021, "total": 75,
+      "locations": [
+        { "name":"Coire","region":"GR","count":32 },
+        { "name":"Linthal","region":"GL","count":16 },
+        { "name":"Vals","region":"GR","count":9 },
+        { "name":"Thusis/Schams","region":"GR","count":6 },
+        { "name":"Lauterbrunnen","region":"BE","count":5 },
+        { "name":"Flims","region":"GR","count":4 },
+        { "name":"Avers","region":"GR","count":3 }
+      ]
+    },
+    {
+      "year": 2022, "total": 183,
+      "locations": [
+        { "name":"Coire","region":"GR","count":51 },
+        { "name":"Linthal","region":"GL","count":31 },
+        { "name":"Lauterbrunnen","region":"BE","count":19 },
+        { "name":"San Bernardino","region":"GR","count":15 },
+        { "name":"Thusis/Schams","region":"GR","count":11 },
+        { "name":"Prättigau","region":"GR","count":10 },
+        { "name":"Vals","region":"GR","count":9 },
+        { "name":"Flims","region":"GR","count":7 },
+        { "name":"Arosa","region":"GR","count":6 },
+        { "name":"Lugnez","region":"GR","count":4 },
+        { "name":"Safien","region":"GR","count":3 },
+        { "name":"Davos","region":"GR","count":3 },
+        { "name":"Zuoz","region":"GR","count":3 },
+        { "name":"Münstertal","region":"GR","count":3 },
+        { "name":"Avers","region":"GR","count":3 },
+        { "name":"Bondo","region":"GR","count":3 },
+        { "name":"Disentis","region":"GR","count":1 },
+        { "name":"Bergün","region":"GR","count":1 }
+      ]
+    },
+    {
+      "year": 2023, "total": 354,
+      "locations": [
+        { "name":"Région des Grisons","region":"GR","count":240 },
+        { "name":"Région Lac Noir","region":"FR","count":47 },
+        { "name":"Région Lauterbrunnen","region":"BE","count":29 },
+        { "name":"Appenzell Rhodes-Intérieures","region":"AI","count":26 },
+        { "name":"Région Braunwald","region":"GL","count":12 }
+      ]
+    },
+    {
+      "year": 2024, "total": 355,
+      "locations": [
+        { "name":"Région des Grisons","region":"GR","count":286 },
+        { "name":"Région Appenzell","region":"AI/AR","count":36 },
+        { "name":"Région Lauterbrunnen","region":"BE","count":17 },
+        { "name":"Région Braunwald","region":"GL","count":16 }
+      ]
+    }
+  ],
+
+  "organisation": [
+    {
+      "year": 2020, "associations": 7, "stations": 86, "total_secouristes": 2708,
+      "RISA": 527, "SSH": 130, "chiens_LW": 67, "chiens_GS": 41, "canyoning": 41, "medecine": 61, "first_responders": 44
+    },
+    {
+      "year": 2021, "associations": 7, "stations": 86, "total_secouristes": 2753,
+      "RISA": 593, "SSH": 123, "chiens_LW": 77, "chiens_GS": 42, "canyoning": 49, "medecine": 58, "first_responders": 138
+    },
+    {
+      "year": 2022, "associations": 7, "stations": 84, "total_secouristes": 3117,
+      "RISA": 632, "SSH": 131, "chiens_LW": 70, "chiens_GS": 43, "canyoning": 47, "medecine": 63, "first_responders": 324
+    },
+    {
+      "year": 2023, "associations": 7, "stations": 84, "total_secouristes": 3333,
+      "RISA": 638, "SSH": 127, "chiens_LW": 63, "chiens_GS": 39, "canyoning": 44, "medecine": 75, "first_responders": 505
+    },
+    {
+      "year": 2024, "associations": 7, "stations": 84, "total_secouristes": 3432,
+      "RISA": 673, "SSH": 133, "chiens_LW": 52, "chiens_GS": 36, "canyoning": 40, "medecine": 85, "first_responders": 551
+    }
+  ]
+}
