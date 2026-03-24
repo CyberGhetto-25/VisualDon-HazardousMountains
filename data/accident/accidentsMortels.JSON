@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "titre": "Accidents mortels en montagne — Données Suisse",
+    "description": "Statistiques sur les décès et interventions de secours dans les sports de montagne en Suisse",
+    "sources": [
+      {
+        "id": "CAS_urgences_2024",
+        "organisation": "Club Alpin Suisse (CAS)",
+        "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-dans-les-montagnes-en-2024-44044/",
+        "pdf": "https://www.sac-cas.ch/fileadmin/Ausbildung_und_Wissen/Sicher_unterwegs/Bergnotfallstatistik/Bergnotfaelle_Schweiz_2024_Version_mit_text_Internet-franz.pdf"
+      },
+      {
+        "id": "CAS_urgences_2022",
+        "organisation": "Club Alpin Suisse (CAS)",
+        "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-en-montagne-2022-40407/"
+      },
+      {
+        "id": "CAS_urgences_2018",
+        "organisation": "Club Alpin Suisse (CAS)",
+        "url": "https://www.sac-cas.ch/fr/les-alpes/cas-durgence-en-hausse-2536/"
+      },
+      {
+        "id": "SAS_rapport",
+        "organisation": "Secours Alpin Suisse (SAS)",
+        "url": "https://www.secoursalpin.ch/portrait/publications/statistique-des-incidents-alpines-1"
+      },
+      {
+        "id": "RTS_ski_2024",
+        "organisation": "RTS Info",
+        "url": "https://www.rts.ch/info/suisse/2025/article/accidents-mortels-en-hausse-pour-les-randonnees-a-skis-en-suisse-en-2023-2024-28835423.html"
+      },
+      {
+        "id": "SUVA_stats_2022",
+        "organisation": "SUVA",
+        "url": "https://www.suva.ch/fr-ch/autoportrait/news-et-medias/medias/2023/01/lete-du-siecle-a-cause-un-nombre-record-daccidents-durant-les-loisirs"
+      }
+    ]
+  },
+  "accidents_mortels": {
+    "deces_totaux_par_annee": {
+      "description": "Nombre total de décès dans les sports de montagne classiques en Suisse par année (hors parapente, VTT)",
+      "source": "CAS — Statistique des urgences en montagne",
+      "url": "https://www.sac-cas.ch/fr/formation-et-securite/securite-en-chemin/urgences-en-montagne",
+      "donnees": [
+        {
+          "annee": 2018,
+          "deces": 135,
+          "url": "https://www.sac-cas.ch/fr/les-alpes/cas-durgence-en-hausse-2536/"
+        },
+        {
+          "annee": 2021,
+          "deces": 131,
+          "url": "https://www.sac-cas.ch/fr/le-cas/rapport-annuel-2021-36459/"
+        },
+        {
+          "annee": 2022,
+          "deces": 109,
+          "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-en-montagne-2022-40407/"
+        },
+        {
+          "annee": 2023,
+          "deces": 114,
+          "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-dans-les-montagnes-en-2024-44044/"
+        },
+        {
+          "annee": 2024,
+          "deces": 111,
+          "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-dans-les-montagnes-en-2024-44044/"
+        }
+      ]
+    },
+    "deces_par_discipline_2024": {
+      "annee": 2024,
+      "source": "RTS Info / CAS",
+      "url": "https://www.rts.ch/info/suisse/2025/article/accidents-mortels-en-hausse-pour-les-randonnees-a-skis-en-suisse-en-2023-2024-28835423.html",
+      "donnees": [
+        {
+          "sport": "Randonnée pédestre en montagne",
+          "deces": 36,
+          "note": "Chiffre le plus bas depuis 10 ans"
+        },
+        {
+          "sport": "Ski de randonnée",
+          "deces": 28,
+          "note": "Pic le plus haut depuis 5 ans — dont accident Tête Blanche (6 morts)"
+        },
+        {
+          "sport": "Alpinisme",
+          "deces": null,
+          "note": "Inclus dans les 111 décès totaux"
+        },
+        {
+          "sport": "Hors-piste",
+          "deces": null,
+          "note": "Inclus dans les 111 décès totaux"
+        }
+      ]
+    },
+    "repartition_saisonniere_2024": {
+      "annee": 2024,
+      "source": "RTS Info / CAS",
+      "url": "https://www.rts.ch/info/suisse/2025/article/accidents-mortels-en-hausse-pour-les-randonnees-a-skis-en-suisse-en-2023-2024-28835423.html",
+      "donnees": [
+        {
+          "periode": "Juin–Août (été)",
+          "deces": 48,
+          "note": "Afflux touristique estival"
+        }
+      ]
+    },
+    "part_accidentes_etrangers": {
+      "annee": 2024,
+      "pourcentage": 50,
+      "note": "Près de 50% des accidentés sont domiciliés à l'étranger — deuxième valeur la plus élevée des dernières années",
+      "source": "CAS",
+      "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-dans-les-montagnes-en-2024-44044/"
+    },
+    "interventions_SAS_2023": {
+      "annee": 2023,
+      "source": "Secours Alpin Suisse (SAS)",
+      "url": "https://www.secoursalpin.ch/portrait/publications/statistique-des-incidents-alpines-1",
+      "nb_interventions": 1475,
+      "nb_personnes_secourues": 1695,
+      "evolution": "+15% par rapport à 2022"
+    },
+    "accidents_sport_plein_air_SUVA_2022": {
+      "description": "Les sports de plein air représentent la majorité des accidents de sport en Suisse",
+      "source": "SUVA",
+      "url": "https://www.suva.ch/fr-ch/autoportrait/news-et-medias/medias/2023/01/lete-du-siecle-a-cause-un-nombre-record-daccidents-durant-les-loisirs",
+      "note": "Randonnée + vélo + ski = plus de 80% des accidents de sport"
+    }
+  }
+}
