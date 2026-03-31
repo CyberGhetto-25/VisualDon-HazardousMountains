@@ -1,25 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hazardous Mountains</title>
-</head>
-<body>
-    <div id="introduction">
+    <!-- Styles globaux -->
+    <link rel="stylesheet" href="assets/css/main.css" />
 
-    </div>
+    <!-- Styles par section — chacun touche uniquement à sa ligne -->
+    <link rel="stylesheet" href="sections/rescue/rescue.css" />
+    <link rel="stylesheet" href="sections/accident/accident.css" />
+    <link rel="stylesheet" href="sections/behavior/behavior.css" />
+  </head>
+  <body>
+    <div id="introduction"></div>
 
-    <div id="accident">
-
-    </div>
+    <div id="accident"></div>
 
     <div id="rescue">
-
+      <div id="rescue-map-container"></div>
+      <div id="rescue-chart-container"></div>
     </div>
 
-    <div id="behavior">
-        
-    </div>
-</body>
+    <div id="behavior"></div>
+
+    <!-- Libs — dans cet ordre, une seule fois -->
+    <script src="lib/d3.v7.min.js"></script>
+    <script src="lib/topojson.v3.min.js"></script>
+    <script src="lib/scrollama.min.js"></script>
+
+    <!-- Une ligne par section — chacun touche à sa ligne uniquement -->
+    <script src="sections/rescue/rescue.js"></script>
+    <script src="sections/accident/accident.js"></script>
+    <script src="sections/behavior/behavior.js"></script>
+  </body>
 </html>

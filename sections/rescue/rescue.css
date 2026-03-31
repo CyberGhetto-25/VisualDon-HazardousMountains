@@ -1,0 +1,283 @@
+/* ── Layout général ──────────────────────────────────────────── */
+#rescue {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ── Contrôles ───────────────────────────────────────────────── */
+#rescue-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#rescue-controls h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #111;
+}
+
+#rescue-year-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #888;
+}
+
+#rescue-year-wrap input[type="range"] {
+  width: 100px;
+  accent-color: #1a6b3a;
+}
+
+#rescue-year-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111;
+  min-width: 36px;
+}
+
+/* ── Carte ───────────────────────────────────────────────────── */
+#rescue-map-container {
+  width: 100%;
+}
+
+#rescue-map-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.canton-path {
+  stroke: #fff;
+  stroke-width: 0.5px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.canton-path:hover { opacity: 0.7; }
+
+.canton-valais {
+  stroke: #fff;
+  stroke-width: 2px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.canton-valais:hover { opacity: 0.75; }
+
+.base-bubble {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.base-bubble:hover { opacity: 0.65; }
+
+/* ── Légende ─────────────────────────────────────────────────── */
+#rescue-legend {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: #555;
+}
+
+.rescue-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rescue-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Panel OCVS ──────────────────────────────────────────────── */
+#rescue-ocvs-panel {
+  display: none;
+  margin: 2rem 0 0;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+#rescue-ocvs-panel.visible {
+  display: block;
+}
+
+.rescue-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.rescue-panel-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+}
+
+.rescue-panel-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: #aaa;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.rescue-panel-close:hover { color: #333; }
+
+/* Métriques */
+.rescue-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+
+.rescue-metric {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.rescue-metric-val {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: #111;
+}
+
+.rescue-metric-lbl {
+  font-size: 11px;
+  color: #888;
+  margin: 4px 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Tabs */
+.rescue-tab-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.rescue-tab {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  background: transparent;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.15s;
+}
+
+.rescue-tab:hover {
+  border-color: #999;
+  color: #111;
+}
+
+.rescue-tab.active {
+  background: #1a6b3a;
+  color: #fff;
+  border-color: transparent;
+}
+
+/* Lignes de base */
+.rescue-base-row {
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+/* Barres */
+.rescue-bar-track {
+  background: #efefef;
+  border-radius: 4px;
+  height: 5px;
+  margin-top: 3px;
+  overflow: hidden;
+}
+
+.rescue-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* ── Graphique SAS ───────────────────────────────────────────── */
+#rescue-chart-container {
+  margin: 2.5rem 0 0;
+}
+
+.rescue-chart-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 10px;
+}
+
+#rescue-chart-container svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+#rescue-chart-container .tick text {
+  font-size: 11px;
+  fill: #888;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#rescue-chart-container .tick line {
+  stroke: #f0f0f0;
+}
+
+/* ── Tooltip ─────────────────────────────────────────────────── */
+#rescue-tooltip {
+  position: fixed;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s;
+  z-index: 1000;
+  max-width: 240px;
+  line-height: 1.6;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  color: #111;
+}
