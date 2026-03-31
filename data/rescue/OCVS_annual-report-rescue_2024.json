@@ -1,0 +1,3496 @@
+{
+  "source": "Rapport OCVS 2024 - Part 1",
+  "annee": 2024,
+  "date_rapport": "15.04.2025",
+  "date_dernier_chargement": "10.04.2025",
+  "services_ambulances": {
+    "total_interventions": 21438,
+    "bases": [
+      {
+        "code": 33,
+        "nom": "Amb Clerc Monthey",
+        "interventions": {
+          "jour": {
+            "P1": 853,
+            "P2": 1034,
+            "P3": 23,
+            "S1": 275,
+            "total": 2190
+          },
+          "nuit": {
+            "P1": 499,
+            "P2": 505,
+            "P3": 5,
+            "S1": 25,
+            "total": 1034
+          },
+          "total": {
+            "P1": 1352,
+            "P2": 1539,
+            "P3": 28,
+            "S1": 300,
+            "total": 3224
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 10.3,
+            "percentile90": 20.8
+          },
+          "nuit": {
+            "mediane": 11.2,
+            "percentile90": 23.5
+          },
+          "total": {
+            "mediane": 10.6,
+            "percentile90": 22.0
+          }
+        },
+        "dr_invalide": {
+          "jour": 53,
+          "total_jour": 769,
+          "nuit": 36,
+          "total_nuit": 480,
+          "total": 89,
+          "total_interventions": 1249
+        }
+      },
+      {
+        "code": 68,
+        "nom": "Amb Entremont",
+        "interventions": {
+          "jour": {
+            "P1": 185,
+            "P2": 323,
+            "P3": 6,
+            "S1": 1,
+            "total": 515
+          },
+          "nuit": {
+            "P1": 303,
+            "P2": 1034,
+            "P3": null,
+            "S1": null,
+            "total": 464
+          },
+          "total": {
+            "P1": 499,
+            "P2": 505,
+            "P3": 5,
+            "S1": 25,
+            "total": 1034
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 10.6,
+            "percentile90": 22.0
+          },
+          "nuit": {
+            "mediane": 11.4,
+            "percentile90": 24.9
+          },
+          "total": {
+            "mediane": 11.0,
+            "percentile90": 22.9
+          }
+        },
+        "dr_invalide": {
+          "jour": 14,
+          "total_jour": 190,
+          "nuit": 19,
+          "total_nuit": 243,
+          "total": 33,
+          "total_interventions": 433
+        }
+      },
+      {
+        "code": 66,
+        "nom": "Amb HVS Martigny",
+        "interventions": {
+          "jour": {
+            "P1": 1509,
+            "P2": 1783,
+            "P3": 20,
+            "S1": 50,
+            "total": 3362
+          },
+          "nuit": {
+            "P1": 769,
+            "P2": 950,
+            "P3": 2,
+            "S1": 52,
+            "total": 1773
+          },
+          "total": {
+            "P1": 2278,
+            "P2": 2733,
+            "P3": 22,
+            "S1": 102,
+            "total": 5135
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 10.5,
+            "percentile90": 21.0
+          },
+          "nuit": {
+            "mediane": 11.6,
+            "percentile90": 22.5
+          },
+          "total": {
+            "mediane": 10.6,
+            "percentile90": 22.6
+          }
+        },
+        "dr_invalide": {
+          "jour": 60,
+          "total_jour": 850,
+          "nuit": 42,
+          "total_nuit": 444,
+          "total": 102,
+          "total_interventions": 1294
+        }
+      },
+      {
+        "code": 65,
+        "nom": "Amb SAS Sion",
+        "interventions": {
+          "jour": {
+            "P1": 936,
+            "P2": 1181,
+            "P3": 24,
+            "S1": 100,
+            "total": 2241
+          },
+          "nuit": {
+            "P1": 986,
+            "P2": 950,
+            "P3": 2,
+            "S1": 52,
+            "total": 1990
+          },
+          "total": {
+            "P1": 1922,
+            "P2": 2131,
+            "P3": 26,
+            "S1": 152,
+            "total": 4231
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 9.8,
+            "percentile90": 19.1
+          },
+          "nuit": {
+            "mediane": 11.7,
+            "percentile90": 12.7
+          },
+          "total": {
+            "mediane": 10.5,
+            "percentile90": 21.0
+          }
+        },
+        "dr_invalide": {
+          "jour": 93,
+          "total_jour": 1289,
+          "nuit": 69,
+          "total_nuit": 895,
+          "total": 162,
+          "total_interventions": 2184
+        }
+      },
+      {
+        "code": 61,
+        "nom": "Amb HVS Sierre",
+        "interventions": {
+          "jour": {
+            "P1": 754,
+            "P2": 1034,
+            "P3": 4,
+            "S1": 21,
+            "total": 1813
+          },
+          "nuit": {
+            "P1": 464,
+            "P2": 454,
+            "P3": 1,
+            "S1": 31,
+            "total": 950
+          },
+          "total": {
+            "P1": 1218,
+            "P2": 1488,
+            "P3": 5,
+            "S1": 52,
+            "total": 2763
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 9.67,
+            "percentile90": 20.2
+          },
+          "nuit": {
+            "mediane": 10.4,
+            "percentile90": 21.5
+          },
+          "total": {
+            "mediane": 10.3,
+            "percentile90": 20.1
+          }
+        },
+        "dr_invalide": {
+          "jour": 54,
+          "total_jour": 782,
+          "nuit": 24,
+          "total_nuit": 436,
+          "total": 78,
+          "total_interventions": 1218
+        }
+      },
+      {
+        "code": 55,
+        "nom": "Amb SOW Visp",
+        "interventions": {
+          "jour": {
+            "P1": 1034,
+            "P2": 1465,
+            "P3": 11,
+            "S1": 206,
+            "total": 2716
+          },
+          "nuit": {
+            "P1": 1034,
+            "P2": 1443,
+            "P3": 11,
+            "S1": 206,
+            "total": 2694
+          },
+          "total": {
+            "P1": 1139,
+            "P2": 1635,
+            "P3": 25,
+            "S1": 131,
+            "total": 2930
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 10.3,
+            "percentile90": 20.6
+          },
+          "nuit": {
+            "mediane": 11.7,
+            "percentile90": 22.4
+          },
+          "total": {
+            "mediane": 10.9,
+            "percentile90": 21.4
+          }
+        },
+        "dr_invalide": {
+          "jour": 43,
+          "total_jour": 570,
+          "nuit": 24,
+          "total_nuit": 352,
+          "total": 67,
+          "total_interventions": 922
+        }
+      },
+      {
+        "code": 53,
+        "nom": "Amb Venetz Saastal",
+        "interventions": {
+          "jour": {
+            "P1": 303,
+            "P2": 433,
+            "P3": 10,
+            "S1": 746,
+            "total": 1492
+          },
+          "nuit": {
+            "P1": 182,
+            "P2": 147,
+            "P3": null,
+            "S1": 506,
+            "total": 835
+          },
+          "total": {
+            "P1": 237,
+            "P2": 505,
+            "P3": 5,
+            "S1": 32,
+            "total": 779
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 9.81,
+            "percentile90": 17.4
+          },
+          "nuit": {
+            "mediane": 11.13,
+            "percentile90": 16.63
+          },
+          "total": {
+            "mediane": 10.2,
+            "percentile90": 17.6
+          }
+        },
+        "dr_invalide": {
+          "jour": 2,
+          "total_jour": 70,
+          "nuit": 4,
+          "total_nuit": 74,
+          "total": 6,
+          "total_interventions": 144
+        }
+      },
+      {
+        "code": 57,
+        "nom": "Amb Zermatt",
+        "interventions": {
+          "jour": {
+            "P1": 422,
+            "P2": 429,
+            "P3": 7,
+            "S1": 46,
+            "total": 904
+          },
+          "nuit": {
+            "P1": 182,
+            "P2": 147,
+            "P3": null,
+            "S1": 506,
+            "total": 835
+          },
+          "total": {
+            "P1": 303,
+            "P2": 433,
+            "P3": 10,
+            "S1": 746,
+            "total": 1492
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 8.8,
+            "percentile90": 11.3
+          },
+          "nuit": {
+            "mediane": 10.3,
+            "percentile90": 15.6
+          },
+          "total": {
+            "mediane": 9.47,
+            "percentile90": 13.7
+          }
+        },
+        "dr_invalide": {
+          "jour": 11,
+          "total_jour": 101,
+          "nuit": 1,
+          "total_nuit": 132,
+          "total": 12,
+          "total_interventions": 233
+        }
+      },
+      {
+        "code": 70,
+        "nom": "Amb SOW Gampel",
+        "interventions": {
+          "jour": {
+            "P1": 237,
+            "P2": 505,
+            "P3": 5,
+            "S1": 32,
+            "total": 779
+          },
+          "nuit": {
+            "P1": 182,
+            "P2": 147,
+            "P3": null,
+            "S1": 506,
+            "total": 835
+          },
+          "total": {
+            "P1": 303,
+            "P2": 433,
+            "P3": 10,
+            "S1": 746,
+            "total": 1492
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 9.93,
+            "percentile90": 19.9
+          },
+          "nuit": {
+            "mediane": 11.2,
+            "percentile90": 23.5
+          },
+          "total": {
+            "mediane": 10.4,
+            "percentile90": 20.9
+          }
+        },
+        "dr_invalide": {
+          "jour": 22,
+          "total_jour": 212,
+          "nuit": 5,
+          "total_nuit": 159,
+          "total": 27,
+          "total_interventions": 371
+        }
+      },
+      {
+        "code": 75,
+        "nom": "Amb SOW Fiesch",
+        "interventions": {
+          "jour": {
+            "P1": 515,
+            "P2": 800,
+            "P3": 19,
+            "S1": 5,
+            "total": 1339
+          },
+          "nuit": {
+            "P1": 264,
+            "P2": 357,
+            "P3": null,
+            "S1": 22,
+            "total": 643
+          },
+          "total": {
+            "P1": 800,
+            "P2": 19,
+            "S1": 5,
+            "total": 824
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 9.92,
+            "percentile90": 20.3
+          },
+          "nuit": {
+            "mediane": 11.17,
+            "percentile90": 21.35
+          },
+          "total": {
+            "mediane": 10.4,
+            "percentile90": 20.9
+          }
+        },
+        "dr_invalide": {
+          "jour": 7,
+          "total_jour": 111,
+          "nuit": 1,
+          "total_nuit": 88,
+          "total": 8,
+          "total_interventions": 199
+        }
+      },
+      {
+        "code": 82,
+        "nom": "Rapid Responder St-Niklaus",
+        "interventions": {
+          "jour": {
+            "P1": 16,
+            "P2": 5,
+            "P3": null,
+            "S1": null,
+            "total": 21
+          },
+          "nuit": {
+            "P1": null,
+            "P2": null,
+            "P3": null,
+            "S1": null,
+            "total": 0
+          },
+          "total": {
+            "P1": 16,
+            "P2": 5,
+            "total": 21
+          }
+        },
+        "dr_invalide": {
+          "jour": 2,
+          "total_jour": 13,
+          "total": 2,
+          "total_interventions": 13
+        }
+      }
+    ]
+  },
+  "services_helicopteres": {
+    "total_interventions": 4668,
+    "bases": [
+      {
+        "code": 60,
+        "nom": "Heli AG, Sion",
+        "compagnie": "Air-Glaciers",
+        "interventions_2024": {
+          "jour": {
+            "P": 2071,
+            "S": 119,
+            "total": 2190
+          },
+          "nuit": {
+            "P": 1894,
+            "S": 84,
+            "total": 1978
+          },
+          "total": {
+            "P": 2095,
+            "S": 130,
+            "total": 2225
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 18.5,
+            "percentile90": 30.0
+          },
+          "nuit": {
+            "mediane": 25.5,
+            "percentile90": 43.8
+          },
+          "total": {
+            "mediane": 19.4,
+            "percentile90": 35.5
+          }
+        },
+        "dr_invalide_2024": {
+          "jour": 134,
+          "total_jour": 675,
+          "nuit": 53,
+          "total_nuit": 159,
+          "total": 187,
+          "total_interventions": 834
+        },
+        "interventions_historique": {
+          "2022": {
+            "total": 2278
+          },
+          "2023": {
+            "total": 2283
+          }
+        }
+      },
+      {
+        "code": 59,
+        "nom": "Heli AZ, Zermatt",
+        "compagnie": "Air Zermatt",
+        "interventions_2024": {
+          "jour": {
+            "P": 2110,
+            "S": 128,
+            "total": 2238
+          },
+          "nuit": {
+            "P": 1935,
+            "S": 94,
+            "total": 2029
+          },
+          "total": {
+            "P": 2270,
+            "S": 173,
+            "total": 2443
+          }
+        },
+        "delai_reponse_P1": {
+          "jour": {
+            "mediane": 17.0,
+            "percentile90": 21.7
+          },
+          "nuit": {
+            "mediane": 21.7,
+            "percentile90": 31.0
+          },
+          "total": {
+            "mediane": 17.9,
+            "percentile90": 27.9
+          }
+        },
+        "dr_invalide_2024": {
+          "jour": 107,
+          "total_jour": 636,
+          "nuit": 33,
+          "total_nuit": 135,
+          "total": 140,
+          "total_interventions": 771
+        },
+        "interventions_historique": {
+          "2022": {
+            "total": 2147
+          },
+          "2023": {
+            "total": 2098
+          }
+        }
+      }
+    ]
+  },
+  "services_SMUR": {
+    "total_interventions_2024": 3088,
+    "bases": [
+      {
+        "code": 42,
+        "nom": "SMUR Chablais",
+        "note": "Interventions sur territoire Valais uniquement",
+        "interventions_2024": {
+          "jour": {
+            "P": 110,
+            "S": 8,
+            "total": 118
+          },
+          "nuit": {
+            "P": 597,
+            "S": 59,
+            "total": 656
+          },
+          "total_P": 985,
+          "total_S": 85,
+          "total": 1070
+        },
+        "interventions_historique": {
+          "2022": {
+            "total": 978
+          },
+          "2023": {
+            "total": 1002
+          }
+        }
+      },
+      {
+        "code": 43,
+        "nom": "SMUR Martigny",
+        "note": "Interventions sur territoire Valais uniquement",
+        "interventions_2024": {
+          "jour": {
+            "P": 655,
+            "S": 13,
+            "total": 668
+          },
+          "nuit": {
+            "P": 443,
+            "S": 4,
+            "total": 447
+          },
+          "total_P": 1098,
+          "total_S": 17,
+          "total": 1115
+        },
+        "interventions_historique": {
+          "2022": {
+            "total": 1013
+          },
+          "2023": {
+            "total": 1047
+          }
+        }
+      },
+      {
+        "code": 44,
+        "nom": "SMUR Sion",
+        "interventions_2024": {
+          "jour": {
+            "P": 418,
+            "S": 6,
+            "total": 424
+          },
+          "nuit": {
+            "P": 283,
+            "S": 15,
+            "total": 298
+          },
+          "total_P": 701,
+          "total_S": 21,
+          "total": 722
+        },
+        "interventions_historique": {
+          "2022": {
+            "total": 678
+          },
+          "2023": {
+            "total": 704
+          }
+        }
+      },
+      {
+        "code": 45,
+        "nom": "NEF Visp",
+        "interventions_2024": {
+          "jour": {
+            "P": 108,
+            "S": 7,
+            "total": 115
+          },
+          "nuit": {
+            "P": 62,
+            "S": 6,
+            "total": 68
+          },
+          "total_P": 170,
+          "total_S": 13,
+          "total": 183
+        },
+        "interventions_historique": {
+          "2022": {
+            "total": 183
+          },
+          "2023": {
+            "total": 183
+          }
+        }
+      }
+    ]
+  },
+  "delais_reponse_canton_2024": {
+    "note": "Interventions P1 uniquement - Médiane et Percentile 90 en minutes",
+    "toutes_bases": {
+      "jour": {
+        "mediane": 11.3,
+        "percentile90": 22.9
+      },
+      "nuit": {
+        "mediane": 11.5,
+        "percentile90": 25.35
+      },
+      "total": {
+        "mediane": 11.3,
+        "percentile90": 23.83
+      }
+    },
+    "ambulances": {
+      "jour": {
+        "mediane": 10.2,
+        "percentile90": 19.4
+      },
+      "nuit": {
+        "mediane": 10.1,
+        "percentile90": 19.4
+      },
+      "total": {
+        "mediane": 9.85,
+        "percentile90": 19.4
+      }
+    },
+    "helicopteres": {
+      "Heli_AG_Sion": {
+        "jour": {
+          "mediane": 18.5,
+          "percentile90": 30.0
+        },
+        "total": {
+          "mediane": 19.4,
+          "percentile90": 35.5
+        }
+      },
+      "Heli_AZ_Zermatt": {
+        "jour": {
+          "mediane": 17.0,
+          "percentile90": 21.7
+        },
+        "total": {
+          "mediane": 17.9,
+          "percentile90": 27.9
+        }
+      }
+    }
+  },
+  "interventions_delai_sup_20min": {
+    "note": "Interventions P1 avec délai de réponse >= 20 min - Toutes compagnies",
+    "2020": {
+      "jour": {
+        "nb": 684,
+        "total": 4282,
+        "ratio": "16.0%"
+      },
+      "nuit": {
+        "nb": 481,
+        "total": 2403,
+        "ratio": "20.0%"
+      },
+      "total": {
+        "nb": 1165,
+        "total": 6685,
+        "ratio": "17.4%"
+      }
+    },
+    "2021": {
+      "jour": {
+        "nb": 805,
+        "total": 4918,
+        "ratio": "16.4%"
+      },
+      "nuit": {
+        "nb": 604,
+        "total": 2749,
+        "ratio": "22.0%"
+      },
+      "total": {
+        "nb": 1409,
+        "total": 7667,
+        "ratio": "18.4%"
+      }
+    },
+    "2022": {
+      "jour": {
+        "nb": 799,
+        "total": 4749,
+        "ratio": "16.8%"
+      },
+      "nuit": {
+        "nb": 502,
+        "total": 2662,
+        "ratio": "18.9%"
+      },
+      "total": {
+        "nb": 1301,
+        "total": 7411,
+        "ratio": "17.6%"
+      }
+    },
+    "2023": {
+      "jour": {
+        "nb": 831,
+        "total": 5156,
+        "ratio": "16.1%"
+      },
+      "nuit": {
+        "nb": 516,
+        "total": 2818,
+        "ratio": "18.3%"
+      },
+      "total": {
+        "nb": 1347,
+        "total": 7974,
+        "ratio": "16.9%"
+      }
+    },
+    "2024": {
+      "jour": {
+        "nb": 678,
+        "total": 4161,
+        "ratio": "15.8%"
+      },
+      "nuit": {
+        "nb": 485,
+        "total": 2342,
+        "ratio": "20.2%"
+      },
+      "total": {
+        "nb": 1163,
+        "total": 6503,
+        "ratio": "17.9%"
+      }
+    }
+  },
+  "interventions_type_invalide_2024": {
+    "toutes_bases": {
+      "jour": {
+        "invalide": 22,
+        "total": 20134,
+        "ratio": "0.1%"
+      },
+      "nuit": {
+        "invalide": 9,
+        "total": 9003,
+        "ratio": "0.1%"
+      },
+      "total": {
+        "invalide": 31,
+        "total": 29137,
+        "ratio": "0.1%"
+      }
+    },
+    "ambulances": {
+      "total": {
+        "invalide": 15,
+        "total": 21370,
+        "ratio": "0.1%"
+      }
+    },
+    "helicopteres": {
+      "total": {
+        "invalide": 11,
+        "total": 4679,
+        "ratio": "0.2%"
+      }
+    },
+    "SMUR": {
+      "total": {
+        "invalide": 5,
+        "total": 3088,
+        "ratio": "0.2%"
+      }
+    }
+  },
+  "temps_intervention_P1_2024": {
+    "note": "Temps d'intervention = alarme → arrivée à destination. Médiane (M) et Percentile 90 (P90) en minutes.",
+    "toutes_bases": {
+      "total": {
+        "mediane": 49,
+        "percentile90": 81
+      }
+    },
+    "ambulances": {
+      "33_Amb_Clerc_Monthey": {
+        "jour": {
+          "mediane": 48,
+          "percentile90": 78
+        },
+        "nuit": {
+          "mediane": 52,
+          "percentile90": 84
+        },
+        "total": {
+          "mediane": 50,
+          "percentile90": 81
+        }
+      },
+      "68_Amb_Entremont": {
+        "jour": {
+          "mediane": 63,
+          "percentile90": 97
+        },
+        "nuit": {
+          "mediane": 72,
+          "percentile90": 101
+        },
+        "total": {
+          "mediane": 68,
+          "percentile90": 99
+        }
+      },
+      "66_Amb_HVS_Martigny": {
+        "jour": {
+          "mediane": 46,
+          "percentile90": 68
+        },
+        "nuit": {
+          "mediane": 51,
+          "percentile90": 78
+        },
+        "total": {
+          "mediane": 47,
+          "percentile90": 73
+        }
+      },
+      "65_Amb_SAS_Sion": {
+        "jour": {
+          "mediane": 39,
+          "percentile90": 63
+        },
+        "nuit": {
+          "mediane": 42,
+          "percentile90": 71
+        },
+        "total": {
+          "mediane": 40,
+          "percentile90": 66
+        }
+      },
+      "61_Amb_HVS_Sierre": {
+        "jour": {
+          "mediane": 46,
+          "percentile90": 74
+        },
+        "nuit": {
+          "mediane": 49,
+          "percentile90": 81
+        },
+        "total": {
+          "mediane": 47,
+          "percentile90": 77
+        }
+      },
+      "55_Amb_SOW_Visp": {
+        "jour": {
+          "mediane": 52,
+          "percentile90": 77
+        },
+        "nuit": {
+          "mediane": 48,
+          "percentile90": 73
+        },
+        "total": {
+          "mediane": 48,
+          "percentile90": 76
+        }
+      },
+      "53_Amb_Venetz_Saastal": {
+        "jour": {
+          "mediane": 55,
+          "percentile90": 91
+        },
+        "nuit": {
+          "mediane": 70,
+          "percentile90": 100
+        },
+        "total": {
+          "mediane": 67,
+          "percentile90": 97
+        }
+      },
+      "57_Amb_Zermatt": {
+        "jour": {
+          "mediane": 62,
+          "percentile90": 96
+        },
+        "nuit": {
+          "mediane": 81,
+          "percentile90": 107
+        },
+        "total": {
+          "mediane": 69,
+          "percentile90": 98
+        }
+      },
+      "70_Amb_SOW_Gampel": {
+        "jour": {
+          "mediane": 54,
+          "percentile90": 79
+        },
+        "nuit": {
+          "mediane": 49,
+          "percentile90": 77
+        },
+        "total": {
+          "mediane": 52,
+          "percentile90": 78
+        }
+      },
+      "75_Amb_SOW_Fiesch": {
+        "jour": {
+          "mediane": 49,
+          "percentile90": 72
+        },
+        "nuit": {
+          "mediane": 55,
+          "percentile90": 62
+        },
+        "total": {
+          "mediane": 51,
+          "percentile90": 71
+        }
+      },
+      "82_Rapid_Responder_StNiklaus": {
+        "total": {
+          "mediane": 51,
+          "percentile90": 81
+        }
+      }
+    },
+    "helicopteres": {
+      "60_Heli_AG_Sion": {
+        "jour": {
+          "mediane": 51,
+          "percentile90": 80
+        },
+        "nuit": {
+          "mediane": 59,
+          "percentile90": 79
+        },
+        "total": {
+          "mediane": 52,
+          "percentile90": 80
+        }
+      },
+      "59_Heli_AZ_Zermatt": {
+        "jour": {
+          "mediane": 48,
+          "percentile90": 74
+        },
+        "nuit": {
+          "mediane": 66,
+          "percentile90": 102
+        },
+        "total": {
+          "mediane": 51,
+          "percentile90": 89
+        }
+      }
+    }
+  },
+  "temps_intervention_invalide_2024": {
+    "note": "TI invalide = <6 min, >300 min, heure alarme postérieure à destination, ou champs manquants",
+    "toutes_bases": {
+      "jour": {
+        "invalide": 1102,
+        "total": 6387,
+        "ratio": "17.3%"
+      },
+      "nuit": {
+        "invalide": 602,
+        "total": 3650,
+        "ratio": "16.5%"
+      },
+      "total": {
+        "invalide": 1704,
+        "total": 10037,
+        "ratio": "17.0%"
+      }
+    },
+    "ambulances": {
+      "jour": {
+        "invalide": 675,
+        "total": 5034,
+        "ratio": "13.4%"
+      },
+      "nuit": {
+        "invalide": 473,
+        "total": 3343,
+        "ratio": "14.1%"
+      },
+      "total": {
+        "invalide": 1148,
+        "total": 8377,
+        "ratio": "13.7%"
+      }
+    },
+    "helicopteres": {
+      "jour": {
+        "invalide": 427,
+        "total": 1353,
+        "ratio": "31.6%"
+      },
+      "nuit": {
+        "invalide": 129,
+        "total": 307,
+        "ratio": "42.0%"
+      },
+      "total": {
+        "invalide": 556,
+        "total": 1660,
+        "ratio": "33.5%"
+      }
+    },
+    "par_base": {
+      "33_Amb_Clerc_Monthey": {
+        "jour": {
+          "invalide": 147,
+          "total": 772,
+          "ratio": "19.0%"
+        },
+        "nuit": {
+          "invalide": 101,
+          "total": 480,
+          "ratio": "21.0%"
+        },
+        "total": {
+          "invalide": 248,
+          "total": 1252,
+          "ratio": "19.8%"
+        }
+      },
+      "68_Amb_Entremont": {
+        "jour": {
+          "invalide": 26,
+          "total": 191,
+          "ratio": "13.6%"
+        },
+        "nuit": {
+          "invalide": 28,
+          "total": 244,
+          "ratio": "11.5%"
+        },
+        "total": {
+          "invalide": 54,
+          "total": 435,
+          "ratio": "12.4%"
+        }
+      },
+      "66_Amb_HVS_Martigny": {
+        "jour": {
+          "invalide": 103,
+          "total": 857,
+          "ratio": "12.0%"
+        },
+        "nuit": {
+          "invalide": 67,
+          "total": 447,
+          "ratio": "15.0%"
+        },
+        "total": {
+          "invalide": 170,
+          "total": 1304,
+          "ratio": "13.0%"
+        }
+      },
+      "65_Amb_SAS_Sion": {
+        "jour": {
+          "invalide": 175,
+          "total": 1305,
+          "ratio": "13.4%"
+        },
+        "nuit": {
+          "invalide": 133,
+          "total": 900,
+          "ratio": "14.8%"
+        },
+        "total": {
+          "invalide": 308,
+          "total": 2205,
+          "ratio": "14.0%"
+        }
+      },
+      "61_Amb_HVS_Sierre": {
+        "jour": {
+          "invalide": 80,
+          "total": 792,
+          "ratio": "10.1%"
+        },
+        "nuit": {
+          "invalide": 36,
+          "total": 438,
+          "ratio": "8.2%"
+        },
+        "total": {
+          "invalide": 116,
+          "total": 1230,
+          "ratio": "9.4%"
+        }
+      },
+      "55_Amb_SOW_Visp": {
+        "jour": {
+          "invalide": 63,
+          "total": 591,
+          "ratio": "10.7%"
+        },
+        "nuit": {
+          "invalide": 43,
+          "total": 354,
+          "ratio": "12.1%"
+        },
+        "total": {
+          "invalide": 106,
+          "total": 945,
+          "ratio": "11.2%"
+        }
+      },
+      "53_Amb_Venetz_Saastal": {
+        "jour": {
+          "invalide": 6,
+          "total": 73,
+          "ratio": "8.2%"
+        },
+        "nuit": {
+          "invalide": 5,
+          "total": 74,
+          "ratio": "6.8%"
+        },
+        "total": {
+          "invalide": 11,
+          "total": 147,
+          "ratio": "7.5%"
+        }
+      },
+      "57_Amb_Zermatt": {
+        "jour": {
+          "invalide": 23,
+          "total": 102,
+          "ratio": "22.5%"
+        },
+        "nuit": {
+          "invalide": 27,
+          "total": 133,
+          "ratio": "20.3%"
+        },
+        "total": {
+          "invalide": 50,
+          "total": 235,
+          "ratio": "21.3%"
+        }
+      },
+      "70_Amb_SOW_Gampel": {
+        "jour": {
+          "invalide": 25,
+          "total": 214,
+          "ratio": "11.7%"
+        },
+        "nuit": {
+          "invalide": 15,
+          "total": 161,
+          "ratio": "9.3%"
+        },
+        "total": {
+          "invalide": 40,
+          "total": 375,
+          "ratio": "10.7%"
+        }
+      },
+      "75_Amb_SOW_Fiesch": {
+        "jour": {
+          "invalide": 18,
+          "total": 111,
+          "ratio": "16.2%"
+        },
+        "nuit": {
+          "invalide": 11,
+          "total": 90,
+          "ratio": "12.2%"
+        },
+        "total": {
+          "invalide": 29,
+          "total": 201,
+          "ratio": "14.4%"
+        }
+      },
+      "82_Rapid_Responder_StNiklaus": {
+        "jour": {
+          "invalide": 8,
+          "total": 15,
+          "ratio": "53.3%"
+        },
+        "total": {
+          "invalide": 8,
+          "total": 15,
+          "ratio": "53.3%"
+        }
+      },
+      "60_Heli_AG_Sion": {
+        "jour": {
+          "invalide": 234,
+          "total": 699,
+          "ratio": "33.5%"
+        },
+        "nuit": {
+          "invalide": 84,
+          "total": 164,
+          "ratio": "51.2%"
+        },
+        "total": {
+          "invalide": 318,
+          "total": 863,
+          "ratio": "36.8%"
+        }
+      },
+      "59_Heli_AZ_Zermatt": {
+        "jour": {
+          "invalide": 193,
+          "total": 654,
+          "ratio": "29.5%"
+        },
+        "nuit": {
+          "invalide": 45,
+          "total": 143,
+          "ratio": "31.5%"
+        },
+        "total": {
+          "invalide": 238,
+          "total": 797,
+          "ratio": "29.9%"
+        }
+      }
+    },
+    "par_chronozone": {
+      "Entremont": {
+        "jour": {
+          "invalide": 77,
+          "total": 342,
+          "ratio": "22.5%"
+        },
+        "nuit": {
+          "invalide": 37,
+          "total": 214,
+          "ratio": "17.3%"
+        },
+        "total": {
+          "invalide": 114,
+          "total": 556,
+          "ratio": "20.5%"
+        }
+      },
+      "Fiesch": {
+        "jour": {
+          "invalide": 50,
+          "total": 269,
+          "ratio": "18.6%"
+        },
+        "nuit": {
+          "invalide": 17,
+          "total": 104,
+          "ratio": "16.3%"
+        },
+        "total": {
+          "invalide": 67,
+          "total": 373,
+          "ratio": "18.0%"
+        }
+      },
+      "Gampel": {
+        "jour": {
+          "invalide": 38,
+          "total": 299,
+          "ratio": "12.7%"
+        },
+        "nuit": {
+          "invalide": 23,
+          "total": 162,
+          "ratio": "14.2%"
+        },
+        "total": {
+          "invalide": 61,
+          "total": 461,
+          "ratio": "13.2%"
+        }
+      },
+      "Grachen": {
+        "jour": {
+          "invalide": 26,
+          "total": 100,
+          "ratio": "26.0%"
+        },
+        "nuit": {
+          "invalide": 10,
+          "total": 54,
+          "ratio": "18.5%"
+        },
+        "total": {
+          "invalide": 36,
+          "total": 154,
+          "ratio": "23.4%"
+        }
+      },
+      "Martigny": {
+        "jour": {
+          "invalide": 131,
+          "total": 955,
+          "ratio": "13.7%"
+        },
+        "nuit": {
+          "invalide": 103,
+          "total": 576,
+          "ratio": "17.9%"
+        },
+        "total": {
+          "invalide": 234,
+          "total": 1531,
+          "ratio": "15.3%"
+        }
+      },
+      "Monthey": {
+        "jour": {
+          "invalide": 157,
+          "total": 827,
+          "ratio": "19.0%"
+        },
+        "nuit": {
+          "invalide": 117,
+          "total": 515,
+          "ratio": "22.7%"
+        },
+        "total": {
+          "invalide": 274,
+          "total": 1342,
+          "ratio": "20.4%"
+        }
+      },
+      "Saas": {
+        "jour": {
+          "invalide": 37,
+          "total": 143,
+          "ratio": "25.9%"
+        },
+        "nuit": {
+          "invalide": 9,
+          "total": 89,
+          "ratio": "10.1%"
+        },
+        "total": {
+          "invalide": 46,
+          "total": 232,
+          "ratio": "19.8%"
+        }
+      },
+      "Sierre": {
+        "jour": {
+          "invalide": 127,
+          "total": 920,
+          "ratio": "13.8%"
+        },
+        "nuit": {
+          "invalide": 74,
+          "total": 561,
+          "ratio": "13.2%"
+        },
+        "total": {
+          "invalide": 201,
+          "total": 1481,
+          "ratio": "13.6%"
+        }
+      },
+      "Sion": {
+        "jour": {
+          "invalide": 275,
+          "total": 1596,
+          "ratio": "17.2%"
+        },
+        "nuit": {
+          "invalide": 132,
+          "total": 840,
+          "ratio": "15.7%"
+        },
+        "total": {
+          "invalide": 407,
+          "total": 2436,
+          "ratio": "16.7%"
+        }
+      },
+      "Viege": {
+        "jour": {
+          "invalide": 79,
+          "total": 618,
+          "ratio": "12.8%"
+        },
+        "nuit": {
+          "invalide": 43,
+          "total": 367,
+          "ratio": "11.7%"
+        },
+        "total": {
+          "invalide": 122,
+          "total": 985,
+          "ratio": "12.4%"
+        }
+      },
+      "Zermatt": {
+        "jour": {
+          "invalide": 94,
+          "total": 293,
+          "ratio": "32.1%"
+        },
+        "nuit": {
+          "invalide": 34,
+          "total": 159,
+          "ratio": "21.4%"
+        },
+        "total": {
+          "invalide": 128,
+          "total": 452,
+          "ratio": "28.3%"
+        }
+      }
+    }
+  },
+  "disponibilite_vehicules_2024": {
+    "note": "Taux de disponibilité = (Dispo idéale - Temps total d'intervention) / Dispo idéale. Durées en heures.",
+    "ambulances": {
+      "33_Amb_Clerc_Monthey": {
+        "jour": {
+          "nb_inter": 2283,
+          "dispo_ideale": 8760,
+          "duree_mission": 3253,
+          "retour_base": 384,
+          "entretien": 438,
+          "temps_total_inter": 4074,
+          "taux_dispo": "53.5%"
+        },
+        "nuit": {
+          "nb_inter": 1125,
+          "dispo_ideale": 4380,
+          "duree_mission": 1455,
+          "retour_base": 160,
+          "entretien": 219,
+          "temps_total_inter": 1834,
+          "taux_dispo": "58.1%"
+        },
+        "total": {
+          "nb_inter": 3408,
+          "dispo_ideale": 13140,
+          "duree_mission": 4707,
+          "retour_base": 544,
+          "entretien": 657,
+          "temps_total_inter": 5908,
+          "taux_dispo": "55.0%"
+        }
+      },
+      "68_Amb_Entremont": {
+        "jour": {
+          "nb_inter": 571,
+          "dispo_ideale": 4380,
+          "duree_mission": 990,
+          "retour_base": 64,
+          "entretien": 219,
+          "temps_total_inter": 1273,
+          "taux_dispo": "70.9%"
+        },
+        "nuit": {
+          "nb_inter": 464,
+          "dispo_ideale": 4380,
+          "duree_mission": 753,
+          "retour_base": 11,
+          "entretien": 219,
+          "temps_total_inter": 983,
+          "taux_dispo": "77.6%"
+        },
+        "total": {
+          "nb_inter": 1035,
+          "dispo_ideale": 8760,
+          "duree_mission": 1743,
+          "retour_base": 75,
+          "entretien": 438,
+          "temps_total_inter": 2256,
+          "taux_dispo": "74.2%"
+        }
+      },
+      "66_Amb_HVS_Martigny": {
+        "jour": {
+          "nb_inter": 2149,
+          "dispo_ideale": 8760,
+          "duree_mission": 3123,
+          "retour_base": 170,
+          "entretien": 438,
+          "temps_total_inter": 3731,
+          "taux_dispo": "57.4%"
+        },
+        "nuit": {
+          "nb_inter": 978,
+          "dispo_ideale": 4380,
+          "duree_mission": 1408,
+          "retour_base": 23,
+          "entretien": 219,
+          "temps_total_inter": 1650,
+          "taux_dispo": "62.3%"
+        },
+        "total": {
+          "nb_inter": 3127,
+          "dispo_ideale": 13140,
+          "duree_mission": 4532,
+          "retour_base": 193,
+          "entretien": 657,
+          "temps_total_inter": 5381,
+          "taux_dispo": "59.0%"
+        }
+      },
+      "65_Amb_SAS_Sion": {
+        "jour": {
+          "nb_inter": 3362,
+          "dispo_ideale": 8760,
+          "duree_mission": 4100,
+          "retour_base": 59,
+          "entretien": 438,
+          "temps_total_inter": 4597,
+          "taux_dispo": "47.5%"
+        },
+        "nuit": {
+          "nb_inter": 1991,
+          "dispo_ideale": 8760,
+          "duree_mission": 2366,
+          "retour_base": 28,
+          "entretien": 438,
+          "temps_total_inter": 2832,
+          "taux_dispo": "67.7%"
+        },
+        "total": {
+          "nb_inter": 5353,
+          "dispo_ideale": 17520,
+          "duree_mission": 6466,
+          "retour_base": 87,
+          "entretien": 876,
+          "temps_total_inter": 7429,
+          "taux_dispo": "57.6%"
+        }
+      },
+      "61_Amb_HVS_Sierre": {
+        "jour": {
+          "nb_inter": 2241,
+          "dispo_ideale": 8760,
+          "duree_mission": 3083,
+          "retour_base": 27,
+          "entretien": 438,
+          "temps_total_inter": 3548,
+          "taux_dispo": "59.5%"
+        },
+        "nuit": {
+          "nb_inter": 950,
+          "dispo_ideale": 4380,
+          "duree_mission": 1255,
+          "retour_base": 4,
+          "entretien": 219,
+          "temps_total_inter": 1478,
+          "taux_dispo": "66.3%"
+        },
+        "total": {
+          "nb_inter": 3191,
+          "dispo_ideale": 13140,
+          "duree_mission": 4337,
+          "retour_base": 31,
+          "entretien": 657,
+          "temps_total_inter": 5026,
+          "taux_dispo": "61.8%"
+        }
+      },
+      "55_Amb_SOW_Visp": {
+        "jour": {
+          "nb_inter": 1521,
+          "dispo_ideale": 8760,
+          "duree_mission": 2279,
+          "retour_base": 59,
+          "entretien": 438,
+          "temps_total_inter": 2775,
+          "taux_dispo": "68.3%"
+        },
+        "nuit": {
+          "nb_inter": 769,
+          "dispo_ideale": 4380,
+          "duree_mission": 1026,
+          "retour_base": 26,
+          "entretien": 219,
+          "temps_total_inter": 1271,
+          "taux_dispo": "71.0%"
+        },
+        "total": {
+          "nb_inter": 2290,
+          "dispo_ideale": 13140,
+          "duree_mission": 3305,
+          "retour_base": 85,
+          "entretien": 657,
+          "temps_total_inter": 4047,
+          "taux_dispo": "69.2%"
+        }
+      },
+      "51_Amb_SOW_Munster": {
+        "jour": {
+          "dispo_ideale": 4380,
+          "entretien": 219,
+          "temps_total_inter": 219,
+          "taux_dispo": "95.0%"
+        },
+        "nuit": {
+          "dispo_ideale": 4380,
+          "entretien": 219,
+          "temps_total_inter": 219,
+          "taux_dispo": "95.0%"
+        },
+        "total": {
+          "dispo_ideale": 8760,
+          "entretien": 438,
+          "temps_total_inter": 438,
+          "taux_dispo": "95.0%"
+        }
+      },
+      "53_Amb_Venetz_Saastal": {
+        "jour": {
+          "nb_inter": 372,
+          "dispo_ideale": 4380,
+          "duree_mission": 639,
+          "retour_base": 84,
+          "entretien": 219,
+          "temps_total_inter": 942,
+          "taux_dispo": "78.5%"
+        },
+        "nuit": {
+          "nb_inter": 143,
+          "dispo_ideale": 4380,
+          "duree_mission": 289,
+          "retour_base": 51,
+          "entretien": 219,
+          "temps_total_inter": 559,
+          "taux_dispo": "87.2%"
+        },
+        "total": {
+          "nb_inter": 515,
+          "dispo_ideale": 8760,
+          "duree_mission": 928,
+          "retour_base": 135,
+          "entretien": 438,
+          "temps_total_inter": 1501,
+          "taux_dispo": "82.9%"
+        }
+      },
+      "57_Amb_Zermatt": {
+        "jour": {
+          "nb_inter": 492,
+          "dispo_ideale": 4380,
+          "duree_mission": 885,
+          "retour_base": 223,
+          "entretien": 219,
+          "temps_total_inter": 1327,
+          "taux_dispo": "69.7%"
+        },
+        "nuit": {
+          "nb_inter": 254,
+          "dispo_ideale": 4380,
+          "duree_mission": 389,
+          "retour_base": 81,
+          "entretien": 219,
+          "temps_total_inter": 689,
+          "taux_dispo": "84.3%"
+        },
+        "total": {
+          "nb_inter": 746,
+          "dispo_ideale": 8760,
+          "duree_mission": 1275,
+          "retour_base": 304,
+          "entretien": 438,
+          "temps_total_inter": 2017,
+          "taux_dispo": "77.0%"
+        }
+      },
+      "70_Amb_SOW_Gampel": {
+        "jour": {
+          "nb_inter": 548,
+          "dispo_ideale": 4380,
+          "duree_mission": 1000,
+          "retour_base": 103,
+          "entretien": 219,
+          "temps_total_inter": 1322,
+          "taux_dispo": "69.8%"
+        },
+        "nuit": {
+          "nb_inter": 357,
+          "dispo_ideale": 0,
+          "duree_mission": 582,
+          "retour_base": 64,
+          "entretien": 0,
+          "temps_total_inter": 646,
+          "taux_dispo": "0.0%"
+        },
+        "total": {
+          "nb_inter": 905,
+          "dispo_ideale": 4380,
+          "duree_mission": 1582,
+          "retour_base": 168,
+          "entretien": 219,
+          "temps_total_inter": 1969,
+          "taux_dispo": "55.1%"
+        }
+      },
+      "75_Amb_SOW_Fiesch": {
+        "jour": {
+          "nb_inter": 536,
+          "dispo_ideale": 4380,
+          "duree_mission": 1086,
+          "retour_base": 0,
+          "entretien": 219,
+          "temps_total_inter": 1305,
+          "taux_dispo": "70.2%"
+        },
+        "nuit": {
+          "nb_inter": 264,
+          "dispo_ideale": 4380,
+          "duree_mission": 488,
+          "retour_base": 0,
+          "entretien": 219,
+          "temps_total_inter": 707,
+          "taux_dispo": "83.9%"
+        },
+        "total": {
+          "nb_inter": 800,
+          "dispo_ideale": 8760,
+          "duree_mission": 1574,
+          "retour_base": 0,
+          "entretien": 438,
+          "temps_total_inter": 2012,
+          "taux_dispo": "77.0%"
+        }
+      },
+      "82_Rapid_Responder_StNiklaus": {
+        "jour": {
+          "nb_inter": 24,
+          "dispo_ideale": 4380,
+          "duree_mission": 25,
+          "entretien": 219,
+          "temps_total_inter": 244,
+          "taux_dispo": "94.4%"
+        },
+        "total": {
+          "nb_inter": 24,
+          "dispo_ideale": 4380,
+          "duree_mission": 25,
+          "entretien": 219,
+          "temps_total_inter": 244,
+          "taux_dispo": "94.4%"
+        }
+      },
+      "total_ambulances": {
+        "jour": {
+          "nb_inter": 14099,
+          "dispo_ideale": 83220,
+          "duree_mission": 20462,
+          "retour_base": 1173,
+          "entretien": 4161,
+          "temps_total_inter": 25796,
+          "taux_dispo": "69.0%"
+        },
+        "nuit": {
+          "nb_inter": 7295,
+          "dispo_ideale": 65700,
+          "duree_mission": 10011,
+          "retour_base": 449,
+          "entretien": 3285,
+          "temps_total_inter": 13745,
+          "taux_dispo": "79.1%"
+        },
+        "total": {
+          "nb_inter": 21394,
+          "dispo_ideale": 148920,
+          "duree_mission": 30473,
+          "retour_base": 1621,
+          "entretien": 7446,
+          "temps_total_inter": 39541,
+          "taux_dispo": "73.4%"
+        }
+      }
+    },
+    "SMUR": {
+      "42_SMUR_Chablais": {
+        "jour": {
+          "nb_inter": 118,
+          "dispo_ideale": 4380,
+          "duree_mission": 125,
+          "entretien": 219,
+          "temps_total_inter": 344,
+          "taux_dispo": "92.2%"
+        },
+        "nuit": {
+          "nb_inter": 58,
+          "dispo_ideale": 4380,
+          "duree_mission": 60,
+          "entretien": 219,
+          "temps_total_inter": 279,
+          "taux_dispo": "93.6%"
+        },
+        "total": {
+          "nb_inter": 176,
+          "dispo_ideale": 8760,
+          "duree_mission": 184,
+          "entretien": 438,
+          "temps_total_inter": 622,
+          "taux_dispo": "92.9%"
+        }
+      },
+      "43_SMUR_Martigny": {
+        "jour": {
+          "nb_inter": 656,
+          "dispo_ideale": 4380,
+          "duree_mission": 681,
+          "entretien": 219,
+          "temps_total_inter": 900,
+          "taux_dispo": "79.5%"
+        },
+        "nuit": {
+          "nb_inter": 414,
+          "dispo_ideale": 4380,
+          "duree_mission": 445,
+          "entretien": 219,
+          "temps_total_inter": 664,
+          "taux_dispo": "84.8%"
+        },
+        "total": {
+          "nb_inter": 1070,
+          "dispo_ideale": 8760,
+          "duree_mission": 1127,
+          "entretien": 438,
+          "temps_total_inter": 1565,
+          "taux_dispo": "82.1%"
+        }
+      },
+      "44_SMUR_Sion": {
+        "jour": {
+          "nb_inter": 668,
+          "dispo_ideale": 4380,
+          "duree_mission": 564,
+          "entretien": 219,
+          "temps_total_inter": 783,
+          "taux_dispo": "82.1%"
+        },
+        "nuit": {
+          "nb_inter": 447,
+          "dispo_ideale": 4380,
+          "duree_mission": 385,
+          "entretien": 219,
+          "temps_total_inter": 604,
+          "taux_dispo": "86.2%"
+        },
+        "total": {
+          "nb_inter": 1115,
+          "dispo_ideale": 8760,
+          "duree_mission": 949,
+          "entretien": 438,
+          "temps_total_inter": 1387,
+          "taux_dispo": "84.2%"
+        }
+      },
+      "45_NEF_Visp": {
+        "jour": {
+          "nb_inter": 424,
+          "dispo_ideale": 4380,
+          "duree_mission": 388,
+          "entretien": 219,
+          "temps_total_inter": 607,
+          "taux_dispo": "86.1%"
+        },
+        "nuit": {
+          "nb_inter": 298,
+          "dispo_ideale": 4380,
+          "duree_mission": 286,
+          "entretien": 219,
+          "temps_total_inter": 505,
+          "taux_dispo": "88.5%"
+        },
+        "total": {
+          "nb_inter": 722,
+          "dispo_ideale": 8760,
+          "duree_mission": 674,
+          "entretien": 438,
+          "temps_total_inter": 1112,
+          "taux_dispo": "87.3%"
+        }
+      },
+      "total_SMUR": {
+        "jour": {
+          "nb_inter": 1866,
+          "dispo_ideale": 17520,
+          "duree_mission": 1757,
+          "entretien": 876,
+          "temps_total_inter": 2633,
+          "taux_dispo": "85.0%"
+        },
+        "nuit": {
+          "nb_inter": 1217,
+          "dispo_ideale": 17520,
+          "duree_mission": 1177,
+          "entretien": 876,
+          "temps_total_inter": 2053,
+          "taux_dispo": "88.3%"
+        },
+        "total": {
+          "nb_inter": 3083,
+          "dispo_ideale": 35040,
+          "duree_mission": 2934,
+          "entretien": 1752,
+          "temps_total_inter": 4686,
+          "taux_dispo": "86.6%"
+        }
+      }
+    }
+  },
+  "disponibilite_personnel_2024": {
+    "note": "Taux de disponibilité personnel = (Dispo idéale - Temps total travaillé) / Dispo idéale. Durées en heures.",
+    "ambulances": {
+      "33_Amb_Clerc_Monthey": {
+        "jour": {
+          "nb_inter": 2283,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 7273,
+          "temps_hors_inter": 4992,
+          "temps_total_travaille": 12265,
+          "taux_dispo": "30.0%"
+        },
+        "nuit": {
+          "nb_inter": 1125,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 3230,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 5726,
+          "taux_dispo": "34.6%"
+        },
+        "total": {
+          "nb_inter": 3408,
+          "dispo_ideale": 26280,
+          "temps_inter_personnel": 10502,
+          "temps_hors_inter": 7488,
+          "temps_total_travaille": 17990,
+          "taux_dispo": "31.5%"
+        }
+      },
+      "68_Amb_Entremont": {
+        "jour": {
+          "nb_inter": 571,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 2109,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 4605,
+          "taux_dispo": "47.4%"
+        },
+        "nuit": {
+          "nb_inter": 464,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 1527,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 4023,
+          "taux_dispo": "54.1%"
+        },
+        "total": {
+          "nb_inter": 1035,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 3636,
+          "temps_hors_inter": 4992,
+          "temps_total_travaille": 8628,
+          "taux_dispo": "50.8%"
+        }
+      },
+      "66_Amb_HVS_Martigny": {
+        "jour": {
+          "nb_inter": 2149,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 6586,
+          "temps_hors_inter": 4992,
+          "temps_total_travaille": 11578,
+          "taux_dispo": "33.9%"
+        },
+        "nuit": {
+          "nb_inter": 978,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 2863,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 5359,
+          "taux_dispo": "38.8%"
+        },
+        "total": {
+          "nb_inter": 3127,
+          "dispo_ideale": 26280,
+          "temps_inter_personnel": 9448,
+          "temps_hors_inter": 7488,
+          "temps_total_travaille": 16936,
+          "taux_dispo": "35.6%"
+        }
+      },
+      "65_Amb_SAS_Sion": {
+        "jour": {
+          "nb_inter": 3362,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 8318,
+          "temps_hors_inter": 4693,
+          "temps_total_travaille": 13011,
+          "taux_dispo": "25.7%"
+        },
+        "nuit": {
+          "nb_inter": 1991,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 4788,
+          "temps_hors_inter": 4693,
+          "temps_total_travaille": 9481,
+          "taux_dispo": "45.9%"
+        },
+        "total": {
+          "nb_inter": 5353,
+          "dispo_ideale": 35040,
+          "temps_inter_personnel": 13106,
+          "temps_hors_inter": 9386,
+          "temps_total_travaille": 22492,
+          "taux_dispo": "35.8%"
+        }
+      },
+      "61_Amb_HVS_Sierre": {
+        "jour": {
+          "nb_inter": 2241,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 6220,
+          "temps_hors_inter": 4992,
+          "temps_total_travaille": 11212,
+          "taux_dispo": "36.0%"
+        },
+        "nuit": {
+          "nb_inter": 950,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 2518,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 5014,
+          "taux_dispo": "42.8%"
+        },
+        "total": {
+          "nb_inter": 3191,
+          "dispo_ideale": 26280,
+          "temps_inter_personnel": 8737,
+          "temps_hors_inter": 7488,
+          "temps_total_travaille": 16225,
+          "taux_dispo": "38.3%"
+        }
+      },
+      "55_Amb_SOW_Visp": {
+        "jour": {
+          "nb_inter": 1521,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 4675,
+          "temps_hors_inter": 4992,
+          "temps_total_travaille": 9667,
+          "taux_dispo": "44.8%"
+        },
+        "nuit": {
+          "nb_inter": 769,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 2105,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 4601,
+          "taux_dispo": "47.5%"
+        },
+        "total": {
+          "nb_inter": 2290,
+          "dispo_ideale": 26280,
+          "temps_inter_personnel": 6780,
+          "temps_hors_inter": 7488,
+          "temps_total_travaille": 14268,
+          "taux_dispo": "45.7%"
+        }
+      },
+      "53_Amb_Venetz_Saastal": {
+        "jour": {
+          "nb_inter": 372,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 1445,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 3941,
+          "taux_dispo": "55.0%"
+        },
+        "nuit": {
+          "nb_inter": 143,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 681,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 3177,
+          "taux_dispo": "63.7%"
+        },
+        "total": {
+          "nb_inter": 515,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 2126,
+          "temps_hors_inter": 4992,
+          "temps_total_travaille": 7118,
+          "taux_dispo": "59.4%"
+        }
+      },
+      "57_Amb_Zermatt": {
+        "jour": {
+          "nb_inter": 492,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 2217,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 4713,
+          "taux_dispo": "46.2%"
+        },
+        "nuit": {
+          "nb_inter": 254,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 940,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 3436,
+          "taux_dispo": "60.8%"
+        },
+        "total": {
+          "nb_inter": 746,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 3157,
+          "temps_hors_inter": 4992,
+          "temps_total_travaille": 8149,
+          "taux_dispo": "53.5%"
+        }
+      },
+      "70_Amb_SOW_Gampel": {
+        "jour": {
+          "nb_inter": 548,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 2207,
+          "temps_hors_inter": 3094,
+          "temps_total_travaille": 5301,
+          "taux_dispo": "39.5%"
+        },
+        "nuit": {
+          "nb_inter": 357,
+          "dispo_ideale": 0,
+          "temps_inter_personnel": 1293,
+          "temps_total_travaille": 1293,
+          "taux_dispo": "0.0%"
+        },
+        "total": {
+          "nb_inter": 905,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 3499,
+          "temps_hors_inter": 3094,
+          "temps_total_travaille": 6593,
+          "taux_dispo": "24.7%"
+        }
+      },
+      "75_Amb_SOW_Fiesch": {
+        "jour": {
+          "nb_inter": 536,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 2172,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 4668,
+          "taux_dispo": "46.7%"
+        },
+        "nuit": {
+          "nb_inter": 264,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 976,
+          "temps_hors_inter": 2496,
+          "temps_total_travaille": 3472,
+          "taux_dispo": "60.4%"
+        },
+        "total": {
+          "nb_inter": 800,
+          "dispo_ideale": 17520,
+          "temps_inter_personnel": 3148,
+          "temps_hors_inter": 4992,
+          "temps_total_travaille": 8140,
+          "taux_dispo": "53.5%"
+        }
+      },
+      "82_Rapid_Responder_StNiklaus": {
+        "jour": {
+          "nb_inter": 24,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 50,
+          "temps_hors_inter": 3094,
+          "temps_total_travaille": 3144,
+          "taux_dispo": "64.1%"
+        },
+        "total": {
+          "nb_inter": 24,
+          "dispo_ideale": 8760,
+          "temps_inter_personnel": 50,
+          "temps_hors_inter": 3094,
+          "temps_total_travaille": 3144,
+          "taux_dispo": "64.1%"
+        }
+      },
+      "total_ambulances": {
+        "jour": {
+          "nb_inter": 14099,
+          "dispo_ideale": 140160,
+          "temps_inter_personnel": 43270,
+          "temps_hors_inter": 42147,
+          "temps_total_travaille": 85417,
+          "taux_dispo": "39.1%"
+        },
+        "nuit": {
+          "nb_inter": 7295,
+          "dispo_ideale": 87600,
+          "temps_inter_personnel": 20919,
+          "temps_hors_inter": 26851,
+          "temps_total_travaille": 47770,
+          "taux_dispo": "45.5%"
+        },
+        "total": {
+          "nb_inter": 21394,
+          "dispo_ideale": 227760,
+          "temps_inter_personnel": 64189,
+          "temps_hors_inter": 68998,
+          "temps_total_travaille": 133187,
+          "taux_dispo": "41.5%"
+        }
+      }
+    },
+    "SMUR": {
+      "42_SMUR_Chablais_chauffeur": {
+        "jour": {
+          "nb_inter": 118,
+          "dispo_ideale": 4380,
+          "temps_inter": 125,
+          "temps_hors_inter": 866,
+          "temps_total": 991,
+          "taux_dispo": "77.4%"
+        },
+        "nuit": {
+          "nb_inter": 58,
+          "dispo_ideale": 4380,
+          "temps_inter": 60,
+          "temps_hors_inter": 816,
+          "temps_total": 876,
+          "taux_dispo": "80.0%"
+        },
+        "total": {
+          "nb_inter": 176,
+          "dispo_ideale": 8760,
+          "temps_inter": 184,
+          "temps_hors_inter": 1683,
+          "temps_total": 1867,
+          "taux_dispo": "78.7%"
+        }
+      },
+      "42_SMUR_Chablais_medecin": {
+        "jour": {
+          "nb_inter": 118,
+          "dispo_ideale": 4380,
+          "temps_inter": 125,
+          "temps_hors_inter": 59,
+          "temps_total": 184,
+          "taux_dispo": "95.8%"
+        },
+        "nuit": {
+          "nb_inter": 58,
+          "dispo_ideale": 4380,
+          "temps_inter": 60,
+          "temps_hors_inter": 29,
+          "temps_total": 89,
+          "taux_dispo": "98.0%"
+        },
+        "total": {
+          "nb_inter": 176,
+          "dispo_ideale": 8760,
+          "temps_inter": 184,
+          "temps_hors_inter": 88,
+          "temps_total": 272,
+          "taux_dispo": "96.9%"
+        }
+      },
+      "43_SMUR_Martigny_chauffeur": {
+        "jour": {
+          "nb_inter": 656,
+          "dispo_ideale": 4380,
+          "temps_inter": 681,
+          "temps_hors_inter": 866,
+          "temps_total": 1547,
+          "taux_dispo": "64.7%"
+        },
+        "nuit": {
+          "nb_inter": 414,
+          "dispo_ideale": 4380,
+          "temps_inter": 445,
+          "temps_hors_inter": 816,
+          "temps_total": 1262,
+          "taux_dispo": "71.2%"
+        },
+        "total": {
+          "nb_inter": 1070,
+          "dispo_ideale": 8760,
+          "temps_inter": 1127,
+          "temps_hors_inter": 1683,
+          "temps_total": 2809,
+          "taux_dispo": "67.9%"
+        }
+      },
+      "43_SMUR_Martigny_medecin": {
+        "jour": {
+          "nb_inter": 656,
+          "dispo_ideale": 4380,
+          "temps_inter": 681,
+          "temps_hors_inter": 328,
+          "temps_total": 1009,
+          "taux_dispo": "77.0%"
+        },
+        "nuit": {
+          "nb_inter": 414,
+          "dispo_ideale": 4380,
+          "temps_inter": 445,
+          "temps_hors_inter": 207,
+          "temps_total": 652,
+          "taux_dispo": "85.1%"
+        },
+        "total": {
+          "nb_inter": 1070,
+          "dispo_ideale": 8760,
+          "temps_inter": 1127,
+          "temps_hors_inter": 535,
+          "temps_total": 1662,
+          "taux_dispo": "81.0%"
+        }
+      },
+      "44_SMUR_Sion_chauffeur": {
+        "jour": {
+          "nb_inter": 668,
+          "dispo_ideale": 4380,
+          "temps_inter": 564,
+          "temps_hors_inter": 866,
+          "temps_total": 1430,
+          "taux_dispo": "67.4%"
+        },
+        "nuit": {
+          "nb_inter": 447,
+          "dispo_ideale": 4380,
+          "temps_inter": 385,
+          "temps_hors_inter": 816,
+          "temps_total": 1201,
+          "taux_dispo": "72.6%"
+        },
+        "total": {
+          "nb_inter": 1115,
+          "dispo_ideale": 8760,
+          "temps_inter": 949,
+          "temps_hors_inter": 1683,
+          "temps_total": 2631,
+          "taux_dispo": "70.0%"
+        }
+      },
+      "44_SMUR_Sion_medecin": {
+        "jour": {
+          "nb_inter": 668,
+          "dispo_ideale": 4380,
+          "temps_inter": 564,
+          "temps_hors_inter": 334,
+          "temps_total": 898,
+          "taux_dispo": "79.5%"
+        },
+        "nuit": {
+          "nb_inter": 447,
+          "dispo_ideale": 4380,
+          "temps_inter": 385,
+          "temps_hors_inter": 224,
+          "temps_total": 609,
+          "taux_dispo": "86.1%"
+        },
+        "total": {
+          "nb_inter": 1115,
+          "dispo_ideale": 8760,
+          "temps_inter": 949,
+          "temps_hors_inter": 557.5,
+          "temps_total": 1506,
+          "taux_dispo": "82.8%"
+        }
+      },
+      "45_NEF_Visp_chauffeur": {
+        "jour": {
+          "nb_inter": 424,
+          "dispo_ideale": 4380,
+          "temps_inter": 388,
+          "temps_hors_inter": 866,
+          "temps_total": 1254,
+          "taux_dispo": "71.4%"
+        },
+        "nuit": {
+          "nb_inter": 298,
+          "dispo_ideale": 4380,
+          "temps_inter": 286,
+          "temps_hors_inter": 816,
+          "temps_total": 1103,
+          "taux_dispo": "74.8%"
+        },
+        "total": {
+          "nb_inter": 722,
+          "dispo_ideale": 8760,
+          "temps_inter": 674,
+          "temps_hors_inter": 1683,
+          "temps_total": 2357,
+          "taux_dispo": "73.1%"
+        }
+      },
+      "45_NEF_Visp_medecin": {
+        "jour": {
+          "nb_inter": 424,
+          "dispo_ideale": 4380,
+          "temps_inter": 388,
+          "temps_hors_inter": 212,
+          "temps_total": 600,
+          "taux_dispo": "86.3%"
+        },
+        "nuit": {
+          "nb_inter": 298,
+          "dispo_ideale": 4380,
+          "temps_inter": 286,
+          "temps_hors_inter": 149,
+          "temps_total": 435,
+          "taux_dispo": "90.1%"
+        },
+        "total": {
+          "nb_inter": 722,
+          "dispo_ideale": 8760,
+          "temps_inter": 674,
+          "temps_hors_inter": 361,
+          "temps_total": 1035,
+          "taux_dispo": "88.2%"
+        }
+      },
+      "total_SMUR_chauffeur": {
+        "jour": {
+          "nb_inter": 1866,
+          "dispo_ideale": 17520,
+          "temps_inter": 1757,
+          "temps_hors_inter": 3465,
+          "temps_total": 5222,
+          "taux_dispo": "70.2%"
+        },
+        "nuit": {
+          "nb_inter": 1217,
+          "dispo_ideale": 17520,
+          "temps_inter": 1177,
+          "temps_hors_inter": 3265,
+          "temps_total": 4442,
+          "taux_dispo": "74.6%"
+        },
+        "total": {
+          "nb_inter": 3083,
+          "dispo_ideale": 35040,
+          "temps_inter": 2934,
+          "temps_hors_inter": 6730,
+          "temps_total": 9664,
+          "taux_dispo": "72.4%"
+        }
+      },
+      "total_SMUR_medecin": {
+        "jour": {
+          "nb_inter": 1866,
+          "dispo_ideale": 17520,
+          "temps_inter": 1757,
+          "temps_hors_inter": 933,
+          "temps_total": 2690,
+          "taux_dispo": "84.6%"
+        },
+        "nuit": {
+          "nb_inter": 1217,
+          "dispo_ideale": 17520,
+          "temps_inter": 1177,
+          "temps_hors_inter": 609,
+          "temps_total": 1785,
+          "taux_dispo": "89.8%"
+        },
+        "total": {
+          "nb_inter": 3083,
+          "dispo_ideale": 35040,
+          "temps_inter": 2934,
+          "temps_hors_inter": 1541.5,
+          "temps_total": 4475,
+          "taux_dispo": "87.2%"
+        }
+      }
+    }
+  },
+  "interventions_hors_chronozone_2024": {
+    "note": "Distribution des interventions P1-P2-P3-S1 hors / dans chronozone par service et par chronozone.",
+    "ambulances_par_service": [
+      {
+        "code": 65,
+        "nom": "Ambu Sion",
+        "hors_chrono": {
+          "jour": {
+            "nb": 219,
+            "ratio": "6.5%"
+          },
+          "nuit": {
+            "nb": 322,
+            "ratio": "16.2%"
+          },
+          "total": {
+            "nb": 541,
+            "ratio": "10.1%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 3142,
+            "ratio": "93.5%"
+          },
+          "nuit": {
+            "nb": 1666,
+            "ratio": "83.8%"
+          },
+          "total": {
+            "nb": 4808,
+            "ratio": "89.9%"
+          }
+        }
+      },
+      {
+        "code": 75,
+        "nom": "Ambu Fiesch",
+        "hors_chrono": {
+          "jour": {
+            "nb": 269,
+            "ratio": "50.2%"
+          },
+          "nuit": {
+            "nb": 153,
+            "ratio": "58.0%"
+          },
+          "total": {
+            "nb": 422,
+            "ratio": "52.8%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 267,
+            "ratio": "49.8%"
+          },
+          "nuit": {
+            "nb": 111,
+            "ratio": "42.0%"
+          },
+          "total": {
+            "nb": 378,
+            "ratio": "47.3%"
+          }
+        }
+      },
+      {
+        "code": 66,
+        "nom": "Ambu Martigny",
+        "hors_chrono": {
+          "jour": {
+            "nb": 278,
+            "ratio": "12.9%"
+          },
+          "nuit": {
+            "nb": 134,
+            "ratio": "13.7%"
+          },
+          "total": {
+            "nb": 412,
+            "ratio": "13.2%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 1869,
+            "ratio": "87.1%"
+          },
+          "nuit": {
+            "nb": 844,
+            "ratio": "86.3%"
+          },
+          "total": {
+            "nb": 2713,
+            "ratio": "86.8%"
+          }
+        }
+      },
+      {
+        "code": 55,
+        "nom": "Ambu Visp",
+        "hors_chrono": {
+          "jour": {
+            "nb": 312,
+            "ratio": "20.5%"
+          },
+          "nuit": {
+            "nb": 75,
+            "ratio": "9.8%"
+          },
+          "total": {
+            "nb": 387,
+            "ratio": "16.9%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 1209,
+            "ratio": "79.5%"
+          },
+          "nuit": {
+            "nb": 694,
+            "ratio": "90.2%"
+          },
+          "total": {
+            "nb": 1903,
+            "ratio": "83.1%"
+          }
+        }
+      },
+      {
+        "code": 61,
+        "nom": "Ambu Sierre",
+        "hors_chrono": {
+          "jour": {
+            "nb": 284,
+            "ratio": "12.8%"
+          },
+          "nuit": {
+            "nb": 74,
+            "ratio": "7.9%"
+          },
+          "total": {
+            "nb": 358,
+            "ratio": "11.3%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 1937,
+            "ratio": "87.2%"
+          },
+          "nuit": {
+            "nb": 867,
+            "ratio": "92.1%"
+          },
+          "total": {
+            "nb": 2804,
+            "ratio": "88.7%"
+          }
+        }
+      },
+      {
+        "code": 68,
+        "nom": "Ambu Entremont",
+        "hors_chrono": {
+          "jour": {
+            "nb": 124,
+            "ratio": "21.7%"
+          },
+          "nuit": {
+            "nb": 209,
+            "ratio": "45.0%"
+          },
+          "total": {
+            "nb": 333,
+            "ratio": "32.2%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 447,
+            "ratio": "78.3%"
+          },
+          "nuit": {
+            "nb": 255,
+            "ratio": "55.0%"
+          },
+          "total": {
+            "nb": 702,
+            "ratio": "67.8%"
+          }
+        }
+      },
+      {
+        "code": 70,
+        "nom": "Ambu Gampel-Steg",
+        "hors_chrono": {
+          "jour": {
+            "nb": 81,
+            "ratio": "14.8%"
+          },
+          "nuit": {
+            "nb": 129,
+            "ratio": "36.2%"
+          },
+          "total": {
+            "nb": 210,
+            "ratio": "23.2%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 467,
+            "ratio": "85.2%"
+          },
+          "nuit": {
+            "nb": 227,
+            "ratio": "63.8%"
+          },
+          "total": {
+            "nb": 694,
+            "ratio": "76.8%"
+          }
+        }
+      },
+      {
+        "code": 33,
+        "nom": "Ambu Monthey",
+        "hors_chrono": {
+          "jour": {
+            "nb": 62,
+            "ratio": "2.7%"
+          },
+          "nuit": {
+            "nb": 75,
+            "ratio": "6.8%"
+          },
+          "total": {
+            "nb": 137,
+            "ratio": "4.1%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 2199,
+            "ratio": "97.3%"
+          },
+          "nuit": {
+            "nb": 1032,
+            "ratio": "93.2%"
+          },
+          "total": {
+            "nb": 3231,
+            "ratio": "95.9%"
+          }
+        }
+      },
+      {
+        "code": 57,
+        "nom": "Ambu Zermatt",
+        "hors_chrono": {
+          "jour": {
+            "nb": 20,
+            "ratio": "4.1%"
+          },
+          "nuit": {
+            "nb": 10,
+            "ratio": "3.9%"
+          },
+          "total": {
+            "nb": 30,
+            "ratio": "4.0%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 472,
+            "ratio": "95.9%"
+          },
+          "nuit": {
+            "nb": 244,
+            "ratio": "96.1%"
+          },
+          "total": {
+            "nb": 716,
+            "ratio": "96.0%"
+          }
+        }
+      },
+      {
+        "code": 53,
+        "nom": "Ambu Saas Grund",
+        "hors_chrono": {
+          "jour": {
+            "nb": 9,
+            "ratio": "2.4%"
+          },
+          "nuit": {
+            "nb": 6,
+            "ratio": "4.2%"
+          },
+          "total": {
+            "nb": 15,
+            "ratio": "2.9%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 363,
+            "ratio": "97.6%"
+          },
+          "nuit": {
+            "nb": 137,
+            "ratio": "95.8%"
+          },
+          "total": {
+            "nb": 500,
+            "ratio": "97.1%"
+          }
+        }
+      },
+      {
+        "code": 82,
+        "nom": "Rapid Responder St-Niklaus",
+        "hors_chrono": {
+          "jour": {
+            "nb": 7,
+            "ratio": "29.2%"
+          },
+          "total": {
+            "nb": 7,
+            "ratio": "29.2%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 17,
+            "ratio": "70.8%"
+          },
+          "total": {
+            "nb": 17,
+            "ratio": "70.8%"
+          }
+        }
+      }
+    ],
+    "helicopteres_par_service": [
+      {
+        "code": "AZ",
+        "nom": "Air-Zermatt",
+        "hors_chrono": {
+          "jour": {
+            "nb": 133,
+            "ratio": "6.9%"
+          },
+          "nuit": {
+            "nb": 31,
+            "ratio": "12.6%"
+          },
+          "total": {
+            "nb": 164,
+            "ratio": "7.6%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 1792,
+            "ratio": "93.1%"
+          },
+          "nuit": {
+            "nb": 215,
+            "ratio": "87.4%"
+          },
+          "total": {
+            "nb": 2007,
+            "ratio": "92.4%"
+          }
+        }
+      },
+      {
+        "code": "AG",
+        "nom": "Air-Glaciers",
+        "hors_chrono": {
+          "jour": {
+            "nb": 54,
+            "ratio": "2.7%"
+          },
+          "nuit": {
+            "nb": 5,
+            "ratio": "2.0%"
+          },
+          "total": {
+            "nb": 59,
+            "ratio": "2.6%"
+          }
+        },
+        "dans_chrono": {
+          "jour": {
+            "nb": 1977,
+            "ratio": "97.3%"
+          },
+          "nuit": {
+            "nb": 249,
+            "ratio": "98.0%"
+          },
+          "total": {
+            "nb": 2226,
+            "ratio": "97.4%"
+          }
+        }
+      }
+    ],
+    "SMUR_par_service": [
+      {
+        "code": 43,
+        "nom": "SMUR Martigny",
+        "hors_chrono": {
+          "total": {
+            "nb": 411,
+            "ratio": "38.4%"
+          }
+        },
+        "dans_chrono": {
+          "total": {
+            "nb": 658,
+            "ratio": "61.6%"
+          }
+        }
+      },
+      {
+        "code": 44,
+        "nom": "SMUR Sion",
+        "hors_chrono": {
+          "total": {
+            "nb": 42,
+            "ratio": "3.8%"
+          }
+        },
+        "dans_chrono": {
+          "total": {
+            "nb": 1071,
+            "ratio": "96.2%"
+          }
+        }
+      },
+      {
+        "code": 42,
+        "nom": "SMUR Chablais",
+        "hors_chrono": {
+          "total": {
+            "nb": 7,
+            "ratio": "4.2%"
+          }
+        },
+        "dans_chrono": {
+          "total": {
+            "nb": 161,
+            "ratio": "95.8%"
+          }
+        }
+      },
+      {
+        "code": 45,
+        "nom": "NEF Visp",
+        "hors_chrono": {
+          "total": {
+            "nb": 4,
+            "ratio": "0.6%"
+          }
+        },
+        "dans_chrono": {
+          "total": {
+            "nb": 718,
+            "ratio": "99.4%"
+          }
+        }
+      }
+    ]
+  },
+  "duree_mission_invalide_2024": {
+    "note": "Durée de mission = alarme → heure opérationnelle. Invalide si >300 min ou champs manquants.",
+    "toutes_bases": {
+      "jour": {
+        "invalide": 84,
+        "total": 16049,
+        "ratio": "0.5%"
+      },
+      "nuit": {
+        "invalide": 191,
+        "total": 8703,
+        "ratio": "2.2%"
+      },
+      "total": {
+        "invalide": 275,
+        "total": 24752,
+        "ratio": "1.1%"
+      }
+    },
+    "ambulances": {
+      "33_Amb_Clerc_Monthey": {
+        "jour": {
+          "invalide": 11,
+          "total": 2294,
+          "ratio": "0.5%"
+        },
+        "nuit": {
+          "invalide": 16,
+          "total": 1141,
+          "ratio": "1.4%"
+        },
+        "total": {
+          "invalide": 27,
+          "total": 3435,
+          "ratio": "0.8%"
+        }
+      },
+      "68_Amb_Entremont": {
+        "jour": {
+          "invalide": 2,
+          "total": 573,
+          "ratio": "0.3%"
+        },
+        "nuit": {
+          "invalide": 27,
+          "total": 491,
+          "ratio": "5.5%"
+        },
+        "total": {
+          "invalide": 29,
+          "total": 1064,
+          "ratio": "2.7%"
+        }
+      },
+      "66_Amb_HVS_Martigny": {
+        "jour": {
+          "invalide": 13,
+          "total": 2162,
+          "ratio": "0.6%"
+        },
+        "nuit": {
+          "invalide": 30,
+          "total": 1008,
+          "ratio": "3.0%"
+        },
+        "total": {
+          "invalide": 43,
+          "total": 3170,
+          "ratio": "1.4%"
+        }
+      },
+      "65_Amb_SAS_Sion": {
+        "jour": {
+          "invalide": 17,
+          "total": 3379,
+          "ratio": "0.5%"
+        },
+        "nuit": {
+          "invalide": 32,
+          "total": 2023,
+          "ratio": "1.6%"
+        },
+        "total": {
+          "invalide": 49,
+          "total": 5402,
+          "ratio": "0.9%"
+        }
+      },
+      "61_Amb_HVS_Sierre": {
+        "jour": {
+          "invalide": 15,
+          "total": 2256,
+          "ratio": "0.7%"
+        },
+        "nuit": {
+          "invalide": 11,
+          "total": 961,
+          "ratio": "1.1%"
+        },
+        "total": {
+          "invalide": 26,
+          "total": 3217,
+          "ratio": "0.8%"
+        }
+      },
+      "55_Amb_SOW_Visp": {
+        "jour": {
+          "invalide": 11,
+          "total": 1532,
+          "ratio": "0.7%"
+        },
+        "nuit": {
+          "invalide": 19,
+          "total": 788,
+          "ratio": "2.4%"
+        },
+        "total": {
+          "invalide": 30,
+          "total": 2320,
+          "ratio": "1.3%"
+        }
+      },
+      "53_Amb_Venetz_Saastal": {
+        "jour": {
+          "invalide": 1,
+          "total": 373,
+          "ratio": "0.3%"
+        },
+        "nuit": {
+          "invalide": 4,
+          "total": 147,
+          "ratio": "2.7%"
+        },
+        "total": {
+          "invalide": 5,
+          "total": 520,
+          "ratio": "1.0%"
+        }
+      },
+      "57_Amb_Zermatt": {
+        "nuit": {
+          "invalide": 10,
+          "total": 264,
+          "ratio": "3.8%"
+        },
+        "total": {
+          "invalide": 10,
+          "total": 756,
+          "ratio": "1.3%"
+        }
+      },
+      "70_Amb_SOW_Gampel": {
+        "jour": {
+          "invalide": 1,
+          "total": 549,
+          "ratio": "0.2%"
+        },
+        "nuit": {
+          "invalide": 8,
+          "total": 365,
+          "ratio": "2.2%"
+        },
+        "total": {
+          "invalide": 9,
+          "total": 914,
+          "ratio": "1.0%"
+        }
+      },
+      "75_Amb_SOW_Fiesch": {
+        "jour": {
+          "invalide": 3,
+          "total": 539,
+          "ratio": "0.6%"
+        },
+        "nuit": {
+          "invalide": 11,
+          "total": 275,
+          "ratio": "4.0%"
+        },
+        "total": {
+          "invalide": 14,
+          "total": 814,
+          "ratio": "1.7%"
+        }
+      }
+    },
+    "SMUR": {
+      "42_SMUR_Chablais": {
+        "jour": {
+          "invalide": 2,
+          "total": 120,
+          "ratio": "1.7%"
+        },
+        "nuit": {
+          "invalide": 0,
+          "total": 58,
+          "ratio": "0%"
+        },
+        "total": {
+          "invalide": 2,
+          "total": 178,
+          "ratio": "1.1%"
+        }
+      },
+      "43_SMUR_Martigny": {
+        "jour": {
+          "invalide": 4,
+          "total": 660,
+          "ratio": "0.6%"
+        },
+        "nuit": {
+          "invalide": 9,
+          "total": 423,
+          "ratio": "2.1%"
+        },
+        "total": {
+          "invalide": 13,
+          "total": 1083,
+          "ratio": "1.2%"
+        }
+      },
+      "44_SMUR_Sion": {
+        "jour": {
+          "invalide": 3,
+          "total": 671,
+          "ratio": "0.4%"
+        },
+        "nuit": {
+          "invalide": 8,
+          "total": 455,
+          "ratio": "1.8%"
+        },
+        "total": {
+          "invalide": 11,
+          "total": 1126,
+          "ratio": "1.0%"
+        }
+      },
+      "45_NEF_Visp": {
+        "jour": {
+          "invalide": 1,
+          "total": 425,
+          "ratio": "0.2%"
+        },
+        "nuit": {
+          "invalide": 6,
+          "total": 304,
+          "ratio": "2.0%"
+        },
+        "total": {
+          "invalide": 7,
+          "total": 729,
+          "ratio": "1.0%"
+        }
+      }
+    }
+  },
+  "erreurs_codage_historique_2020_2024": {
+    "note": "Nombre d'interventions avec erreur dans les fiches — données disponibilité, 2020 à 2024.",
+    "par_service": {
+      "65_Amb_SAS_Sion": {
+        "2024": {
+          "jour": 3362,
+          "nuit": 1991,
+          "total": 5353
+        },
+        "2023": {
+          "jour": 3044,
+          "nuit": 1916
+        },
+        "2022": {
+          "jour": 3069,
+          "erreurs_jour": 13,
+          "nuit": 1950,
+          "erreurs_nuit": 6
+        },
+        "2021": {
+          "jour": 2694,
+          "erreurs_jour": 21,
+          "nuit": 1688,
+          "erreurs_nuit": 3
+        }
+      },
+      "61_Amb_HVS_Sierre": {
+        "2024": {
+          "jour": 2241,
+          "erreurs_jour": 20,
+          "nuit": 950,
+          "erreurs_nuit": 9
+        },
+        "2023": {
+          "jour": 2218,
+          "erreurs_jour": 1,
+          "nuit": 933
+        },
+        "2022": {
+          "jour": 2218,
+          "erreurs_jour": 30,
+          "nuit": 934,
+          "erreurs_nuit": 10
+        }
+      },
+      "66_Amb_HVS_Martigny": {
+        "2024": {
+          "jour": 2149,
+          "erreurs_jour": 2,
+          "nuit": 978
+        },
+        "2023": {
+          "jour": 2094,
+          "erreurs_jour": 1,
+          "nuit": 978,
+          "erreurs_nuit": 1
+        },
+        "2022": {
+          "jour": 1982,
+          "erreurs_jour": 22,
+          "nuit": 966,
+          "erreurs_nuit": 7
+        }
+      },
+      "59_Heli_AZ_Zermatt": {
+        "2024": {
+          "jour": 1982,
+          "erreurs_jour": 57,
+          "nuit": 247,
+          "erreurs_nuit": 1
+        },
+        "2023": {
+          "jour": 2038,
+          "erreurs_jour": 69,
+          "nuit": 198,
+          "erreurs_nuit": 3
+        },
+        "2022": {
+          "jour": 2017,
+          "erreurs_jour": 211,
+          "nuit": 256,
+          "erreurs_nuit": 21
+        }
+      },
+      "60_Heli_AG_Sion": {
+        "2024": {
+          "jour": 2195,
+          "erreurs_jour": 164,
+          "nuit": 259,
+          "erreurs_nuit": 5
+        },
+        "2023": {
+          "jour": 2244,
+          "erreurs_jour": 161,
+          "nuit": 218,
+          "erreurs_nuit": 2
+        },
+        "2022": {
+          "jour": 2256,
+          "erreurs_jour": 508,
+          "nuit": 219,
+          "erreurs_nuit": 10
+        }
+      }
+    }
+  },
+  "fichiers_sources": [
+    "Rapport_2024_OCVS_part1.pdf",
+    "Rapport_2024_OCVS_part2.pdf"
+  ]
+}

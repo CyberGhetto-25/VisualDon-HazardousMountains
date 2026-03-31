@@ -1,0 +1,1039 @@
+{
+  "metadata": {
+    "title": "Sauvetage en montagne – Suisse 2024",
+    "description": "Données unifiées OCVS (Valais) + SAS (reste de la Suisse) pour visualisation D3",
+    "sources": [
+      {
+        "id": "OCVS",
+        "name": "Office cantonal de la santé du Valais – Service des urgences",
+        "coverage": "Canton du Valais uniquement",
+        "year": 2024,
+        "files": [
+          "OCVS_annual-report-rescue_2024.json"
+        ]
+      },
+      {
+        "id": "SAS",
+        "name": "Secours Alpin Suisse",
+        "coverage": "Suisse entière SAUF le Valais",
+        "years_available": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "files": [
+          "SAS_annual-report-rescue.JSON"
+        ]
+      }
+    ],
+    "years_common": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "coordinate_system": "WGS84",
+    "notes": [
+      "OCVS = données opérationnelles détaillées (délais, disponibilité, chronozones)",
+      "SAS = données de sauvetage alpin (alpinisme, randonnée, first responders)",
+      "Les deux sources sont COMPLÉMENTAIRES et NON superposables directement",
+      "Le Valais est couvert UNIQUEMENT par l'OCVS dans cette visualisation"
+    ]
+  },
+  "national_overview": {
+    "note": "Vue annuelle pour le slider de la carte. SAS = hors Valais. OCVS = Valais.",
+    "years": [
+      {
+        "year": 2020,
+        "sas": {
+          "total_operations": 999,
+          "total_persons": 1319
+        },
+        "ocvs": {
+          "ambulances_total": null,
+          "note": "Données OCVS 2020 partiellement disponibles via historique délais"
+        }
+      },
+      {
+        "year": 2021,
+        "sas": {
+          "total_operations": 1071,
+          "total_persons": 1294
+        },
+        "ocvs": {
+          "ambulances_total": null
+        }
+      },
+      {
+        "year": 2022,
+        "sas": {
+          "total_operations": 1292,
+          "total_persons": 1546
+        },
+        "ocvs": {
+          "ambulances_total": 20608
+        }
+      },
+      {
+        "year": 2023,
+        "sas": {
+          "total_operations": 1475,
+          "total_persons": 1695
+        },
+        "ocvs": {
+          "ambulances_total": 20917
+        }
+      },
+      {
+        "year": 2024,
+        "sas": {
+          "total_operations": 1487,
+          "total_persons": 1742
+        },
+        "ocvs": {
+          "ambulances_total": 21438,
+          "helicopteres_total": 4668,
+          "SMUR_total": 3088,
+          "grand_total": 29194
+        }
+      }
+    ]
+  },
+  "sas_regions": {
+    "note": "7 régions SAS. Chaque région couvre plusieurs cantons suisses (hors Valais couvert par OCVS).",
+    "definitions": [
+      {
+        "code": "SARO",
+        "name": "Secours Alpin Romand",
+        "cantons": [
+          "VD",
+          "GE",
+          "NE",
+          "JU",
+          "FR"
+        ],
+        "note": "VS exclu – couvert par OCVS",
+        "geojson_ids": [
+          "VD",
+          "GE",
+          "NE",
+          "JU",
+          "FR"
+        ]
+      },
+      {
+        "code": "ARBE",
+        "name": "Secours Alpin Bernois",
+        "cantons": [
+          "BE",
+          "SO"
+        ],
+        "geojson_ids": [
+          "BE",
+          "SO"
+        ]
+      },
+      {
+        "code": "ARZ",
+        "name": "Secours Alpin de Suisse centrale",
+        "cantons": [
+          "LU",
+          "UR",
+          "SZ",
+          "OW",
+          "NW",
+          "ZG"
+        ],
+        "geojson_ids": [
+          "LU",
+          "UR",
+          "SZ",
+          "OW",
+          "NW",
+          "ZG"
+        ]
+      },
+      {
+        "code": "SATI",
+        "name": "Secours Alpin du Tessin",
+        "cantons": [
+          "TI"
+        ],
+        "geojson_ids": [
+          "TI"
+        ]
+      },
+      {
+        "code": "ARGL",
+        "name": "Secours Alpin de Glaris",
+        "cantons": [
+          "GL"
+        ],
+        "geojson_ids": [
+          "GL"
+        ]
+      },
+      {
+        "code": "ARO",
+        "name": "Secours Alpin de Suisse orientale",
+        "cantons": [
+          "ZH",
+          "SH",
+          "AR",
+          "AI",
+          "SG",
+          "TG"
+        ],
+        "geojson_ids": [
+          "ZH",
+          "SH",
+          "AR",
+          "AI",
+          "SG",
+          "TG"
+        ]
+      },
+      {
+        "code": "ARG",
+        "name": "Secours Alpin des Grisons",
+        "cantons": [
+          "GR"
+        ],
+        "geojson_ids": [
+          "GR"
+        ]
+      }
+    ],
+    "interventions_by_year": [
+      {
+        "year": 2020,
+        "SARO": 160,
+        "ARBE": 234,
+        "ARZ": 153,
+        "SATI": 108,
+        "ARGL": 51,
+        "ARO": 100,
+        "ARG": 193
+      },
+      {
+        "year": 2021,
+        "SARO": 165,
+        "ARBE": 240,
+        "ARZ": 147,
+        "SATI": 101,
+        "ARGL": 46,
+        "ARO": 116,
+        "ARG": 256
+      },
+      {
+        "year": 2022,
+        "SARO": 175,
+        "ARBE": 292,
+        "ARZ": 178,
+        "SATI": 122,
+        "ARGL": 65,
+        "ARO": 146,
+        "ARG": 314
+      },
+      {
+        "year": 2023,
+        "SARO": 217,
+        "ARBE": 287,
+        "ARZ": 199,
+        "SATI": 144,
+        "ARGL": 53,
+        "ARO": 136,
+        "ARG": 439
+      },
+      {
+        "year": 2024,
+        "SARO": 190,
+        "ARBE": 262,
+        "ARZ": 177,
+        "SATI": 156,
+        "ARGL": 50,
+        "ARO": 164,
+        "ARG": 484,
+        "non_attribue": 4
+      }
+    ],
+    "monthly_operations_by_year": [
+      {
+        "year": 2020,
+        "jan": 61,
+        "feb": 47,
+        "mar": 30,
+        "apr": 59,
+        "may": 84,
+        "jun": 65,
+        "jul": 180,
+        "aug": 137,
+        "sep": 135,
+        "oct": 57,
+        "nov": 87,
+        "dec": 57
+      },
+      {
+        "year": 2021,
+        "jan": 99,
+        "feb": 73,
+        "mar": 79,
+        "apr": 52,
+        "may": 77,
+        "jun": 96,
+        "jul": 131,
+        "aug": 153,
+        "sep": 121,
+        "oct": 94,
+        "nov": 38,
+        "dec": 58
+      },
+      {
+        "year": 2022,
+        "jan": 72,
+        "feb": 98,
+        "mar": 96,
+        "apr": 82,
+        "may": 91,
+        "jun": 137,
+        "jul": 214,
+        "aug": 174,
+        "sep": 128,
+        "oct": 98,
+        "nov": 41,
+        "dec": 61
+      },
+      {
+        "year": 2023,
+        "jan": 77,
+        "feb": 69,
+        "mar": 72,
+        "apr": 105,
+        "may": 106,
+        "jun": 144,
+        "jul": 221,
+        "aug": 188,
+        "sep": 208,
+        "oct": 132,
+        "nov": 74,
+        "dec": 79
+      },
+      {
+        "year": 2024,
+        "jan": 82,
+        "feb": 82,
+        "mar": 88,
+        "apr": 84,
+        "may": 120,
+        "jun": 147,
+        "jul": 222,
+        "aug": 227,
+        "sep": 150,
+        "oct": 108,
+        "nov": 78,
+        "dec": 99
+      }
+    ],
+    "activities_2024": {
+      "year": 2024,
+      "total_persons": 1742,
+      "repartition_percent": {
+        "escalade_via_ferrata": 9,
+        "randonnee_haute_montagne": 8,
+        "randonnee": 18,
+        "randonnee_alpine": 14,
+        "loisirs_ete_autres": 3,
+        "loisirs_eau": 2,
+        "loisirs_aeriens": 4,
+        "loisirs_hiver": 9,
+        "first_responders": 19,
+        "autres_divers": 10,
+        "travail": 2,
+        "trafic": 2
+      }
+    },
+    "activities_history": [
+      {
+        "year": 2020,
+        "total_persons": 1319,
+        "escalade_via_ferrata": 14.2,
+        "randonnee_haute_montagne": 12.6,
+        "randonnee": 18.9,
+        "randonnee_alpine": 18.7,
+        "loisirs_ete_autres": 4.6,
+        "loisirs_eau": 2.1,
+        "loisirs_aeriens": 4.2,
+        "loisirs_hiver": 8.6,
+        "autres_mobilisations": 13.2,
+        "travail": 1.8,
+        "trafic": 1.1
+      },
+      {
+        "year": 2021,
+        "total_persons": 1294,
+        "escalade_via_ferrata": 12.1,
+        "randonnee_haute_montagne": 8.3,
+        "randonnee": 16.1,
+        "randonnee_alpine": 17.3,
+        "loisirs_ete_autres": 3.5,
+        "loisirs_eau": 1.3,
+        "loisirs_aeriens": 5.8,
+        "loisirs_hiver": 17.1,
+        "autres_mobilisations": 16.1,
+        "travail": 1.8,
+        "trafic": 0.7
+      },
+      {
+        "year": 2022,
+        "total_persons": 1546,
+        "escalade_via_ferrata": 12.5,
+        "randonnee_haute_montagne": 9.7,
+        "randonnee": 15.3,
+        "randonnee_alpine": 14.9,
+        "loisirs_ete_autres": 4.3,
+        "loisirs_eau": 1.1,
+        "loisirs_aeriens": 5.8,
+        "loisirs_hiver": 11.3,
+        "autres_mobilisations": 21.4,
+        "travail": 2.0,
+        "trafic": 1.7
+      },
+      {
+        "year": 2023,
+        "total_persons": 1695,
+        "escalade_via_ferrata": 11,
+        "randonnee_haute_montagne": 9,
+        "randonnee": 18,
+        "randonnee_alpine": 12,
+        "loisirs_ete_autres": 3,
+        "loisirs_eau": 1,
+        "loisirs_aeriens": 6,
+        "loisirs_hiver": 7,
+        "autres_mobilisations": 28,
+        "travail": 3,
+        "trafic": 2
+      },
+      {
+        "year": 2024,
+        "total_persons": 1742,
+        "escalade_via_ferrata": 9,
+        "randonnee_haute_montagne": 8,
+        "randonnee": 18,
+        "randonnee_alpine": 14,
+        "loisirs_ete_autres": 3,
+        "loisirs_eau": 2,
+        "loisirs_aeriens": 4,
+        "loisirs_hiver": 9,
+        "first_responders": 19,
+        "autres_divers": 10,
+        "travail": 2,
+        "trafic": 2
+      }
+    ],
+    "first_responders_by_year": [
+      {
+        "year": 2021,
+        "total": 75,
+        "top_locations": [
+          {
+            "name": "Coire",
+            "region": "GR",
+            "count": 32
+          },
+          {
+            "name": "Linthal",
+            "region": "GL",
+            "count": 16
+          },
+          {
+            "name": "Vals",
+            "region": "GR",
+            "count": 9
+          }
+        ]
+      },
+      {
+        "year": 2022,
+        "total": 183,
+        "top_locations": [
+          {
+            "name": "Coire",
+            "region": "GR",
+            "count": 51
+          },
+          {
+            "name": "Linthal",
+            "region": "GL",
+            "count": 31
+          },
+          {
+            "name": "Lauterbrunnen",
+            "region": "BE",
+            "count": 19
+          }
+        ]
+      },
+      {
+        "year": 2023,
+        "total": 354,
+        "top_locations": [
+          {
+            "name": "Région des Grisons",
+            "region": "GR",
+            "count": 240
+          },
+          {
+            "name": "Région Lac Noir",
+            "region": "FR",
+            "count": 47
+          },
+          {
+            "name": "Région Lauterbrunnen",
+            "region": "BE",
+            "count": 29
+          }
+        ]
+      },
+      {
+        "year": 2024,
+        "total": 355,
+        "top_locations": [
+          {
+            "name": "Région des Grisons",
+            "region": "GR",
+            "count": 286
+          },
+          {
+            "name": "Région Appenzell",
+            "region": "AI/AR",
+            "count": 36
+          },
+          {
+            "name": "Région Lauterbrunnen",
+            "region": "BE",
+            "count": 17
+          },
+          {
+            "name": "Région Braunwald",
+            "region": "GL",
+            "count": 16
+          }
+        ]
+      }
+    ],
+    "organisation_by_year": [
+      {
+        "year": 2020,
+        "stations": 86,
+        "total_secouristes": 2708,
+        "first_responders_effectifs": 44
+      },
+      {
+        "year": 2021,
+        "stations": 86,
+        "total_secouristes": 2753,
+        "first_responders_effectifs": 138
+      },
+      {
+        "year": 2022,
+        "stations": 84,
+        "total_secouristes": 3117,
+        "first_responders_effectifs": 324
+      },
+      {
+        "year": 2023,
+        "stations": 84,
+        "total_secouristes": 3333,
+        "first_responders_effectifs": 505
+      },
+      {
+        "year": 2024,
+        "stations": 84,
+        "total_secouristes": 3432,
+        "first_responders_effectifs": 551
+      }
+    ]
+  },
+  "ocvs_bases": {
+    "note": "Chaque base est un point sur la carte. Coordonnées WGS84 approximatives.",
+    "layer_type": "proportional_circles",
+    "canton": "VS",
+    "geojson_id_canton": "VS",
+    "bases": [
+      {
+        "id": "amb_monthey",
+        "code": 33,
+        "nom": "Amb Clerc Monthey",
+        "type": "ambulance",
+        "lng": 6.909,
+        "lat": 46.255,
+        "interventions_2024": {
+          "total": 3224,
+          "P1": 1352,
+          "P2": 1539,
+          "P3": 28,
+          "S1": 300
+        },
+        "delai_reponse_P1_median_min": 10.6,
+        "temps_intervention_median_min": 50,
+        "taux_dispo_vehicule": 55.0,
+        "ratio_hors_chronozone": 4.1
+      },
+      {
+        "id": "amb_entremont",
+        "code": 68,
+        "nom": "Amb Entremont",
+        "type": "ambulance",
+        "lng": 7.154,
+        "lat": 46.0,
+        "interventions_2024": {
+          "total": 1034,
+          "P1": 499,
+          "P2": 505,
+          "P3": 5,
+          "S1": 25
+        },
+        "delai_reponse_P1_median_min": 11.0,
+        "temps_intervention_median_min": 68,
+        "taux_dispo_vehicule": 74.2,
+        "ratio_hors_chronozone": 32.2
+      },
+      {
+        "id": "amb_martigny",
+        "code": 66,
+        "nom": "Amb HVS Martigny",
+        "type": "ambulance",
+        "lng": 7.073,
+        "lat": 46.101,
+        "interventions_2024": {
+          "total": 5135,
+          "P1": 2278,
+          "P2": 2733,
+          "P3": 22,
+          "S1": 102
+        },
+        "delai_reponse_P1_median_min": 10.6,
+        "temps_intervention_median_min": 47,
+        "taux_dispo_vehicule": 59.0,
+        "ratio_hors_chronozone": 13.2
+      },
+      {
+        "id": "amb_sion",
+        "code": 65,
+        "nom": "Amb SAS Sion",
+        "type": "ambulance",
+        "lng": 7.36,
+        "lat": 46.233,
+        "interventions_2024": {
+          "total": 4231,
+          "P1": 1922,
+          "P2": 2131,
+          "P3": 26,
+          "S1": 152
+        },
+        "delai_reponse_P1_median_min": 10.5,
+        "temps_intervention_median_min": 40,
+        "taux_dispo_vehicule": 57.6,
+        "ratio_hors_chronozone": 10.1
+      },
+      {
+        "id": "amb_sierre",
+        "code": 61,
+        "nom": "Amb HVS Sierre",
+        "type": "ambulance",
+        "lng": 7.534,
+        "lat": 46.294,
+        "interventions_2024": {
+          "total": 2763,
+          "P1": 1218,
+          "P2": 1488,
+          "P3": 5,
+          "S1": 52
+        },
+        "delai_reponse_P1_median_min": 10.3,
+        "temps_intervention_median_min": 47,
+        "taux_dispo_vehicule": 61.8,
+        "ratio_hors_chronozone": 11.3
+      },
+      {
+        "id": "amb_visp",
+        "code": 55,
+        "nom": "Amb SOW Visp",
+        "type": "ambulance",
+        "lng": 7.882,
+        "lat": 46.294,
+        "interventions_2024": {
+          "total": 2930,
+          "P1": 1139,
+          "P2": 1635,
+          "P3": 25,
+          "S1": 131
+        },
+        "delai_reponse_P1_median_min": 10.9,
+        "temps_intervention_median_min": 48,
+        "taux_dispo_vehicule": 69.2,
+        "ratio_hors_chronozone": 16.9
+      },
+      {
+        "id": "amb_saastal",
+        "code": 53,
+        "nom": "Amb Venetz Saastal",
+        "type": "ambulance",
+        "lng": 7.935,
+        "lat": 46.14,
+        "interventions_2024": {
+          "total": 779,
+          "P1": 237,
+          "P2": 505,
+          "P3": 5,
+          "S1": 32
+        },
+        "delai_reponse_P1_median_min": 10.2,
+        "temps_intervention_median_min": 67,
+        "taux_dispo_vehicule": 82.9,
+        "ratio_hors_chronozone": 2.9
+      },
+      {
+        "id": "amb_zermatt",
+        "code": 57,
+        "nom": "Amb Zermatt",
+        "type": "ambulance",
+        "lng": 7.749,
+        "lat": 46.02,
+        "interventions_2024": {
+          "total": 1492,
+          "P1": 499,
+          "P2": 505,
+          "P3": 5,
+          "S1": 32
+        },
+        "delai_reponse_P1_median_min": 9.47,
+        "temps_intervention_median_min": 69,
+        "taux_dispo_vehicule": 77.0,
+        "ratio_hors_chronozone": 4.0
+      },
+      {
+        "id": "amb_gampel",
+        "code": 70,
+        "nom": "Amb SOW Gampel",
+        "type": "ambulance",
+        "lng": 7.742,
+        "lat": 46.32,
+        "interventions_2024": {
+          "total": 904,
+          "P1": 303,
+          "P2": 433,
+          "P3": 10,
+          "S1": 32
+        },
+        "delai_reponse_P1_median_min": 10.4,
+        "temps_intervention_median_min": 52,
+        "taux_dispo_vehicule": 55.1,
+        "ratio_hors_chronozone": 23.2
+      },
+      {
+        "id": "amb_fiesch",
+        "code": 75,
+        "nom": "Amb SOW Fiesch",
+        "type": "ambulance",
+        "lng": 8.127,
+        "lat": 46.398,
+        "interventions_2024": {
+          "total": 800,
+          "P1": 303,
+          "P2": 433,
+          "P3": 10,
+          "S1": 25
+        },
+        "delai_reponse_P1_median_min": 10.4,
+        "temps_intervention_median_min": 51,
+        "taux_dispo_vehicule": 77.0,
+        "ratio_hors_chronozone": 12.7
+      },
+      {
+        "id": "rr_stniklaus",
+        "code": 82,
+        "nom": "Rapid Responder St-Niklaus",
+        "type": "rapid_responder",
+        "lng": 7.801,
+        "lat": 46.176,
+        "interventions_2024": {
+          "total": 21
+        },
+        "delai_reponse_P1_median_min": 9.47,
+        "temps_intervention_median_min": 51,
+        "taux_dispo_vehicule": 94.4,
+        "ratio_hors_chronozone": 29.2
+      },
+      {
+        "id": "heli_sion",
+        "code": 60,
+        "nom": "Heli AG Sion",
+        "type": "helicoptere",
+        "compagnie": "Air-Glaciers",
+        "lng": 7.326,
+        "lat": 46.219,
+        "interventions_2024": {
+          "total": 2225,
+          "primaires": 2095,
+          "secondaires": 130
+        },
+        "delai_reponse_P1_median_min": 19.4,
+        "temps_intervention_median_min": 52,
+        "ratio_hors_chronozone": 2.6,
+        "dr_sup20min_ratio": "43.7%"
+      },
+      {
+        "id": "heli_zermatt",
+        "code": 59,
+        "nom": "Heli AZ Zermatt",
+        "type": "helicoptere",
+        "compagnie": "Air Zermatt",
+        "lng": 7.749,
+        "lat": 46.02,
+        "interventions_2024": {
+          "total": 2443,
+          "primaires": 2270,
+          "secondaires": 173
+        },
+        "delai_reponse_P1_median_min": 17.9,
+        "temps_intervention_median_min": 51,
+        "ratio_hors_chronozone": 7.6,
+        "dr_sup20min_ratio": "38.9%"
+      },
+      {
+        "id": "smur_chablais",
+        "code": 42,
+        "nom": "SMUR Chablais",
+        "type": "smur",
+        "lng": 6.893,
+        "lat": 46.302,
+        "interventions_2024": {
+          "total": 1070,
+          "primaires": 985,
+          "secondaires": 85
+        },
+        "taux_dispo_vehicule": 92.9
+      },
+      {
+        "id": "smur_martigny",
+        "code": 43,
+        "nom": "SMUR Martigny",
+        "type": "smur",
+        "lng": 7.073,
+        "lat": 46.101,
+        "interventions_2024": {
+          "total": 1115,
+          "primaires": 1098,
+          "secondaires": 17
+        },
+        "taux_dispo_vehicule": 82.1
+      },
+      {
+        "id": "smur_sion",
+        "code": 44,
+        "nom": "SMUR Sion",
+        "type": "smur",
+        "lng": 7.36,
+        "lat": 46.233,
+        "interventions_2024": {
+          "total": 722,
+          "primaires": 701,
+          "secondaires": 21
+        },
+        "taux_dispo_vehicule": 84.2
+      },
+      {
+        "id": "nef_visp",
+        "code": 45,
+        "nom": "NEF Visp",
+        "type": "smur",
+        "lng": 7.882,
+        "lat": 46.294,
+        "interventions_2024": {
+          "total": 183,
+          "primaires": 170,
+          "secondaires": 13
+        },
+        "taux_dispo_vehicule": 87.3
+      }
+    ],
+    "totals_2024": {
+      "ambulances": {
+        "total_interventions": 21438,
+        "taux_dispo_vehicule_moyen": "73.4%"
+      },
+      "helicopteres": {
+        "total_interventions": 4668
+      },
+      "smur": {
+        "total_interventions": 3088,
+        "taux_dispo_vehicule_moyen": "86.6%"
+      },
+      "grand_total": 29194
+    },
+    "performance_canton_2024": {
+      "delai_reponse_P1_median_min": 11.3,
+      "delai_reponse_P1_p90_min": 23.83,
+      "temps_intervention_P1_median_min": 49,
+      "temps_intervention_P1_p90_min": 81,
+      "ratio_interventions_dr_sup20min": "17.9%",
+      "evolution_dr_sup20min": {
+        "2020": "17.4%",
+        "2021": "18.4%",
+        "2022": "17.6%",
+        "2023": "16.9%",
+        "2024": "17.9%"
+      }
+    }
+  },
+  "time_series": {
+    "note": "Séries pour graphiques d'évolution. Années communes aux deux sources: 2020-2024.",
+    "sas_yearly": [
+      {
+        "year": 2017,
+        "operations": 739,
+        "persons": 782
+      },
+      {
+        "year": 2018,
+        "operations": 861,
+        "persons": 1117
+      },
+      {
+        "year": 2019,
+        "operations": 822,
+        "persons": 1055
+      },
+      {
+        "year": 2020,
+        "operations": 999,
+        "persons": 1319
+      },
+      {
+        "year": 2021,
+        "operations": 1071,
+        "persons": 1294
+      },
+      {
+        "year": 2022,
+        "operations": 1292,
+        "persons": 1546
+      },
+      {
+        "year": 2023,
+        "operations": 1475,
+        "persons": 1695
+      },
+      {
+        "year": 2024,
+        "operations": 1487,
+        "persons": 1742
+      }
+    ],
+    "ocvs_yearly_delai": [
+      {
+        "year": 2020,
+        "interventions_P1": 6685,
+        "nb_dr_sup20min": 1165,
+        "ratio_dr_sup20min": 17.4
+      },
+      {
+        "year": 2021,
+        "interventions_P1": 7667,
+        "nb_dr_sup20min": 1409,
+        "ratio_dr_sup20min": 18.4
+      },
+      {
+        "year": 2022,
+        "interventions_P1": 7411,
+        "nb_dr_sup20min": 1301,
+        "ratio_dr_sup20min": 17.6
+      },
+      {
+        "year": 2023,
+        "interventions_P1": 7974,
+        "nb_dr_sup20min": 1347,
+        "ratio_dr_sup20min": 16.9
+      },
+      {
+        "year": 2024,
+        "interventions_P1": 6503,
+        "nb_dr_sup20min": 1163,
+        "ratio_dr_sup20min": 17.9
+      }
+    ]
+  },
+  "d3_visual_hints": {
+    "map_layer_1_choropleth": {
+      "source": "SAS",
+      "field": "interventions",
+      "color_scale": "sequential_green",
+      "domain": [
+        50,
+        484
+      ],
+      "note": "Remplissage des cantons (hors VS) par nb interventions SAS 2024"
+    },
+    "map_layer_2_canton_vs": {
+      "source": "OCVS",
+      "field": "grand_total",
+      "value": 29194,
+      "color": "#1a6b3a",
+      "note": "Canton VS = couleur fixe OCVS, différenciée des régions SAS"
+    },
+    "map_layer_3_circles": {
+      "source": "OCVS",
+      "field": "interventions_2024.total",
+      "radius_scale": "sqrt",
+      "domain": [
+        21,
+        5135
+      ],
+      "range_px": [
+        4,
+        28
+      ],
+      "color_by_type": {
+        "ambulance": "#2196F3",
+        "helicoptere": "#FF9800",
+        "smur": "#9C27B0",
+        "rapid_responder": "#4CAF50"
+      },
+      "note": "Bulles proportionnelles sur les bases OCVS en Valais"
+    },
+    "tooltip_fields": {
+      "sas_region": [
+        "code",
+        "name",
+        "interventions",
+        "persons"
+      ],
+      "ocvs_base": [
+        "nom",
+        "type",
+        "interventions_2024.total",
+        "delai_reponse_P1_median_min",
+        "temps_intervention_median_min",
+        "taux_dispo_vehicule"
+      ]
+    },
+    "available_tabs": [
+      "Nombre",
+      "Temps de réponse",
+      "Disponibilité",
+      "Activités (SAS)"
+    ],
+    "slider_years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "note_sas_only_years": "Pour les années < 2022, seules les données SAS sont disponibles pour la carte"
+  }
+}
