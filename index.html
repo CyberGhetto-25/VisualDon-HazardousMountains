@@ -7,6 +7,10 @@
     <!-- Styles globaux -->
     <link rel="stylesheet" href="assets/css/main.css" />
 
+    <!-- Mapbox GL JS (fond de carte terrain pour la section rescue) -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+
     <!-- Styles par section — chacun touche uniquement à sa ligne -->
     <link rel="stylesheet" href="sections/rescue/rescue.css" />
     <link rel="stylesheet" href="sections/accident/accident.css" />
@@ -29,6 +33,8 @@
     <script src="lib/topojson.v3.min.js"></script>
     <script src="lib/scrollama.min.js"></script>
 
+    <script src="config.js"></script>
+    
     <!-- Une ligne par section — chacun touche à sa ligne uniquement -->
     <script src="sections/rescue/rescue.js"></script>
     <script src="sections/accident/accident.js"></script>
