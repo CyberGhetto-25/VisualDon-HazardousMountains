@@ -1,0 +1,185 @@
+#accident {
+  background: #0a0a12;
+}
+
+#accident-pin-section {
+  height: 100vh;
+  overflow: hidden;
+}
+
+#accident-slides {
+  display: flex;
+  height: 100vh;
+  will-change: transform;
+}
+
+.accident-slide {
+  min-width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.slide-randonnee { background: linear-gradient(180deg, #9fd898 0%, #caedc4 50%, #e8f8e4 100%); }
+.slide-ski       { background: linear-gradient(180deg, #3060c8 0%, #7aaaf0 50%, #c0d8ff 100%); }
+.slide-alpinisme { background: linear-gradient(180deg, #7040a0 0%, #b080d0 50%, #dcc0f0 100%); }
+.slide-horspiste { background: linear-gradient(180deg, #d88010 0%, #f0b040 50%, #fce090 100%); }
+.slide-escalade  { background: linear-gradient(180deg, #c02808 0%, #e06030 50%, #f8b090 100%); }
+.slide-autres    { background: linear-gradient(180deg, #108870 0%, #40b0a0 50%, #90d8d0 100%); }
+
+.accident-cloud {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  max-width: 900px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.accident-mountain {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 100vw;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.accident-region-labels {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.accident-region-tag {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border-left: 3px solid #e74c3c;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.accident-region-tag.weight-high   { font-size: 0.8rem; border-left-width: 4px; }
+.accident-region-tag.weight-medium { font-size: 0.7rem; }
+.accident-region-tag.weight-low    { font-size: 0.6rem; border-left-width: 2px; opacity: 0.75; }
+
+.accident-sport-label {
+  position: absolute;
+  top: 2rem;
+  left: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.accident-sport-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.accident-sport-name {
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+.accident-death {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 3rem;
+  text-align: right;
+  z-index: 10;
+}
+
+.accident-death-number {
+  font-size: clamp(5rem, 11vw, 10rem);
+  font-weight: 900;
+  line-height: 0.85;
+  color: white;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
+  letter-spacing: -0.04em;
+}
+
+.accident-death-sub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 0.5rem;
+}
+
+.accident-progress {
+  position: fixed;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.55rem;
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.accident-progress.visible { opacity: 1; }
+
+.accident-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.accident-progress-dot.active {
+  background: white;
+  transform: scale(1.55);
+}
+
+.accident-regions-section {
+  background: #0a0a12;
+  padding: 7rem 2rem 9rem;
+  color: white;
+}
+
+.accident-regions-section h3 {
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.accident-regions-section .subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.05rem;
+  margin-bottom: 4rem;
+}
+
+#accident-regions-chart {
+  max-width: 760px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+#accident-regions-chart text {
+  font-family: inherit;
+}
