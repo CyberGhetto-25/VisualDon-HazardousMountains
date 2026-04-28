@@ -1,0 +1,50 @@
+#introduction {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 6rem;
+  background: #ffffff;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.intro-content {
+  max-width: 860px;
+  width: 100%;
+}
+
+.intro-title {
+  font-size: clamp(5rem, 13vw, 13rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  margin: 0 0 4rem 0;
+  color: #0a0a12;
+}
+
+.intro-text {
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 2;
+  color: #444;
+  text-align: left;
+}
+
+/* Flèche — img directement, taille forcée */
+.intro-arrow {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
+  animation: intro-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes intro-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(12px); }
+}
