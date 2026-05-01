@@ -1,0 +1,329 @@
+/* sections/behavior/behavior.css — tout scopé sous #behavior */
+
+#behavior {
+  position: relative;
+}
+
+#behavior-scroll-container {
+  position: relative;
+}
+
+/* ── Couche sticky ───────────────────────────────────────────────────────── */
+#behavior-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Image plein écran ───────────────────────────────────────────────────── */
+#behavior-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+#behavior-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 200ms ease;
+}
+
+/* ── Panneaux latéraux ───────────────────────────────────────────────────── */
+#behavior-panel-left,
+#behavior-panel-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 30%; /* valeur initiale — remplacée par JS selon la frame */
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 2;
+  overflow-y: auto;
+  padding: 2.5rem 1.8rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #f0f0f0;
+  transition: transform 350ms ease-in;
+}
+
+#behavior-panel-left  { left: 0; }
+#behavior-panel-right { right: 0; }
+
+/* Sortie (valeur fixe pour éviter les décalages liés aux changements de width) */
+#behavior-panel-left.slide-out  { transform: translateX(-100vw); }
+#behavior-panel-right.slide-out { transform: translateX(100vw); }
+
+/* Retour en ease-out */
+#behavior-panel-left.slide-in,
+#behavior-panel-right.slide-in {
+  transition: transform 350ms ease-out;
+}
+
+/* ── Tooltip flottant ────────────────────────────────────────────────────── */
+#behavior-tooltip {
+  position: absolute;
+  z-index: 10;
+  background: rgba(10, 10, 20, 0.92);
+  color: #f0f0f0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease;
+  white-space: nowrap;
+}
+
+/* ── Scroll driver ───────────────────────────────────────────────────────── */
+#behavior-scroll-driver {
+  position: relative;
+  height: 400vh;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.behavior-step {
+  height: 100vh;
+}
+
+.behavior-step--last {
+  padding-bottom: 15vh;
+}
+
+/* ── Typographie panneaux ────────────────────────────────────────────────── */
+.behavior-panel-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.6rem;
+  line-height: 1.3;
+}
+
+.behavior-panel-accroche {
+  font-size: 0.82rem;
+  color: #cccccc;
+  line-height: 1.65;
+  margin: 0 0 1rem;
+}
+
+/* ── Stats grands chiffres (frame 0 panneau droit) ───────────────────────── */
+.behavior-stat-big {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #e85d04;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.behavior-stat-label {
+  font-size: 0.78rem;
+  color: #aaaaaa;
+  line-height: 1.5;
+  margin: 0 0 1.1rem;
+}
+
+.behavior-stat-precision {
+  font-size: 0.72rem;
+  color: #777777;
+}
+
+.behavior-stat-secondary {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  margin-bottom: 0.2rem;
+}
+
+/* ── Grille 2×2 stats contexte ───────────────────────────────────────────── */
+.behavior-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 0.4rem;
+}
+
+.behavior-stat-grid-item {
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Pas de bordure droite sur la colonne paire */
+.behavior-stat-grid-item:nth-child(even) {
+  border-right: none;
+}
+
+/* Pas de bordure basse sur les deux derniers items */
+.behavior-stat-grid-item:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.behavior-stat-grid-picto {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.1rem;
+  line-height: 1;
+}
+
+.behavior-stat-grid-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #e85d04;
+  line-height: 1.1;
+  margin-bottom: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.behavior-stat-grid-label {
+  font-size: 0.72rem;
+  color: #aaaaaa;
+  line-height: 1.4;
+}
+
+/* ── Citation ────────────────────────────────────────────────────────────── */
+.behavior-citation {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #dddddd;
+  border-left: 3px solid #e85d04;
+  padding-left: 0.75rem;
+  margin: 0 0 0.8rem;
+  line-height: 1.6;
+}
+
+.behavior-citation-auteur {
+  display: block;
+  font-style: normal;
+  font-size: 0.7rem;
+  color: #888888;
+  margin-top: 0.35rem;
+}
+
+/* ── Donut ───────────────────────────────────────────────────────────────── */
+.behavior-donut-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+#behavior-donut { flex-shrink: 0; }
+
+.behavior-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: #bbbbbb;
+  padding-top: 0.3rem;
+  flex: 1;
+}
+
+.behavior-donut-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: 3px;
+  transition: background 150ms, color 150ms;
+}
+
+.behavior-donut-legend-item.is-active {
+  color: #ffffff;
+  background: rgba(232, 93, 4, 0.18);
+}
+
+.behavior-donut-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.behavior-donut-picto {
+  font-size: 0.9rem;
+}
+
+/* ── Navigation graphiques ───────────────────────────────────────────────── */
+.behavior-graph-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.behavior-graph-nav button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background 150ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.behavior-graph-nav button:hover {
+  background: #e85d04;
+  border-color: #e85d04;
+}
+
+.behavior-graph-counter {
+  font-size: 0.78rem;
+  color: #888888;
+}
+
+/* ── Wrapper graphiques ──────────────────────────────────────────────────── */
+.behavior-graph-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.behavior-graph-slide {
+  display: flex;
+  transition: transform 300ms ease-in-out;
+}
+
+.behavior-graph-item {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.behavior-chart-title {
+  font-size: 0.76rem;
+  color: #aaaaaa;
+  margin: 0 0 0.2rem;
+  font-weight: 600;
+}
+
+/* ── D3 — grille et axes ─────────────────────────────────────────────────── */
+#behavior .behavior-grid line {
+  stroke: rgba(255, 255, 255, 0.07);
+  stroke-dasharray: 3 3;
+}
+
+#behavior .tick text {
+  fill: #777777;
+  font-size: 11px;
+}
+
+#behavior .domain {
+  display: none;
+}
