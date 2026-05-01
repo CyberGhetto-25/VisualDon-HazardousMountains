@@ -1,96 +1,173 @@
 {
   "meta": {
     "titre": "Comportements toxiques en montagne — Données Suisse",
-    "sources": {
-      "heliski": "OFAC via Blick (mars 2024) / RTS Mise au Point (mai 2023)",
-      "pollution": "OFEV (mai 2020) via CAS #cleanmountains / Conseil fédéral rapport plastique 2022",
-      "accidents": "SUVA (octobre 2025) / CAS (mars 2025) / BPA (2023)"
-    }
+    "description": "Données sur le manque de préparation et la pollution en montagne en Suisse",
+    "sources": [
+      {
+        "id": "SUVA_randonnee",
+        "organisation": "SUVA",
+        "url": "https://www.lemanbleu.ch/Scripts/Index.aspx?id=466650"
+      },
+      {
+        "id": "CAS_urgences_hub",
+        "organisation": "Club Alpin Suisse (CAS)",
+        "url": "https://www.sac-cas.ch/fr/formation-et-securite/securite-en-chemin/urgences-en-montagne"
+      },
+      {
+        "id": "CAS_cleanmountains",
+        "organisation": "Club Alpin Suisse (CAS) — #cleanmountains",
+        "url": "https://www.sac-cas.ch/fr/environnement/sports-de-montagne-et-environnement/cleanmountains/"
+      },
+      {
+        "id": "OFEV_plastique",
+        "organisation": "Office fédéral de l'environnement (OFEV)",
+        "url": "https://www.bafu.admin.ch/fr/statistiques-dechets"
+      }
+    ]
   },
-  "frames": {
-    "1_heliski": {
-      "titre": "L'héliski, un luxe qui coûte à la montagne",
-      "accroche": "Interdite en France et en Allemagne, tolérée en Suisse : l'héliski dépose chaque hiver des milliers de skieurs en haute montagne, souvent aux abords de zones protégées.",
-      "stat_principale": {
-        "valeur": 4700,
-        "label": "vols héliski par an en Suisse",
-        "precision": "moyenne 2010–2022",
-        "source": "OFAC via Blick, mars 2024"
+  "comportements_toxiques": {
+    "1_manque_de_preparation": {
+      "titre": "Manque de préparation",
+      "description": "Accidents liés à une mauvaise planification, équipement inadapté, surestimation de ses capacités physiques ou méconnaissance du terrain",
+      "evolution_accidents_randonnee": {
+        "description": "Évolution du nombre d'accidents de randonnée en montagne en Suisse",
+        "source": "SUVA",
+        "url": "https://www.lemanbleu.ch/Scripts/Index.aspx?id=466650",
+        "donnees": [
+          {
+            "periode": "2009–2013",
+            "accidents_par_an_moyenne": 4000
+          },
+          {
+            "periode": "2019–2023",
+            "accidents_par_an_moyenne": 9000
+          }
+        ],
+        "note": "Plus du double en 15 ans"
       },
-      "stat_secondaire": {
-        "valeur": 6040,
-        "label": "atterrissages au pic de 2019 — 22'174 passagers",
-        "source": "OFAC via RTS Mise au Point"
-      },
-      "stats_contexte": [
-        { "valeur": "70%",   "label": "des vols ont lieu en Valais" },
-        { "valeur": "40",    "label": "places d'atterrissage officielles en Suisse" },
-        { "valeur": ">50%",  "label": "situées en zones protégées ou à leur bordure" },
-        { "valeur": "550 t", "label": "de CO₂ émis par l'héliski en 2019" }
-      ],
-      "image": "assets/img/heliski.jpg"
-    },
-    "2_pollution": {
-      "titre": "14'000 tonnes de plastique disparaissent chaque année",
-      "accroche": "En Suisse, 14'000 tonnes de plastique s'infiltrent dans le sol et l'eau chaque année. L'abrasion des pneus en est la première cause — loin devant le littering en montagne.",
-      "stat_principale": {
-        "valeur": 14000,
-        "label": "tonnes de plastique infiltrées/an en Suisse",
-        "source": "OFEV, mai 2020"
-      },
-      "donut": {
-        "segments": [
-          { "label": "Abrasion pneus",     "valeur": 8900, "couleur": "#e85d04", "picto": "🚗" },
-          { "label": "Littering",          "valeur": 2700, "couleur": "#f4a261", "picto": "🗑️" },
-          { "label": "Granulés plastique", "valeur": 1500, "couleur": "#888888", "picto": "🏭" },
-          { "label": "Autres sources",     "valeur":  900, "couleur": "#444444", "picto": "❓" }
+      "causes_principales_accidents": {
+        "description": "Causes des accidents de randonnée en montagne en Suisse",
+        "source": "SUVA",
+        "url": "https://www.lemanbleu.ch/Scripts/Index.aspx?id=466650",
+        "donnees": [
+          {
+            "cause": "Trébuchement, glissade, faux pas ou chute",
+            "part_pourcentage": 80,
+            "note": "Plus de 8 accidents sur 10"
+          },
+          {
+            "cause": "Équipement inadapté",
+            "part_pourcentage": null,
+            "note": "Cause fréquente citée par la SUVA"
+          },
+          {
+            "cause": "Manque d'attention",
+            "part_pourcentage": null,
+            "note": "Cause fréquente citée par la SUVA"
+          },
+          {
+            "cause": "Forme physique surestimée",
+            "part_pourcentage": null,
+            "note": "Cause fréquente citée par la SUVA"
+          }
         ]
       },
-      "stats_contexte": [
-        { "valeur": "200 M CHF", "label": "coût annuel nettoyage déchets sauvages",     "picto": "💰" },
-        { "valeur": "7 ans",     "label": "pour décomposer un mégot en montagne",       "picto": "⏱" },
-        { "valeur": "50%",       "label": "des poissons meurent avec 1 mégot/litre",    "picto": "🐟" },
-        { "valeur": "20%",       "label": "des cabanes CAS ont des décharges passées",  "picto": "🏠" }
-      ],
-      "image": "assets/img/pollution_montagne.webp"
+      "blocages_par_epuisement": {
+        "description": "Personnes bloquées ou épuisées ayant dû appeler les secours",
+        "source": "CAS",
+        "donnees": [
+          {
+            "annee": 2018,
+            "sport": "Alpinisme",
+            "nb_blocages": 186,
+            "url": "https://www.sac-cas.ch/fr/les-alpes/cas-durgence-en-hausse-2536/",
+            "note": "Cause principale : épuisement ou situation dépassant les capacités"
+          },
+          {
+            "annee": 2024,
+            "sport": "Randonnée pédestre + escalade",
+            "note": "Augmentation notable des blocages par épuisement en été 2024",
+            "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-dans-les-montagnes-en-2024-44044/"
+          }
+        ]
+      },
+      "urgences_totales_par_annee": {
+        "description": "Nombre total de personnes en situation d'urgence en montagne en Suisse (toutes causes)",
+        "source": "CAS",
+        "url": "https://www.sac-cas.ch/fr/formation-et-securite/securite-en-chemin/urgences-en-montagne",
+        "donnees": [
+          {
+            "annee": 2018,
+            "nb_personnes": 3211,
+            "url": "https://www.sac-cas.ch/fr/les-alpes/cas-durgence-en-hausse-2536/"
+          },
+          {
+            "annee": 2021,
+            "nb_personnes": 3689,
+            "url": "https://www.sac-cas.ch/fr/le-cas/rapport-annuel-2021-36459/"
+          },
+          {
+            "annee": 2022,
+            "nb_personnes": 3668,
+            "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-en-montagne-2022-40407/"
+          },
+          {
+            "annee": 2023,
+            "nb_personnes": 3501,
+            "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-dans-les-montagnes-en-2024-44044/"
+          },
+          {
+            "annee": 2024,
+            "nb_personnes": 3570,
+            "url": "https://www.sac-cas.ch/fr/formation-et-securite/urgences-dans-les-montagnes-en-2024-44044/"
+          }
+        ]
+      }
     },
-    "3_accidents": {
-      "titre": "Les accidents de randonnée ont doublé en 15 ans",
-      "accroche": "Boom de la randonnée, afflux de débutants, surestimation des capacités : les accidents explosent de manière disproportionnée par rapport à la croissance démographique.",
-      "stats_contexte": [
-        { "valeur": "+125%",     "label": "d'accidents de randonnée en 15 ans" },
-        { "valeur": "80%",       "label": "des accidents sont des chutes ou glissades" },
-        { "valeur": "3 millions","label": "de randonneurs actifs en Suisse" },
-        { "valeur": "~50%",      "label": "des urgences montagne ont lieu en Valais" }
-      ],
-      "graphique_A": {
-        "titre": "Accidents de randonnée en Suisse",
-        "sous_titre": "Moyenne annuelle par période — Source : SUVA (oct. 2025)",
-        "type": "line",
-        "donnees": [
-          { "periode": "2009–2013", "valeur": 4000 },
-          { "periode": "2019–2023", "valeur": 9000 }
-        ],
-        "annotation": "+125% en 15 ans"
+    "2_pollution_dechets": {
+      "titre": "Pollution et déchets en montagne",
+      "description": "Données sur l'abandon de déchets et la pollution en montagne en Suisse",
+      "plastique_infiltre_suisse": {
+        "description": "Plastique s'infiltrant dans le sol et l'eau chaque année en Suisse",
+        "valeur": 14000,
+        "unite": "tonnes/an",
+        "dont_littering": 2700,
+        "source": "OFEV, étude publiée en mai 2020",
+        "url": "https://summit-foundation.org/cleanmountains/",
+        "url_ofev": "https://www.bafu.admin.ch/fr/statistiques-dechets"
       },
-      "graphique_B": {
-        "titre": "Urgences en montagne (CAS)",
-        "sous_titre": "Nombre total de personnes secourues — Source : CAS (mars 2025)",
-        "type": "bar",
-        "donnees": [
-          { "annee": 2018, "valeur": 3211 },
-          { "annee": 2021, "valeur": 3689 },
-          { "annee": 2022, "valeur": 3668 },
-          { "annee": 2023, "valeur": 3501 },
-          { "annee": 2024, "valeur": 3570 }
-        ],
-        "pic": 2021
+      "megots_decomposition": {
+        "description": "Impact d'un mégot de cigarette en montagne",
+        "duree_decomposition_annees": 7,
+        "impact": "Un seul mégot par litre d'eau provoque la mort de 50% des poissons",
+        "source": "CAS #cleanmountains",
+        "url": "https://www.sac-cas.ch/fr/environnement/sports-de-montagne-et-environnement/cleanmountains/"
       },
-      "citation": {
-        "texte": "Il y a probablement plus de gens inexpérimentés qui n'ont aucune connaissance spécifique des dangers de la montagne.",
-        "auteur": "Mara Zenhäuser — Bureau de prévention des accidents (BPA)"
+      "transport_dechets_helicoptere": {
+        "description": "Dans la plupart des cabanes de montagne, les déchets doivent être évacués par hélicoptère",
+        "exemple_concret": {
+          "cabane": "Capanna Soveltra (Tessin)",
+          "annee": 2016,
+          "nb_vols_helicoptere": 15,
+          "note": "15 vols nécessaires pour descendre les déchets en plaine sur un seul été"
+        },
+        "source": "CAS",
+        "url": "https://www.sac-cas.ch/fr/les-alpes/pour-des-montagnes-propres-23755"
       },
-      "image": "assets/img/surtourisme.jpg"
+      "campagne_cleanmountains": {
+        "description": "Campagne CAS #cleanmountains lancée en 2017",
+        "depuis": 2017,
+        "nb_cabanes_equipees_sacs_poubelles": 50,
+        "source": "CAS #cleanmountains",
+        "url": "https://www.sac-cas.ch/fr/environnement/sports-de-montagne-et-environnement/cleanmountains/"
+      },
+      "frais_nettoyage_dechets_suisse": {
+        "description": "Coût annuel du nettoyage des déchets sauvages en Suisse (espaces publics)",
+        "valeur": 200000000,
+        "unite": "CHF/an",
+        "source": "OFEV via SWI swissinfo.ch",
+        "url": "https://www.swissinfo.ch/fre/sci-tech/statistiques_une-montagne-de-d%C3%A9chets-%C3%A0-nettoyer/43856208"
+      }
     }
   }
 }
