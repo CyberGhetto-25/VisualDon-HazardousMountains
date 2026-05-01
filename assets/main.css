@@ -1,3 +1,4 @@
+/* ── Reset ──────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -7,6 +8,7 @@
 body {
   font-family: 'SUSE Mono', monospace;
   font-weight: 400;
+  background: #0a0a12;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -14,72 +16,71 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
-/* ── INTRODUCTION ─────────────────────────────────────────────── */
-
+/* ── Introduction ───────────────────────────────────────────── */
 #introduction {
+  position: relative;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
+  z-index: 5;
 }
 
 .intro-content {
-  flex: 1;
+  height: 100vh;
   background: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 5rem;
-  overflow: hidden;
+  align-items: center;
+  padding: 4rem 6rem;
 }
 
 .intro-title {
-  display: block;
   font-family: 'SUSE', sans-serif;
   font-weight: 500;
   font-size: 64px;
   color: #0a0a12;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   line-height: 1.1;
 }
 
 .intro-text {
   font-family: 'SUSE Mono', monospace;
-  font-size: 32px;
-  line-height: 1.6;
+  font-size: 20px;
+  line-height: 1.7;
   color: #222;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+  max-width: 900px;
 }
 
 .intro-chevron {
-  width: 50px;
-  height: 28px;
+  width: 60px;
+  height: 34px;
   display: block;
-  margin: 0 auto;
+  overflow: visible;
   animation: chevron-bounce 1.8s ease-in-out infinite;
 }
 
 @keyframes chevron-bounce {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(10px); }
+  50%       { transform: translateY(12px); }
 }
 
+/* Cloud en position absolue, déborde sur la section accident */
 .intro-cloud-zone {
-  height: 28vh;
-  flex-shrink: 0;
-  background: #ffffff;
-  overflow: visible;
-  position: relative;
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  width: 100%;
+  height: 200px;
   z-index: 10;
-  margin-bottom: -80px;
+  pointer-events: none;
 }
 
 .intro-cloud-zone img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center top;
   display: block;
 }
