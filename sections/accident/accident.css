@@ -1,4 +1,6 @@
 #accident {
+  position: relative;
+  z-index: 1;
   background: #0a0a12;
 }
 
@@ -27,17 +29,6 @@
 .slide-horspiste { background: linear-gradient(180deg, #d88010 0%, #f0b040 50%, #fce090 100%); }
 .slide-escalade  { background: linear-gradient(180deg, #c02808 0%, #e06030 50%, #f8b090 100%); }
 .slide-autres    { background: linear-gradient(180deg, #108870 0%, #40b0a0 50%, #90d8d0 100%); }
-
-.accident-cloud {
-  position: absolute;
-  top: -30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 65%;
-  max-width: 900px;
-  pointer-events: none;
-  z-index: 4;
-}
 
 .accident-mountain {
   position: absolute;

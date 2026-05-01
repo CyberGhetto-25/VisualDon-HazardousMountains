@@ -91,11 +91,6 @@
           .text(function (r) { return r.region; });
       });
 
-    slides.append('img')
-      .attr('class', 'accident-cloud')
-      .attr('src', 'assets/img/cloud.png')
-      .attr('alt', '');
-
     const label = slides.append('div').attr('class', 'accident-sport-label');
 
     label.append('img')
