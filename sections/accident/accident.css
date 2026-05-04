@@ -91,29 +91,30 @@
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 
+/* ── Compteur décès — sous le label sport (haut gauche) ──────── */
 .accident-death {
   position: absolute;
-  bottom: 2.5rem;
-  right: 3rem;
-  text-align: right;
+  top: 8.5rem;
+  left: 2.5rem;
   z-index: 10;
 }
 
-.accident-death-number {
-  font-size: clamp(5rem, 11vw, 10rem);
-  font-weight: 900;
-  line-height: 0.85;
-  color: white;
-  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
-  letter-spacing: -0.04em;
+.accident-death-num {
+  font-family: 'SUSE', sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 
-.accident-death-sub {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
+.accident-death-lbl {
+  font-family: 'SUSE Mono', monospace;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-top: 0.5rem;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
 }
 
 .accident-progress {
@@ -173,4 +174,49 @@
 
 #accident-regions-chart text {
   font-family: inherit;
+}
+/* ── Ronds interactifs ──────────────────────────────────────── */
+.accident-dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2.5px solid rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  z-index: 6;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.accident-dot:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.accident-dot-preview {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 145px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  display: block;
+}
+
+.accident-dot:hover .accident-dot-preview {
+  opacity: 1;
+}
+
+.accident-death-pct {
+  font-family: 'SUSE Mono', monospace;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 10px;
 }
