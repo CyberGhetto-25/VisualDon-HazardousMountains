@@ -12,9 +12,18 @@
     return;
   }
 
-  // ── Constantes ─────────────────────────────────────────────────────────────
+  // ── Titre de section ───────────────────────────────────────────────────────
+  var rescueSection = document.getElementById("rescue");
+  if (rescueSection && !document.getElementById("rescue-header")) {
+    var header = document.createElement("div");
+    header.id = "rescue-header";
+    header.innerHTML =
+      '<h2 id="rescue-title">Ces héros de l\'ombre qui veillent sur la montagne</h2>' +
+      '<p id="rescue-subtitle">Chaque année en Valais, des centaines d\'interventions silencieuses sauvent des vies.</p>';
+    rescueSection.prepend(header);
+  }
 
-  // ← Remplacer par ton token Mapbox (https://account.mapbox.com)
+  // ── Constantes ─────────────────────────────────────────────────────────────
   mapboxgl.accessToken = MAPBOX_TOKEN;
 
   const YEARS = [2020, 2021, 2022, 2023, 2024];
@@ -29,18 +38,24 @@
     ARG:  { name: "Grisons",               values: [193, 256, 314, 439, 484] },
   };
 
+  // Palette violette pour les types de service OCVS
   const TYPE_COLOR = {
-    ambulance:   "#2196F3",
-    helicoptere: "#FF9800",
-    smur:        "#9C27B0",
+    ambulance:   "#9B59B6",
+    helicoptere: "#662D91",
+    smur:        "#C39BD3",
   };
 
+  // Palette violette pour les régions SAS (ligne par région)
   const SAS_PALETTE = [
-    "#2196F3", "#FF9800", "#4CAF50", "#E91E63",
-    "#9C27B0", "#00BCD4", "#1a6b3a",
+    "#662D91",
+    "#8E44AD",
+    "#9B59B6",
+    "#7D3C98",
+    "#A569BD",
+    "#C39BD3",
+    "#5B2C6F",
   ];
 
-  // Coordonnées GPS par code OCVS (données géographiques absentes du JSON de rapport)
   const OCVS_COORD_MAP = {
     33: { nom: "Amb. Monthey",           type: "ambulance",   lng: 6.909, lat: 46.255 },
     68: { nom: "Amb. Entremont",         type: "ambulance",   lng: 7.154, lat: 46.000 },
@@ -61,60 +76,55 @@
     45: { nom: "NEF Visp",               type: "smur",        lng: 7.912, lat: 46.274 },
   };
 
-  // Mapping correct canton (TopoJSON id) → région SAS + nom d'organisme lisible
-  // Source : structure officielle SAS / Schweizerische Alpine Rettung
   const CANTON_INFO = {
-    "1":  { region: "ARO",    org: "Secours Alpin de Suisse orientale" }, // ZH
-    "2":  { region: "ARBE",   org: "Secours Alpin Bernois"             }, // BE
-    "3":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  }, // LU
-    "4":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  }, // UR
-    "5":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  }, // SZ
-    "6":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  }, // OW
-    "7":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  }, // NW
-    "8":  { region: "ARGL",   org: "Secours Alpin Glaronnais"          }, // GL
-    "9":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  }, // ZG
-    "10": { region: "SARO",   org: "Secours Alpin Romand"              }, // FR
-    "11": { region: null,      org: null                                }, // SO
-    "12": { region: null,      org: null                                }, // BS
-    "13": { region: null,      org: null                                }, // BL
-    "14": { region: "ARO",    org: "Secours Alpin de Suisse orientale" }, // SH
-    "15": { region: "ARO",    org: "Secours Alpin de Suisse orientale" }, // AR
-    "16": { region: "ARO",    org: "Secours Alpin de Suisse orientale" }, // AI
-    "17": { region: "ARO",    org: "Secours Alpin de Suisse orientale" }, // SG
-    "18": { region: "ARG",    org: "Secours Alpin des Grisons"         }, // GR
-    "19": { region: "ARO",    org: "Secours Alpin de Suisse orientale" }, // AG
-    "20": { region: "ARO",    org: "Secours Alpin de Suisse orientale" }, // TG
-    "21": { region: "SATI",   org: "Secours Alpin Tessinois"           }, // TI
-    "22": { region: "SARO",   org: "Secours Alpin Romand"              }, // VD
-    "23": { region: "VALAIS", org: null                                 }, // VS — OCVS
-    "24": { region: "SARO",   org: "Secours Alpin Romand"              }, // NE
-    "25": { region: null,      org: null                                }, // GE
-    "26": { region: "SARO",   org: "Secours Alpin Romand"              }, // JU
+    "1":  { region: "ARO",    org: "Secours Alpin de Suisse orientale" },
+    "2":  { region: "ARBE",   org: "Secours Alpin Bernois"             },
+    "3":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  },
+    "4":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  },
+    "5":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  },
+    "6":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  },
+    "7":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  },
+    "8":  { region: "ARGL",   org: "Secours Alpin Glaronnais"          },
+    "9":  { region: "ARZ",    org: "Secours Alpin de Suisse centrale"  },
+    "10": { region: "SARO",   org: "Secours Alpin Romand"              },
+    "11": { region: null,      org: null                                },
+    "12": { region: null,      org: null                                },
+    "13": { region: null,      org: null                                },
+    "14": { region: "ARO",    org: "Secours Alpin de Suisse orientale" },
+    "15": { region: "ARO",    org: "Secours Alpin de Suisse orientale" },
+    "16": { region: "ARO",    org: "Secours Alpin de Suisse orientale" },
+    "17": { region: "ARO",    org: "Secours Alpin de Suisse orientale" },
+    "18": { region: "ARG",    org: "Secours Alpin des Grisons"         },
+    "19": { region: "ARO",    org: "Secours Alpin de Suisse orientale" },
+    "20": { region: "ARO",    org: "Secours Alpin de Suisse orientale" },
+    "21": { region: "SATI",   org: "Secours Alpin Tessinois"           },
+    "22": { region: "SARO",   org: "Secours Alpin Romand"              },
+    "23": { region: "VALAIS", org: null                                 },
+    "24": { region: "SARO",   org: "Secours Alpin Romand"              },
+    "25": { region: null,      org: null                                },
+    "26": { region: "SARO",   org: "Secours Alpin Romand"              },
   };
 
-  // ID TopoJSON du Valais (id=22 = Vaud, id=23 = Valais/Wallis)
   const VALAIS_ID = "23";
 
-  // Vue initiale Mapbox — Suisse
   const CH_VIEW = { center: [8.2275, 46.8182], zoom: 7,  pitch: 45, bearing:   0 };
-  // Vue focus Valais
   const VS_VIEW = { center: [7.60,   46.20  ], zoom: 9,  pitch: 55, bearing: -10 };
 
   // ── État ───────────────────────────────────────────────────────────────────
-  const currentYearIdx = 4; // 2024 — fixé
+  const currentYearIdx = 4;
   let currentTab = "nombre";
-  let cachedData = null;     // { cantons, ocvsBases, ocvsTotals }
-  let mapObj     = null;     // instance Mapbox GL
-  let mapReady   = false;    // événement 'load' Mapbox reçu
-  let dataReady  = false;    // Promise.all résolu
-  let redrawFn   = null;     // fonction de redessin D3 pour la vue courante
-  let svgLayer   = null;     // sélection D3 du SVG overlay persistant
+  let cachedData = null;
+  let mapObj     = null;
+  let mapReady   = false;
+  let dataReady  = false;
+  let redrawFn   = null;
+  let svgLayer   = null;
 
-  // ── Échelle choroplèthe ────────────────────────────────────────────────────
+  // ── Échelle choroplèthe violette ───────────────────────────────────────────
   const colorScale = d3
     .scaleSequential()
     .domain([40, 490])
-    .interpolator(d3.interpolate("#c8e6c9", "#1a6b3a"));
+    .interpolator(d3.interpolate("#d4b8e0", "#662D91"));
 
   // ── DOM partagé ────────────────────────────────────────────────────────────
   const mapContainer = document.getElementById("rescue-map-container");
@@ -133,11 +143,11 @@
   function getId(feature) { return String(feature.properties.id || ""); }
 
   function getCantonFill(id) {
-    if (id === VALAIS_ID) return "#1a6b3a";
+    if (id === VALAIS_ID) return "#662D91";
     const region = CANTON_INFO[id]?.region;
-    if (!region) return "#e8f5e9";
+    if (!region) return "#2a1a35";
     const val = SAS_DATA[region]?.values[currentYearIdx];
-    return val ? colorScale(val) : "#e8f5e9";
+    return val ? colorScale(val) : "#2a1a35";
   }
 
   // ── Éléments DOM liés à une vue ────────────────────────────────────────────
@@ -151,8 +161,6 @@
   }
 
   // ── Initialisation Mapbox ──────────────────────────────────────────────────
-
-  /** Crée le backdrop Mapbox et le SVG overlay persistants, démarre la carte */
   function initMapbox() {
     const backdrop = document.createElement("div");
     backdrop.id = "mapbox-backdrop";
@@ -195,15 +203,12 @@
       tryStart();
     });
 
-    // Redessine D3 à chaque frame Mapbox (flyTo inclus)
     mapObj.on("render", () => {
       if (redrawFn && mapReady) redrawFn();
     });
   }
 
   // ── Projection D3 ↔ Mapbox ─────────────────────────────────────────────────
-
-  /** Renvoie un d3.geoPath dont la projection délègue à map.project() */
   function makePathGen() {
     return d3.geoPath().projection(
       d3.geoTransform({
@@ -216,8 +221,6 @@
   }
 
   // ── Parsing OCVS JSON ──────────────────────────────────────────────────────
-
-  /** Construit un tableau normalisé de bases à partir du JSON OCVS brut */
   function parseOCVS(ocvsData) {
     const bases = [];
     const dispoAmb  = ocvsData.disponibilite_vehicules_2024?.ambulances || {};
@@ -265,7 +268,6 @@
     return bases;
   }
 
-  /** Extrait les totaux globaux depuis le JSON OCVS */
   function parseOCVSTotals(ocvsData) {
     const rawDispo = ocvsData.disponibilite_vehicules_2024
       ?.ambulances?.total_ambulances?.total?.taux_dispo;
@@ -305,9 +307,17 @@
   }
 
   // ── VUE 1 — Carte nationale ────────────────────────────────────────────────
-
-  /** Choroplèthe SAS national avec badge Valais, sur fond Mapbox terrain */
   function drawVue1() {
+    // Fermeture explicite des éléments Vue 2 avant le clearVueElements
+    mapContainer.querySelectorAll(".rescue-vue2-panel").forEach(p => {
+      p.classList.remove("is-open");
+      p.style.display = "none";
+    });
+    mapContainer.querySelectorAll(".rescue-back-btn").forEach(b => {
+      b.style.display = "none";
+      b.disabled = true;
+    });
+
     clearVueElements();
     svgLayer.selectAll("*").remove();
     redrawFn = null;
@@ -317,7 +327,6 @@
 
     mapObj.flyTo({ ...CH_VIEW, duration: 900 });
 
-    // ── Cantons ──
     const cantonsG = svgLayer.append("g").attr("class", "cantons-layer");
 
     cantonsG
@@ -366,7 +375,7 @@
         if (getId(d) === VALAIS_ID) switchToVue2();
       });
 
-    // ── Badge SVG sur le Valais ──
+    // Badge SVG sur le Valais
     const valaisFeature = cantons.features.find(
       f => String(f.properties.id) === VALAIS_ID
     );
@@ -376,17 +385,16 @@
       .on("click", switchToVue2);
     badgeG.append("rect")
       .attr("width", 126).attr("height", 28).attr("rx", 14)
-      .attr("fill", "rgba(255,255,255,0.92)")
-      .attr("stroke", "#1a6b3a").attr("stroke-width", 1.5);
+      .attr("fill", "rgba(0,0,0,0.82)")
+      .attr("stroke", "#662D91").attr("stroke-width", 1.5);
     badgeG.append("text")
       .attr("x", 63).attr("y", 18)
       .attr("text-anchor", "middle")
       .attr("font-size", "11px").attr("font-weight", "600")
-      .attr("fill", "#1a6b3a")
-      .attr("font-family", "Inter, Helvetica Neue, Arial, sans-serif")
+      .attr("fill", "#ffffff")
+      .attr("font-family", "'SUSE', sans-serif")
       .text("Voir le détail →");
 
-    // ── Redessin synchronisé avec Mapbox ──
     redrawFn = () => {
       pathGen = makePathGen();
       cantonsG.selectAll("path").attr("d", pathGen);
@@ -397,15 +405,13 @@
         }
       }
     };
-    redrawFn(); // position initiale avant le premier render event
+    redrawFn();
 
-    // ── Titre (overlay absolu) ──
     const controls = createVueEl("div");
     controls.id = "rescue-controls";
     controls.innerHTML = `<h2>Interventions de sauvetage — Suisse 2024</h2>`;
     mapContainer.appendChild(controls);
 
-    // ── Légende (overlay absolu) ──
     const legend = createVueEl("div");
     legend.id = "rescue-legend";
     legend.innerHTML = `
@@ -414,29 +420,24 @@
         Interventions SAS — faible à élevé
       </span>
       <span class="rescue-legend-item">
-        <span class="rescue-legend-dot" style="background:#1a6b3a"></span>
+        <span class="rescue-legend-dot" style="background:#662D91"></span>
         Valais (OCVS) — cliquer pour le détail
       </span>`;
     mapContainer.appendChild(legend);
   }
 
   // ── Transitions de vue ─────────────────────────────────────────────────────
-
-  /** Passe en Vue 2 — flyTo Valais, redessin bulles OCVS */
   function switchToVue2() {
     hideTip();
     drawVue2();
   }
 
-  /** Revient en Vue 1 — flyTo Suisse, redessin choroplèthe */
   function switchToVue1() {
     hideTip();
     drawVue1();
   }
 
   // ── VUE 2 — Focus Valais ───────────────────────────────────────────────────
-
-  /** Zoom Mapbox sur le Valais, bulles OCVS + panneau métriques en overlay */
   function drawVue2() {
     clearVueElements();
     svgLayer.selectAll("*").remove();
@@ -451,20 +452,18 @@
       f => String(f.properties.id) === VALAIS_ID
     );
 
-    // ── Contour du Valais ──
     let valaisPath = null;
     if (valaisFeature) {
       valaisPath = svgLayer.append("path")
         .datum(valaisFeature)
         .attr("d", pathGen)
-        .attr("fill", "#e8f5e9")
-        .attr("fill-opacity", 0.22)
-        .attr("stroke", "#1a6b3a")
+        .attr("fill", "rgba(102,45,145,0.08)")
+        .attr("fill-opacity", 1)
+        .attr("stroke", "#662D91")
         .attr("stroke-width", 2)
         .attr("stroke-opacity", 0.7);
     }
 
-    // ── Bulles OCVS ──
     const maxTotal = d3.max(ocvsBases, d => d.total) || 1;
     const rScale = d3.scaleSqrt().domain([0, maxTotal]).range([5, 22]);
 
@@ -479,7 +478,7 @@
       .attr("r",  d => rScale(d.total))
       .attr("fill", d => TYPE_COLOR[d.type])
       .attr("fill-opacity", 0.82)
-      .attr("stroke", "#fff")
+      .attr("stroke", "rgba(255,255,255,0.3)")
       .attr("stroke-width", 1)
       .style("pointer-events", "all")
       .on("mousemove", (evt, d) =>
@@ -490,7 +489,6 @@
       )
       .on("mouseleave", hideTip);
 
-    // ── Redessin synchronisé avec Mapbox ──
     redrawFn = () => {
       pathGen = makePathGen();
       if (valaisPath && valaisFeature) valaisPath.attr("d", pathGen);
@@ -499,7 +497,6 @@
         .attr("cy", d => mapObj.project([d.lng, d.lat]).y);
     };
 
-    // ── Légende bulles (overlay absolu) ──
     const legend = createVueEl("div");
     legend.id = "rescue-legend";
     legend.innerHTML = Object.entries(TYPE_COLOR).map(([type, color]) => `
@@ -509,23 +506,24 @@
       </span>`).join("");
     mapContainer.appendChild(legend);
 
-    // ── Bouton retour (overlay absolu) ──
+    // Bouton retour avec gestion d'état explicite
     const backBtn = createVueEl("button");
     backBtn.className = "rescue-back-btn";
     backBtn.textContent = "← Vue nationale";
+    backBtn.disabled = false;
+    backBtn.style.display = "block";
     backBtn.addEventListener("click", switchToVue1);
     mapContainer.appendChild(backBtn);
 
-    // ── Panneau métriques OCVS (overlay absolu) ──
+    // Panneau métriques avec état is-open explicite
     const panel = createVueEl("div");
-    panel.className = "rescue-vue2-panel";
+    panel.className = "rescue-vue2-panel is-open";
+    panel.style.display = "block";
     mapContainer.appendChild(panel);
     renderPanelInto(panel, ocvsBases, ocvsTotals);
   }
 
   // ── Panneau de détail OCVS ─────────────────────────────────────────────────
-
-  /** Injecte les métriques et onglets OCVS dans el */
   function renderPanelInto(el, bases, totals) {
     const TABS = [
       { id: "nombre", label: "Nombre" },
@@ -548,7 +546,7 @@
     } else if (currentTab === "delai") {
       const list     = bases.filter(b => b.delai).sort((a, b) => a.delai - b.delai);
       const maxDelai = d3.max(list, d => d.delai) || 1;
-      tabContent = `<p style="font-size:11px;color:#666;margin:0 0 10px">
+      tabContent = `<p style="font-size:11px;color:#aaaaaa;margin:0 0 10px">
         Délai de réponse P1 médian (minutes)</p>`;
       tabContent += list.map(b => `
         <div style="margin-bottom:8px">
@@ -558,7 +556,7 @@
                            background:${TYPE_COLOR[b.type]};display:inline-block"></span>
               ${b.nom}
             </span>
-            <span style="color:#666">${b.delai.toFixed(1)}'</span>
+            <span style="color:#aaaaaa">${b.delai.toFixed(1)}'</span>
           </div>
           <div class="rescue-bar-track">
             <div class="rescue-bar-fill"
@@ -569,7 +567,7 @@
 
     } else if (currentTab === "dispo") {
       const list = bases.filter(b => b.dispo !== null).sort((a, b) => b.dispo - a.dispo);
-      tabContent = `<p style="font-size:11px;color:#666;margin:0 0 10px">
+      tabContent = `<p style="font-size:11px;color:#aaaaaa;margin:0 0 10px">
         Taux de disponibilité des véhicules (hors missions et entretien)</p>`;
       tabContent += list.map(b => `
         <div style="margin-bottom:8px">
@@ -592,7 +590,7 @@
       <div class="rescue-panel-header">
         <p class="rescue-panel-title">
           Valais — Services d'urgence 2024
-          <span style="font-size:11px;font-weight:400;color:#666">(OCVS)</span>
+          <span style="font-size:11px;font-weight:400;color:#aaaaaa">(OCVS)</span>
         </p>
       </div>
       <div class="rescue-panel-grid">
@@ -609,7 +607,7 @@
           <p class="rescue-metric-lbl">SMUR</p>
         </div>
         <div class="rescue-metric">
-          <p class="rescue-metric-val" style="color:#1a6b3a">${totals.dispo.toFixed(1)} %</p>
+          <p class="rescue-metric-val" style="color:#662D91">${totals.dispo.toFixed(1)} %</p>
           <p class="rescue-metric-lbl">Dispo. véhicules</p>
         </div>
       </div>
@@ -623,7 +621,6 @@
     `;
   }
 
-  // Exposé globalement pour les onclick inline des onglets
   window.rescueSetTab = function (tab) {
     currentTab = tab;
     const panel = mapContainer.querySelector(".rescue-vue2-panel");
@@ -631,8 +628,6 @@
   };
 
   // ── Graphique comparatif SAS 2020–2024 ────────────────────────────────────
-
-  /** Construit le graphique en lignes SAS dans #rescue-chart-container */
   function buildSASChart() {
     const container = document.getElementById("rescue-chart-container");
     if (!container) return;
@@ -668,7 +663,7 @@
       .call(d3.axisLeft(y).ticks(4).tickSize(-CW))
       .call(g => g.select(".domain").remove())
       .call(g => g.selectAll(".tick line")
-        .attr("stroke", "#e5e5e5")
+        .attr("stroke", "rgba(255,255,255,0.07)")
         .attr("stroke-dasharray", "2,2"));
 
     const lineGen = d3.line()
@@ -694,7 +689,7 @@
         .attr("cy", d => y(d))
         .attr("r", 4)
         .attr("fill", color)
-        .attr("stroke", "#fff")
+        .attr("stroke", "rgba(0,0,0,0.5)")
         .attr("stroke-width", 1.5)
         .on("mousemove", (evt, d) =>
           showTip(evt,
@@ -712,4 +707,4 @@
         .text(code);
     });
   }
-})(); // Fin IIFE
+})();
