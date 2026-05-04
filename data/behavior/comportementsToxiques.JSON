@@ -40,17 +40,17 @@
       },
       "donut": {
         "segments": [
-          { "label": "Abrasion pneus",     "valeur": 8900, "couleur": "#e85d04", "picto": "🚗" },
-          { "label": "Littering",          "valeur": 2700, "couleur": "#f4a261", "picto": "🗑️" },
-          { "label": "Granulés plastique", "valeur": 1500, "couleur": "#888888", "picto": "🏭" },
-          { "label": "Autres sources",     "valeur":  900, "couleur": "#444444", "picto": "❓" }
+          { "label": "Abrasion pneus",     "valeur": 8900, "couleur": "#662D91" },
+          { "label": "Littering",          "valeur": 2700, "couleur": "#9B59B6" },
+          { "label": "Granulés plastique", "valeur": 1500, "couleur": "#5B2C6F" },
+          { "label": "Autres sources",     "valeur":  900, "couleur": "#2E1437" }
         ]
       },
       "stats_contexte": [
-        { "valeur": "200 M CHF", "label": "coût annuel nettoyage déchets sauvages",     "picto": "💰" },
-        { "valeur": "7 ans",     "label": "pour décomposer un mégot en montagne",       "picto": "⏱" },
-        { "valeur": "50%",       "label": "des poissons meurent avec 1 mégot/litre",    "picto": "🐟" },
-        { "valeur": "20%",       "label": "des cabanes CAS ont des décharges passées",  "picto": "🏠" }
+        { "valeur": "200 M CHF", "label": "coût annuel nettoyage déchets sauvages" },
+        { "valeur": "7 ans",     "label": "pour décomposer un mégot en montagne" },
+        { "valeur": "50%",       "label": "des poissons meurent avec 1 mégot/litre" },
+        { "valeur": "20%",       "label": "des cabanes CAS ont des décharges passées" }
       ],
       "image": "assets/img/pollution_montagne.webp"
     },
@@ -78,7 +78,7 @@
         "sous_titre": "Nombre total de personnes secourues — Source : CAS (mars 2025)",
         "type": "bar",
         "donnees": [
-          { "annee": 2018, "valeur": 3211 },
+          { "annee": 2020, "valeur": 2986 },
           { "annee": 2021, "valeur": 3689 },
           { "annee": 2022, "valeur": 3668 },
           { "annee": 2023, "valeur": 3501 },
