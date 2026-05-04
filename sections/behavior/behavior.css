@@ -1,7 +1,26 @@
-/* sections/behavior/behavior.css — tout scopé sous #behavior */
+/* sections/behavior/behavior.css — tout scopé sous #behavior sauf #behavior-tooltip */
 
 #behavior {
   position: relative;
+}
+
+/* ── En-tête de section ──────────────────────────────────────────────────── */
+#behavior-header {
+  width: 100%;
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  background: #0a0a0a;
+}
+
+#behavior-title {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-bottom: 3px solid #662D91;
+  display: inline-block;
+  padding-bottom: 0.5rem;
 }
 
 #behavior-scroll-container {
@@ -38,7 +57,7 @@
   position: absolute;
   top: 0;
   height: 100%;
-  width: 30%; /* valeur initiale — remplacée par JS selon la frame */
+  width: 30%;
   background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
@@ -56,31 +75,28 @@
 #behavior-panel-left  { left: 0; }
 #behavior-panel-right { right: 0; }
 
-/* Sortie (valeur fixe pour éviter les décalages liés aux changements de width) */
 #behavior-panel-left.slide-out  { transform: translateX(-100vw); }
 #behavior-panel-right.slide-out { transform: translateX(100vw); }
 
-/* Retour en ease-out */
 #behavior-panel-left.slide-in,
 #behavior-panel-right.slide-in {
   transition: transform 350ms ease-out;
 }
 
-/* ── Tooltip flottant ────────────────────────────────────────────────────── */
+/* ── Tooltip global (hors sticky) ───────────────────────────────────────── */
 #behavior-tooltip {
   position: absolute;
-  z-index: 10;
-  background: rgba(10, 10, 20, 0.92);
+  display: none;
+  background: rgba(0, 0, 0, 0.85);
   color: #f0f0f0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
   font-size: 0.78rem;
   line-height: 1.5;
-  padding: 0.4rem 0.7rem;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 120ms ease;
-  white-space: nowrap;
+  z-index: 9999;
+  border-left: 3px solid #662D91;
+  max-width: 200px;
 }
 
 /* ── Scroll driver ───────────────────────────────────────────────────────── */
@@ -104,32 +120,36 @@
   font-size: 1.2rem;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.5rem;
   line-height: 1.3;
+  flex-shrink: 0;
 }
 
 .behavior-panel-accroche {
   font-size: 0.82rem;
   color: #cccccc;
   line-height: 1.65;
-  margin: 0 0 1rem;
+  margin: 0 0 0.8rem;
+  flex-shrink: 1;
 }
 
-/* ── Stats grands chiffres (frame 0 panneau droit) ───────────────────────── */
+/* ── Stats grands chiffres ───────────────────────────────────────────────── */
 .behavior-stat-big {
   font-size: 3rem;
   font-weight: 900;
-  color: #e85d04;
+  color: #662D91;
   line-height: 1;
   margin-bottom: 0.3rem;
   font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
 }
 
 .behavior-stat-label {
   font-size: 0.78rem;
   color: #aaaaaa;
   line-height: 1.5;
-  margin: 0 0 1.1rem;
+  margin: 0 0 0.8rem;
+  flex-shrink: 1;
 }
 
 .behavior-stat-precision {
@@ -148,7 +168,8 @@
 .behavior-stat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 0.4rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
 }
 
 .behavior-stat-grid-item {
@@ -157,32 +178,30 @@
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Pas de bordure droite sur la colonne paire */
 .behavior-stat-grid-item:nth-child(even) {
   border-right: none;
 }
 
-/* Pas de bordure basse sur les deux derniers items */
 .behavior-stat-grid-item:nth-last-child(-n+2) {
   border-bottom: none;
 }
 
 .behavior-stat-grid-picto {
   display: block;
-  font-size: 1.1rem;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.2rem;
   line-height: 1;
 }
 
 .behavior-stat-grid-value {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #e85d04;
+  color: #662D91;
   line-height: 1.1;
   margin-bottom: 0.2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
 }
 
 .behavior-stat-grid-label {
@@ -191,15 +210,30 @@
   line-height: 1.4;
 }
 
+/* Variante compacte pour frame 2 */
+.behavior-stat-grid--compact .behavior-stat-grid-item {
+  padding: 0.3rem 0.4rem;
+}
+
+.behavior-stat-grid--compact .behavior-stat-grid-value {
+  font-size: 1.6rem;
+  margin-bottom: 0.1rem;
+}
+
+.behavior-stat-grid--compact .behavior-stat-grid-label {
+  font-size: 0.7rem;
+}
+
 /* ── Citation ────────────────────────────────────────────────────────────── */
 .behavior-citation {
   font-style: italic;
   font-size: 0.8rem;
   color: #dddddd;
-  border-left: 3px solid #e85d04;
+  border-left: 3px solid #662D91;
   padding-left: 0.75rem;
   margin: 0 0 0.8rem;
   line-height: 1.6;
+  flex-shrink: 1;
 }
 
 .behavior-citation-auteur {
@@ -210,50 +244,56 @@
   margin-top: 0.35rem;
 }
 
-/* ── Donut ───────────────────────────────────────────────────────────────── */
-.behavior-donut-container {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 0.8rem;
-}
-
-#behavior-donut { flex-shrink: 0; }
-
-.behavior-donut-legend {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-size: 0.72rem;
-  color: #bbbbbb;
-  padding-top: 0.3rem;
-  flex: 1;
-}
-
-.behavior-donut-legend-item {
+/* ── Donut — wrapper SVG + légende HTML ─────────────────────────────────── */
+.behavior-donut-wrapper {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.15rem 0.3rem;
-  border-radius: 3px;
-  transition: background 150ms, color 150ms;
+  gap: 1.2rem;
+  flex-shrink: 0;
+  margin-bottom: 0.4rem;
 }
 
-.behavior-donut-legend-item.is-active {
-  color: #ffffff;
-  background: rgba(232, 93, 4, 0.18);
-}
-
-.behavior-donut-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+#behavior-donut {
+  display: block;
   flex-shrink: 0;
 }
 
-.behavior-donut-picto {
-  font-size: 0.9rem;
+.behavior-donut-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.behavior-donut-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: #cccccc;
+  transition: opacity 150ms;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  flex: 1;
+  color: #cccccc;
+}
+
+.legend-pct {
+  font-weight: 700;
+  color: #ffffff;
+  min-width: 2.5rem;
+  text-align: right;
 }
 
 /* ── Navigation graphiques ───────────────────────────────────────────────── */
@@ -261,7 +301,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0.8rem 0 0.4rem;
+  margin: 0.6rem 0 0.3rem;
+  flex-shrink: 0;
 }
 
 .behavior-graph-nav button {
@@ -281,8 +322,8 @@
 }
 
 .behavior-graph-nav button:hover {
-  background: #e85d04;
-  border-color: #e85d04;
+  background: #662D91;
+  border-color: #662D91;
 }
 
 .behavior-graph-counter {
@@ -292,12 +333,16 @@
 
 /* ── Wrapper graphiques ──────────────────────────────────────────────────── */
 .behavior-graph-wrapper {
-  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
   width: 100%;
+  padding-bottom: 3rem;
 }
 
 .behavior-graph-slide {
   display: flex;
+  height: 100%;
   transition: transform 300ms ease-in-out;
 }
 
@@ -306,11 +351,22 @@
   flex-shrink: 0;
 }
 
+.behavior-graph-item svg {
+  overflow: visible;
+}
+
 .behavior-chart-title {
   font-size: 0.76rem;
   color: #aaaaaa;
-  margin: 0 0 0.2rem;
+  margin: 0 0 0.1rem;
   font-weight: 600;
+}
+
+.behavior-chart-subtitle {
+  font-size: 0.68rem;
+  color: #666666;
+  margin: 0 0 0.3rem;
+  font-style: italic;
 }
 
 /* ── D3 — grille et axes ─────────────────────────────────────────────────── */
@@ -326,4 +382,9 @@
 
 #behavior .domain {
   display: none;
+}
+
+/* Axes X explicites (bar + line chart) */
+#behavior .behavior-axis-x .domain {
+  display: block;
 }

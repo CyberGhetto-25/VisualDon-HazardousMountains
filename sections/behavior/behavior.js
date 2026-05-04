@@ -9,22 +9,40 @@
   // ── Constantes ─────────────────────────────────────────────────────────────
   var BEHAVIOR_FRAME_KEYS = ["1_heliski", "2_pollution", "3_accidents"];
 
-  // Largeurs panneaux + objectPosition image par frame
   var BEHAVIOR_LAYOUTS = [
-    { left: "30%", right: "30%", imgPos: "center center" }, // héliski   : image centre
-    { left: "60%", right: "0%",  imgPos: "right center"  }, // pollution : panneau gauche, image droite
-    { left: "0%",  right: "60%", imgPos: "left center"   }  // accidents : image gauche, panneau droit
+    { left: "30%", right: "30%", imgPos: "center center" },
+    { left: "60%", right: "0%",  imgPos: "right center"  },
+    { left: "0%",  right: "60%", imgPos: "left center"   }
   ];
 
   var BEHAVIOR_PADDING = "2.5rem 1.8rem";
 
+  // Icônes SVG pour les stats contexte frame 2 (pollution)
+  var BEHAVIOR_ICONS = {
+    money: '<svg viewBox="0 0 24 24" fill="none" stroke="#662D91" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M9 10h4.5a1.5 1.5 0 0 1 0 3H10a1.5 1.5 0 0 0 0 3H14"/></svg>',
+    time:  '<svg viewBox="0 0 24 24" fill="none" stroke="#662D91" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    fish:  '<svg viewBox="0 0 24 24" fill="none" stroke="#662D91" stroke-width="2" width="18" height="18"><path d="M2 12c2-4 6-7 10-7s8 3 10 7c-2 4-6 7-10 7S4 16 2 12z"/><circle cx="17" cy="12" r="1.5" fill="#662D91"/><path d="M2 12c-1-2-1-4 0-6"/></svg>',
+    hut:   '<svg viewBox="0 0 24 24" fill="none" stroke="#662D91" stroke-width="2" width="18" height="18"><path d="M3 10.5L12 3l9 7.5"/><rect x="6" y="10" width="12" height="11" rx="1"/><path d="M10 21v-6h4v6"/></svg>'
+  };
+  var BEHAVIOR_ICON_MAP = ['money', 'time', 'fish', 'hut'];
+
+  // Icônes SVG pour les segments du donut
+  var BEHAVIOR_DONUT_ICONS = {
+    'Abrasion pneus':     '<svg viewBox="0 0 24 24" fill="none" stroke="#662D91" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg>',
+    'Littering':          '<svg viewBox="0 0 24 24" fill="none" stroke="#662D91" stroke-width="2" width="16" height="16"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>',
+    'Granulés plastique': '<svg viewBox="0 0 24 24" fill="none" stroke="#662D91" stroke-width="2" width="16" height="16"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg>',
+    'Autres sources':     '<svg viewBox="0 0 24 24" fill="none" stroke="#662D91" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+  };
+
   // ── État ───────────────────────────────────────────────────────────────────
-  var behavior_currentStep = -1;
-  var behavior_graphIndex  = 0;
-  var behavior_data        = null;
-  // Références aux textes SVG du centre du donut (mis à jour au hover)
-  var behavior_donutCenter = null;
-  var behavior_donutTotal  = 0;
+  var behavior_currentStep  = -1;
+  var behavior_graphIndex   = 0;
+  var behavior_data         = null;
+  var behavior_donutCenter  = null;
+  var behavior_donutTotal   = 0;
+  var behavior_arcNormal    = null;
+  var behavior_arcHover     = null;
+  var behavior_donutPaths   = null;
 
   // ── Entrée ─────────────────────────────────────────────────────────────────
   d3.json("data/behavior/comportementsToxiques.json").then(function (data) {
@@ -32,7 +50,7 @@
     behavior_init(data);
   });
 
-  // ── Init — construit le DOM, affiche frame 0 sans transition ──────────────
+  // ── Init ──────────────────────────────────────────────────────────────────
   function behavior_init(data) {
     var root = document.getElementById("behavior");
     root.innerHTML = behavior_buildShell(data);
@@ -44,10 +62,13 @@
     behavior_setupScrollama();
   }
 
-  // ── Shell DOM — sticky + tooltip + scroll driver ───────────────────────────
+  // ── Shell DOM ─────────────────────────────────────────────────────────────
   function behavior_buildShell(data) {
     var f0 = data.frames[BEHAVIOR_FRAME_KEYS[0]];
     return (
+      '<div id="behavior-header">' +
+        '<h2 id="behavior-title">Ces comportements toxiques à la montagne</h2>' +
+      '</div>' +
       '<div id="behavior-scroll-container">' +
         '<div id="behavior-sticky">' +
           '<div id="behavior-bg">' +
@@ -56,7 +77,6 @@
           '</div>' +
           '<div id="behavior-panel-left"></div>' +
           '<div id="behavior-panel-right"></div>' +
-          '<div id="behavior-tooltip"></div>' +
         '</div>' +
         '<div id="behavior-scroll-driver">' +
           '<div class="behavior-step" data-step="0"></div>' +
@@ -67,10 +87,7 @@
     );
   }
 
-  // ── Panneau gauche par frame ───────────────────────────────────────────────
-  // Frame 0 : titre + accroche + grille stats héliski
-  // Frame 1 : tout le contenu pollution (titre + accroche + countup + donut + grille)
-  // Frame 2 : masqué (layout left: 0%)
+  // ── Panneau gauche ────────────────────────────────────────────────────────
   function behavior_buildLeft(i, data) {
     var f = data.frames[BEHAVIOR_FRAME_KEYS[i]];
     if (i === 0) {
@@ -84,22 +101,36 @@
       return (
         '<h2 class="behavior-panel-title">' + f.titre + '</h2>' +
         '<p class="behavior-panel-accroche">' + f.accroche + '</p>' +
-        '<div class="behavior-stat-big" id="behavior-pollution-countup">0</div>' +
+        '<div class="behavior-stat-big" id="behavior-pollution-countup">0 t</div>' +
         '<p class="behavior-stat-label">' + f.stat_principale.label + '</p>' +
-        '<div class="behavior-donut-container">' +
-          '<svg id="behavior-donut" viewBox="0 0 160 160" width="160" height="160"></svg>' +
-          behavior_donutLegendHTML(f.donut.segments) +
+        '<div class="behavior-donut-wrapper">' +
+          '<svg id="behavior-donut" viewBox="0 0 180 180" width="180" height="180"></svg>' +
+          behavior_buildDonutLegend(f.donut.segments) +
         '</div>' +
-        behavior_statGrid(f.stats_contexte)
+        behavior_statGrid(f.stats_contexte, BEHAVIOR_ICON_MAP, true)
       );
     }
-    return ''; // frame 2 masqué
+    return '';
   }
 
-  // ── Panneau droit par frame ────────────────────────────────────────────────
-  // Frame 0 : count-up héliski + chiffre secondaire
-  // Frame 1 : masqué (layout right: 0%)
-  // Frame 2 : tout le contenu accidents (titre + accroche + citation + grille + graphiques)
+  // Légende HTML du donut (liste à droite du SVG)
+  function behavior_buildDonutLegend(segments) {
+    var total = segments.reduce(function (a, s) { return a + s.valeur; }, 0);
+    var html = '<ul class="behavior-donut-legend">';
+    for (var j = 0; j < segments.length; j++) {
+      var pct = Math.round(segments[j].valeur / total * 100);
+      html += (
+        '<li>' +
+          '<span class="legend-color" style="background:' + segments[j].couleur + '"></span>' +
+          '<span class="legend-label">' + segments[j].label + '</span>' +
+          '<span class="legend-pct">' + pct + '%</span>' +
+        '</li>'
+      );
+    }
+    return html + '</ul>';
+  }
+
+  // ── Panneau droit ─────────────────────────────────────────────────────────
   function behavior_buildRight(i, data) {
     var f = data.frames[BEHAVIOR_FRAME_KEYS[i]];
     if (i === 0) {
@@ -126,37 +157,23 @@
         behavior_chartWrapperHTML()
       );
     }
-    return ''; // frame 1 masqué
+    return '';
   }
 
-  // ── Grille 2×2 stats (remplace l'ancienne liste compacte) ─────────────────
-  function behavior_statGrid(items) {
-    var html = '<div class="behavior-stat-grid">';
+  // ── Grille stats ──────────────────────────────────────────────────────────
+  function behavior_statGrid(items, iconKeys, compact) {
+    var cls = 'behavior-stat-grid' + (compact ? ' behavior-stat-grid--compact' : '');
+    var html = '<div class="' + cls + '">';
     for (var j = 0; j < items.length; j++) {
-      var picto = items[j].picto
-        ? '<span class="behavior-stat-grid-picto">' + items[j].picto + '</span>' : '';
+      var iconHtml = '';
+      if (iconKeys && BEHAVIOR_ICONS[iconKeys[j]]) {
+        iconHtml = '<span class="behavior-stat-grid-picto">' + BEHAVIOR_ICONS[iconKeys[j]] + '</span>';
+      }
       html += (
         '<div class="behavior-stat-grid-item">' +
-          picto +
+          iconHtml +
           '<div class="behavior-stat-grid-value">' + items[j].valeur + '</div>' +
           '<div class="behavior-stat-grid-label">' + items[j].label + '</div>' +
-        '</div>'
-      );
-    }
-    return html + '</div>';
-  }
-
-  // ── Légende donut avec data-label pour le hover ────────────────────────────
-  function behavior_donutLegendHTML(segments) {
-    var total = segments.reduce(function (acc, s) { return acc + s.valeur; }, 0);
-    var html = '<div class="behavior-donut-legend">';
-    for (var j = 0; j < segments.length; j++) {
-      var pct = Math.round(segments[j].valeur / total * 100);
-      html += (
-        '<div class="behavior-donut-legend-item" data-label="' + segments[j].label + '">' +
-          '<span class="behavior-donut-dot" style="background:' + segments[j].couleur + '"></span>' +
-          (segments[j].picto ? '<span class="behavior-donut-picto">' + segments[j].picto + '</span> ' : '') +
-          segments[j].label + ' — ' + behavior_fmtNum(segments[j].valeur) + ' t (' + pct + '%)' +
         '</div>'
       );
     }
@@ -189,22 +206,40 @@
     return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, "'");
   }
 
-  // ── Layout — largeurs + padding selon la frame ────────────────────────────
+  // ── Layout — overrides inline selon la frame ──────────────────────────────
   function behavior_applyLayout(pL, pR, index) {
     var lo = BEHAVIOR_LAYOUTS[index];
-    pL.style.width   = lo.left;
-    pR.style.width   = lo.right;
-    pL.style.padding = lo.left  === "0%" ? "0" : BEHAVIOR_PADDING;
+    pL.style.width = lo.left;
+    pR.style.width = lo.right;
+
+    if (index === 1) {
+      pL.style.padding        = "1.2rem";
+      pL.style.justifyContent = "space-between";
+      pL.style.overflowY      = "hidden";
+    } else {
+      pL.style.padding        = lo.left === "0%" ? "0" : BEHAVIOR_PADDING;
+      pL.style.justifyContent = "center";
+      pL.style.overflowY      = "";
+    }
+
+    if (index === 2) {
+      pR.style.justifyContent = "flex-start";
+      pR.style.overflowY      = "auto";
+    } else {
+      pR.style.justifyContent = "center";
+      pR.style.overflowY      = "";
+    }
+
     pR.style.padding = lo.right === "0%" ? "0" : BEHAVIOR_PADDING;
+    if (index === 2) pR.style.paddingBottom = "3rem";
   }
 
-  // ── Transition : slide-out → swap → slide-in ──────────────────────────────
+  // ── Transition ────────────────────────────────────────────────────────────
   function behavior_transitionTo(newIndex) {
     var pL    = document.getElementById("behavior-panel-left");
     var pR    = document.getElementById("behavior-panel-right");
     var bgImg = document.getElementById("behavior-bg-img");
 
-    // Phase 1 : sortie ease-in + fondu image
     pL.classList.remove("slide-in");
     pR.classList.remove("slide-in");
     pL.classList.add("slide-out");
@@ -212,7 +247,6 @@
     bgImg.style.opacity = "0";
 
     setTimeout(function () {
-      // Phase 2 : swap silencieux
       var key = BEHAVIOR_FRAME_KEYS[newIndex];
       bgImg.src = behavior_data.frames[key].image;
       bgImg.style.objectPosition = BEHAVIOR_LAYOUTS[newIndex].imgPos;
@@ -222,10 +256,9 @@
       pR.innerHTML = behavior_buildRight(newIndex, behavior_data);
       behavior_applyLayout(pL, pR, newIndex);
 
-      // Phase 3 : retour ease-out
       pL.classList.add("slide-in");
       pR.classList.add("slide-in");
-      pL.getBoundingClientRect(); // force reflow
+      pL.getBoundingClientRect();
       pL.classList.remove("slide-out");
       pR.classList.remove("slide-out");
 
@@ -233,10 +266,16 @@
     }, 350);
   }
 
-  // ── Effets post-swap — D3 (le count-up est géré par onStepProgress) ────────
+  // ── Effets post-swap ──────────────────────────────────────────────────────
   function behavior_renderEffects(index) {
+    if (index === 0) {
+      behavior_animateCountup('behavior-countup', behavior_data.frames["1_heliski"].stat_principale.valeur, '', 2000);
+      behavior_animateContextStats('#behavior-panel-left', behavior_data.frames["1_heliski"].stats_contexte);
+    }
     if (index === 1) {
+      behavior_animateCountup('behavior-pollution-countup', behavior_data.frames["2_pollution"].stat_principale.valeur, ' t', 2000);
       behavior_renderDonut(behavior_data.frames["2_pollution"].donut.segments);
+      behavior_animateContextStats('#behavior-panel-left', behavior_data.frames["2_pollution"].stats_contexte);
     }
     if (index === 2) {
       var gA = behavior_data.frames["3_accidents"].graphique_A;
@@ -246,71 +285,159 @@
       behavior_renderBarChart(gB);
       behavior_bindGraphNav();
       behavior_updateGraph();
+      behavior_animateContextStats('#behavior-panel-right', behavior_data.frames["3_accidents"].stats_contexte);
     }
   }
 
-  // ── Donut D3 avec hover interactif ────────────────────────────────────────
+  // ── Count-up animé (élément unique par id) ───────────────────────────────
+  function behavior_animateCountup(id, target, suffix, duration) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    suffix = suffix || '';
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      el.textContent = behavior_fmtNum(Math.round(p * target)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ── Count-up animé pour les stats contexte ────────────────────────────────
+  function behavior_animateContextStats(containerSelector, statsData) {
+    var items = document.querySelectorAll(containerSelector + ' .behavior-stat-grid-value');
+    items.forEach(function (el, i) {
+      if (!statsData[i]) return;
+      var raw = statsData[i].valeur;
+      if (!/^\d/.test(raw)) { el.textContent = raw; return; }
+      var num = parseFloat(raw);
+      if (isNaN(num)) { el.textContent = raw; return; }
+      var suffix = raw.replace(/^[\d.]+/, '');
+      var start = null;
+      var duration = 1200;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / duration, 1);
+        el.textContent = behavior_fmtNum(Math.round(p * num)) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  // ── Donut D3 : SVG 180×180, légende HTML à droite ────────────────────────
   function behavior_renderDonut(segments) {
-    var outerR = 70, innerR = 42, outerRHover = 78;
+    var outerR = 78, innerR = 48, outerRHover = 88;
+    var cx = 90, cy = 90;
     behavior_donutTotal = segments.reduce(function (a, s) { return a + s.valeur; }, 0);
 
     var svg = d3.select("#behavior-donut");
-    var g = svg.append("g").attr("transform", "translate(80,80)");
+    svg.selectAll("*").remove();
 
-    var arcNormal = d3.arc().innerRadius(innerR).outerRadius(outerR);
-    var arcHover  = d3.arc().innerRadius(innerR).outerRadius(outerRHover);
+    var g  = svg.append("g").attr("transform", "translate(" + cx + "," + cy + ")");
+    var cg = svg.append("g").attr("transform", "translate(" + cx + "," + cy + ")");
+
+    behavior_arcNormal = d3.arc().innerRadius(innerR).outerRadius(outerR);
+    behavior_arcHover  = d3.arc().innerRadius(innerR).outerRadius(outerRHover);
     var pie = d3.pie().value(function (d) { return d.valeur; }).sort(null);
+    var pieData = pie(segments);
 
-    // Textes centre — 4 lignes indépendantes pour mise à jour facile
-    var cg = svg.append("g").attr("transform", "translate(80,80)");
-    behavior_donutCenter = {
-      picto: cg.append("text").attr("text-anchor", "middle").attr("y", "-20").attr("font-size", "18px"),
-      label: cg.append("text").attr("text-anchor", "middle").attr("y", "-5") .attr("font-size", "10px").attr("fill", "#aaaaaa"),
-      value: cg.append("text").attr("text-anchor", "middle").attr("y", "12") .attr("font-size", "14px").attr("fill", "#e85d04").attr("font-weight", "bold"),
-      pct:   cg.append("text").attr("text-anchor", "middle").attr("y", "26") .attr("font-size", "10px").attr("fill", "#888888")
-    };
+    // Texte central
+    behavior_donutCenter = cg.append("text")
+      .attr("text-anchor", "middle")
+      .attr("dominant-baseline", "middle");
     behavior_donutSetDefault();
 
-    var paths = g.selectAll("path").data(pie(segments)).enter()
+    // Segments
+    behavior_donutPaths = g.selectAll("path").data(pieData).enter()
       .append("path")
-      .attr("d", arcNormal)
+      .attr("class", "behavior-donut-arc")
+      .attr("d", behavior_arcNormal)
       .attr("fill", function (d) { return d.data.couleur; })
       .style("cursor", "pointer");
 
-    paths
+    var legendItems = document.querySelectorAll('.behavior-donut-legend li');
+
+    // Hover segments → highlight légende + centre
+    behavior_donutPaths
       .on("mouseover", function (event, d) {
-        d3.select(this).transition().duration(150).attr("d", arcHover(d));
-        paths.filter(function (p) { return p !== d; })
-          .transition().duration(150).style("opacity", 0.4);
-        var pct = Math.round(d.data.valeur / behavior_donutTotal * 100);
-        behavior_donutCenter.picto.text(d.data.picto || "");
-        behavior_donutCenter.label.text(d.data.label);
-        behavior_donutCenter.value.text(behavior_fmtNum(d.data.valeur) + " t");
-        behavior_donutCenter.pct.text(pct + "%");
-        d3.selectAll(".behavior-donut-legend-item")
-          .classed("is-active", function () {
-            return this.getAttribute("data-label") === d.data.label;
-          });
+        d3.select(this).transition().duration(150)
+          .attr("d", behavior_arcHover(d));
+        behavior_donutPaths.filter(function (p) { return p !== d; })
+          .transition().duration(150).style("opacity", 0.35);
+        legendItems.forEach(function (li, i) {
+          li.style.opacity    = (i === d.index) ? '1' : '0.35';
+          li.style.fontWeight = (i === d.index) ? '700' : '400';
+        });
+        behavior_updateDonutCenter(d);
       })
       .on("mouseout", function () {
-        paths.transition().duration(150)
-          .attr("d", function (d) { return arcNormal(d); })
+        behavior_donutPaths.transition().duration(150)
+          .attr("d", function (d) { return behavior_arcNormal(d); })
           .style("opacity", 1);
+        legendItems.forEach(function (li) {
+          li.style.opacity    = '1';
+          li.style.fontWeight = '400';
+        });
         behavior_donutSetDefault();
-        d3.selectAll(".behavior-donut-legend-item").classed("is-active", false);
       });
+
+    // Hover légende → highlight segment
+    legendItems.forEach(function (li, legendIdx) {
+      li.style.cursor = 'pointer';
+      li.addEventListener('mouseenter', function () {
+        behavior_donutPaths
+          .filter(function (d) { return d.index !== legendIdx; })
+          .transition().duration(150).style('opacity', 0.35);
+        behavior_donutPaths
+          .filter(function (d) { return d.index === legendIdx; })
+          .transition().duration(150)
+          .attr('d', function (d) { return behavior_arcHover(d); });
+      });
+      li.addEventListener('mouseleave', function () {
+        behavior_donutPaths.transition().duration(150)
+          .attr('d', function (d) { return behavior_arcNormal(d); })
+          .style('opacity', 1);
+      });
+    });
   }
 
-  // Remet le texte par défaut au centre du donut
   function behavior_donutSetDefault() {
     if (!behavior_donutCenter) return;
-    behavior_donutCenter.picto.text("");
-    behavior_donutCenter.label.text("");
-    behavior_donutCenter.value.text(behavior_fmtNum(behavior_donutTotal) + " t");
-    behavior_donutCenter.pct.text("plastique/an");
+    behavior_donutCenter.html(
+      '<tspan font-size="1rem" font-weight="900" fill="#662D91">' +
+      behavior_fmtNum(behavior_donutTotal) + ' t</tspan>'
+    );
   }
 
-  // ── Line chart D3 : animation draw + hover + badge annotation ─────────────
+  function behavior_updateDonutCenter(d) {
+    if (!behavior_donutCenter) return;
+    behavior_donutCenter.html(
+      '<tspan x="0" dy="-0.9em" font-size="0.82rem" fill="#ffffff">' + d.data.label + '</tspan>' +
+      '<tspan x="0" dy="1.25em" font-size="1rem" font-weight="700" fill="#662D91">' +
+        behavior_fmtNum(d.data.valeur) + ' t' +
+      '</tspan>' +
+      '<tspan x="0" dy="1.15em" font-size="0.8rem" fill="#aaaaaa">' +
+        Math.round(d.data.valeur / behavior_donutTotal * 100) + '%' +
+      '</tspan>'
+    );
+  }
+
+  // ── Line chart — animation rejouée à chaque affichage ────────────────────
+  function behavior_animateLineChart() {
+    var pathNode = document.getElementById('behavior-line-path');
+    if (!pathNode) return;
+    var sel = d3.select(pathNode);
+    var totalLength = pathNode.getTotalLength();
+    sel
+      .attr('stroke-dasharray', totalLength)
+      .attr('stroke-dashoffset', totalLength)
+      .transition().duration(1200).ease(d3.easeQuadOut)
+      .attr('stroke-dashoffset', 0);
+  }
+
+  // ── Line chart D3 ─────────────────────────────────────────────────────────
   function behavior_renderLineChart(chartData) {
     var container = document.getElementById("behavior-graph-0");
     if (!container) return;
@@ -320,55 +447,105 @@
     hdr.textContent = chartData.titre;
     container.appendChild(hdr);
 
-    var totalW = Math.min(container.clientWidth || 300, 500);
-    var margin = { top: 30, right: 24, bottom: 36, left: 56 };
-    var w = totalW - margin.left - margin.right;
-    var h = 175 - margin.top - margin.bottom;
-    var donnees = chartData.donnees;
+    if (chartData.sous_titre) {
+      var sub = document.createElement("p");
+      sub.className = "behavior-chart-subtitle";
+      sub.textContent = chartData.sous_titre;
+      container.appendChild(sub);
+    }
+
+    var panelEl        = document.querySelector('#behavior-panel-right') || {};
+    var availableH     = panelEl.clientHeight || 500;
+    var margin         = { top: 30, right: 20, bottom: 50, left: 55 };
+    var graphHeight    = Math.floor(availableH * 0.38) - margin.top - margin.bottom;
+    var graphWidth     = (panelEl.clientWidth || 400) - margin.left - margin.right - 32;
+    var donnees        = chartData.donnees;
 
     var svg = d3.select(container).append("svg")
-      .attr("width", totalW)
-      .attr("height", h + margin.top + margin.bottom)
+      .attr("width",  graphWidth  + margin.left + margin.right)
+      .attr("height", graphHeight + margin.top  + margin.bottom)
+      .style("overflow", "visible")
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var x = d3.scalePoint()
       .domain(donnees.map(function (d) { return d.periode; }))
-      .range([0, w]).padding(0.5);
-    var y = d3.scaleLinear().domain([0, 10000]).range([h, 0]);
+      .range([0, graphWidth]).padding(0.5);
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(donnees, function (d) { return d.valeur; }) * 1.15])
+      .range([graphHeight, 0]);
+
+    // Zone colorée sous la ligne
+    var areaGen = d3.area()
+      .x(function (d) { return x(d.periode); })
+      .y0(graphHeight)
+      .y1(function (d) { return y(d.valeur); });
+
+    svg.append("path").datum(donnees)
+      .attr("fill", "rgba(102,45,145,0.15)")
+      .attr("d", areaGen);
 
     svg.append("g").attr("class", "behavior-grid")
-      .call(d3.axisLeft(y).ticks(4).tickSize(-w).tickFormat(""))
+      .call(d3.axisLeft(y).ticks(4).tickSize(-graphWidth).tickFormat(""))
       .select(".domain").remove();
-    svg.append("g").attr("transform", "translate(0," + h + ")")
-      .call(d3.axisBottom(x).tickSize(0))
-      .select(".domain").remove();
+
+    // Axe X avec labels explicites
+    svg.append("g")
+      .attr("class", "behavior-axis-x")
+      .attr("transform", "translate(0," + graphHeight + ")")
+      .call(d3.axisBottom(x).tickSize(4))
+      .selectAll("text")
+      .style("fill", "#cccccc")
+      .style("font-size", "0.72rem")
+      .attr("dy", "1.2em");
+    svg.selectAll(".behavior-axis-x path, .behavior-axis-x line")
+      .attr("stroke", "#555555");
+
     svg.append("g")
       .call(d3.axisLeft(y).ticks(4).tickFormat(d3.format(",d")))
       .select(".domain").remove();
 
-    // Ligne avec animation "draw" de gauche à droite
-    var linePath = svg.append("path").datum(donnees)
-      .attr("fill", "none").attr("stroke", "#e85d04").attr("stroke-width", 2.5)
+    // Note sous l'axe X
+    svg.append("text")
+      .attr("x", graphWidth / 2)
+      .attr("y", graphHeight + margin.bottom - 8)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#555")
+      .attr("font-size", "9px")
+      .attr("font-style", "italic")
+      .text("(moyenne annuelle par période)");
+
+    // Ligne
+    svg.append("path").datum(donnees)
+      .attr("id", "behavior-line-path")
+      .attr("fill", "none")
+      .attr("stroke", "#662D91")
+      .attr("stroke-width", 2.5)
       .attr("d", d3.line()
         .x(function (d) { return x(d.periode); })
         .y(function (d) { return y(d.valeur); })
       );
-    var totalLength = linePath.node().getTotalLength();
-    linePath
-      .attr("stroke-dasharray", totalLength)
-      .attr("stroke-dashoffset", totalLength)
-      .transition().duration(1200).ease(d3.easeQuadOut)
-      .attr("stroke-dashoffset", 0);
+
+    // Labels de valeur au-dessus de chaque point
+    svg.selectAll(".b-label").data(donnees).enter()
+      .append("text")
+      .attr("class", "b-label")
+      .attr("x", function (d) { return x(d.periode); })
+      .attr("y", function (d) { return y(d.valeur) - 14; })
+      .attr("text-anchor", "middle")
+      .attr("fill", "#662D91")
+      .attr("font-size", "11px")
+      .attr("font-weight", "700")
+      .text(function (d) { return behavior_fmtNum(d.valeur) + "/an"; });
 
     // Points visuels
     var dots = svg.selectAll(".b-dot").data(donnees).enter()
       .append("circle").attr("class", "b-dot")
       .attr("cx", function (d) { return x(d.periode); })
       .attr("cy", function (d) { return y(d.valeur); })
-      .attr("r", 5).attr("fill", "#e85d04");
+      .attr("r", 5).attr("fill", "#662D91");
 
-    // Zones de hit transparentes (plus larges pour faciliter le survol)
+    // Zones de hit transparentes
     svg.selectAll(".b-hit").data(donnees).enter()
       .append("circle").attr("class", "b-hit")
       .attr("cx", function (d) { return x(d.periode); })
@@ -385,25 +562,30 @@
         behavior_hideTooltip();
       });
 
-    // Badge annotation en haut à droite
+    // Badge annotation entre les deux points
     if (chartData.annotation) {
-      var annotW = 132, annotH = 20;
-      var last = donnees[donnees.length - 1];
+      var x1 = x(donnees[0].periode);
+      var x2 = x(donnees[1].periode);
+      var midX = (x1 + x2) / 2;
+      var midY = (y(donnees[0].valeur) + y(donnees[1].valeur)) / 2 - 8;
+      var annotW = 134, annotH = 22;
       var badge = svg.append("g")
-        .attr("transform", "translate(" + w + "," + (y(last.valeur) - 30) + ")");
+        .attr("transform", "translate(" + midX + "," + midY + ")");
       badge.append("rect")
-        .attr("x", -annotW).attr("y", -annotH / 2)
+        .attr("x", -annotW / 2).attr("y", -annotH / 2)
         .attr("width", annotW).attr("height", annotH)
-        .attr("fill", "#e85d04").attr("rx", 3);
+        .attr("fill", "#662D91").attr("rx", 4);
       badge.append("text")
-        .attr("x", -annotW / 2).attr("y", 0)
+        .attr("x", 0).attr("y", 0)
         .attr("text-anchor", "middle").attr("dominant-baseline", "middle")
         .attr("fill", "#ffffff").attr("font-size", "11px").attr("font-weight", "bold")
         .text(chartData.annotation);
     }
+
+    behavior_animateLineChart();
   }
 
-  // ── Bar chart D3 : hover couleur + tooltip avec delta ─────────────────────
+  // ── Bar chart D3 ──────────────────────────────────────────────────────────
   function behavior_renderBarChart(chartData) {
     var container = document.getElementById("behavior-graph-1");
     if (!container) return;
@@ -413,63 +595,105 @@
     hdr.textContent = chartData.titre;
     container.appendChild(hdr);
 
-    var totalW = Math.min(container.clientWidth || 300, 500);
-    var margin = { top: 30, right: 24, bottom: 36, left: 56 };
-    var w = totalW - margin.left - margin.right;
-    var h = 175 - margin.top - margin.bottom;
-    var donnees = chartData.donnees;
+    if (chartData.sous_titre) {
+      var sub = document.createElement("p");
+      sub.className = "behavior-chart-subtitle";
+      sub.textContent = chartData.sous_titre;
+      container.appendChild(sub);
+    }
+
+    var panelEl     = document.querySelector('#behavior-panel-right') || {};
+    var availableH  = panelEl.clientHeight || 500;
+    var margin      = { top: 30, right: 20, bottom: 50, left: 55 };
+    var graphHeight = Math.floor(availableH * 0.38) - margin.top - margin.bottom;
+    var graphWidth  = (panelEl.clientWidth || 400) - margin.left - margin.right - 32;
+    var donnees     = chartData.donnees;
 
     var svg = d3.select(container).append("svg")
-      .attr("width", totalW)
-      .attr("height", h + margin.top + margin.bottom)
+      .attr("width",  graphWidth  + margin.left + margin.right)
+      .attr("height", graphHeight + margin.top  + margin.bottom)
+      .style("overflow", "visible")
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var x = d3.scaleBand()
       .domain(donnees.map(function (d) { return d.annee; }))
-      .range([0, w]).padding(0.2);
-    var y = d3.scaleLinear().domain([0, 4000]).range([h, 0]);
+      .range([0, graphWidth]).padding(0.3);
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(donnees, function (d) { return d.valeur; }) * 1.1])
+      .range([graphHeight, 0]);
 
     svg.append("g").attr("class", "behavior-grid")
-      .call(d3.axisLeft(y).ticks(4).tickSize(-w).tickFormat(""))
+      .call(d3.axisLeft(y).ticks(4).tickSize(-graphWidth).tickFormat(""))
       .select(".domain").remove();
-    svg.append("g").attr("transform", "translate(0," + h + ")")
-      .call(d3.axisBottom(x).tickFormat(d3.format("d")).tickSize(0))
-      .select(".domain").remove();
+
+    // Axe X avec labels années explicites
+    svg.append("g")
+      .attr("class", "behavior-axis-x")
+      .attr("transform", "translate(0," + graphHeight + ")")
+      .call(
+        d3.axisBottom(x)
+          .tickFormat(function (d) { return d.toString(); })
+          .tickSize(4)
+      )
+      .selectAll("text")
+      .style("fill", "#cccccc")
+      .style("font-size", "0.72rem")
+      .attr("dy", "1.2em");
+    svg.selectAll(".behavior-axis-x path, .behavior-axis-x line")
+      .attr("stroke", "#555555");
+
     svg.append("g")
       .call(d3.axisLeft(y).ticks(4).tickFormat(d3.format(",d")))
       .select(".domain").remove();
 
-    // Barre pic = #e85d04, autres = #555 par défaut
+    // Barres
     var bars = svg.selectAll("rect").data(donnees).enter()
       .append("rect")
       .attr("x", function (d) { return x(d.annee); })
       .attr("y", function (d) { return y(d.valeur); })
       .attr("width", x.bandwidth())
-      .attr("height", function (d) { return h - y(d.valeur); })
-      .attr("fill", function (d) { return d.annee === chartData.pic ? "#e85d04" : "#555"; })
+      .attr("height", function (d) { return graphHeight - y(d.valeur); })
+      .attr("fill", function (d) { return d.annee === chartData.pic ? "#662D91" : "#555555"; })
       .style("cursor", "pointer");
 
+    // Hover individuel
     bars
       .on("mouseover", function (event, d) {
-        // Toutes les barres passent en #e85d04, la survolée en #ff8c42
-        bars.attr("fill", function (p) { return p === d ? "#ff8c42" : "#e85d04"; });
-        var idx = donnees.indexOf(d);
-        var deltaStr = "";
-        if (idx > 0) {
-          var delta = d.valeur - donnees[idx - 1].valeur;
-          deltaStr = "<br>" + (delta >= 0 ? "+" : "") +
-            behavior_fmtNum(delta) + " vs " + donnees[idx - 1].annee;
-        }
+        d3.select(this).transition().duration(120).attr("fill", "#8E44AD");
         behavior_showTooltip(event,
-          d.annee + " : " + behavior_fmtNum(d.valeur) + deltaStr);
+          '<strong>' + d.annee + '</strong><br>' +
+          behavior_fmtNum(d.valeur) + ' urgences<br>' +
+          behavior_getDelta(d, donnees)
+        );
       })
-      .on("mouseout", function () {
-        bars.attr("fill", function (d) {
-          return d.annee === chartData.pic ? "#e85d04" : "#555";
-        });
+      .on("mouseout", function (event, d) {
+        d3.select(this).transition().duration(120)
+          .attr("fill", d.annee === chartData.pic ? "#662D91" : "#555555");
         behavior_hideTooltip();
       });
+
+    // Labels de valeur au-dessus de chaque barre
+    svg.selectAll(".bar-label").data(donnees).enter()
+      .append("text")
+      .attr("class", "bar-label")
+      .attr("x", function (d) { return x(d.annee) + x.bandwidth() / 2; })
+      .attr("y", function (d) { return y(d.valeur) - 4; })
+      .attr("text-anchor", "middle")
+      .attr("fill", "#cccccc")
+      .attr("font-size", "10px")
+      .text(function (d) { return behavior_fmtNum(d.valeur); });
+  }
+
+  // Variation vs barre précédente (2020 = creux COVID)
+  function behavior_getDelta(d, data) {
+    var idx = data.findIndex(function (x) { return x.annee === d.annee; });
+    if (idx === 0) return '<span style="color:#888">Creux COVID (référence)</span>';
+    var prev = data[idx - 1];
+    var diff = d.valeur - prev.valeur;
+    var sign = diff > 0 ? '+' : '';
+    var color = diff > 0 ? '#662D91' : '#4caf50';
+    return '<span style="color:' + color + '">' + sign + behavior_fmtNum(diff) + ' vs ' + prev.annee + '</span>';
   }
 
   // ── Navigation graphiques ──────────────────────────────────────────────────
@@ -479,6 +703,7 @@
     if (prev) prev.addEventListener("click", function () {
       behavior_graphIndex = (behavior_graphIndex - 1 + 2) % 2;
       behavior_updateGraph();
+      if (behavior_graphIndex === 0) behavior_animateLineChart();
     });
     if (next) next.addEventListener("click", function () {
       behavior_graphIndex = (behavior_graphIndex + 1) % 2;
@@ -493,58 +718,40 @@
     if (slide) slide.style.transform = "translateX(-" + (behavior_graphIndex * 100) + "%)";
   }
 
-  // ── Tooltip flottant positionné dans #behavior-sticky ─────────────────────
+  // ── Tooltip global (body-level) ───────────────────────────────────────────
   function behavior_showTooltip(event, html) {
-    var tt = document.getElementById("behavior-tooltip");
-    if (!tt) return;
-    tt.innerHTML = html;
-    var sticky = document.getElementById("behavior-sticky");
-    var rect = sticky.getBoundingClientRect();
-    tt.style.left    = (event.clientX - rect.left + 14) + "px";
-    tt.style.top     = (event.clientY - rect.top  - 44) + "px";
-    tt.style.opacity = "1";
+    var tip = document.getElementById('behavior-tooltip');
+    if (!tip) {
+      tip = document.createElement('div');
+      tip.id = 'behavior-tooltip';
+      document.body.appendChild(tip);
+    }
+    tip.innerHTML = html;
+    tip.style.display = 'block';
+    tip.style.left = (event.pageX + 12) + 'px';
+    tip.style.top  = (event.pageY - 28) + 'px';
   }
 
   function behavior_hideTooltip() {
-    var tt = document.getElementById("behavior-tooltip");
-    if (tt) tt.style.opacity = "0";
+    var tip = document.getElementById('behavior-tooltip');
+    if (tip) tip.style.display = 'none';
   }
 
-  // ── Scrollama avec progress pour les count-ups liés au scroll ─────────────
+  // ── Scrollama ─────────────────────────────────────────────────────────────
   function behavior_setupScrollama() {
     var scroller = scrollama();
     scroller
-      .setup({ step: ".behavior-step", offset: 0.5, progress: true, debug: false })
+      .setup({ step: ".behavior-step", offset: 0.5, debug: false })
       .onStepEnter(function (response) {
         var index = response.index;
         if (index === behavior_currentStep) return;
         var prev = behavior_currentStep;
         behavior_currentStep = index;
         if (prev === -1) {
-          // Première activation — frame 0 déjà visible, juste déclencher les effets
           behavior_renderEffects(index);
           return;
         }
         behavior_transitionTo(index);
-      })
-      .onStepProgress(function (response) {
-        var index    = response.index;
-        var progress = response.progress;
-        var el;
-        // Count-up héliski lié au scroll (step 0)
-        if (index === 0) {
-          el = document.getElementById("behavior-countup");
-          if (el) el.textContent = behavior_fmtNum(
-            Math.round(progress * behavior_data.frames["1_heliski"].stat_principale.valeur)
-          );
-        }
-        // Count-up pollution lié au scroll (step 1)
-        if (index === 1) {
-          el = document.getElementById("behavior-pollution-countup");
-          if (el) el.textContent = behavior_fmtNum(
-            Math.round(progress * behavior_data.frames["2_pollution"].stat_principale.valeur)
-          );
-        }
       });
 
     window.addEventListener("resize", scroller.resize);
