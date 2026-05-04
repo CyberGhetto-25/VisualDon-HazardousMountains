@@ -67,20 +67,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Cloud en position absolue, déborde sur la section accident */
-.intro-cloud-zone {
-  position: absolute;
-  bottom: -100px;
-  left: 0;
+/*#cloud-transition {
   width: 100%;
-  height: 200px;
-  z-index: 10;
-  pointer-events: none;
+  background: linear-gradient(to bottom, #ffffff00 0%, #0a0a1200 100%);
+  line-height: 0;
 }
 
-.intro-cloud-zone img {
+#cloud-transition img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
   display: block;
-}
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, transparent 85%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, transparent 85%);
+}*/
