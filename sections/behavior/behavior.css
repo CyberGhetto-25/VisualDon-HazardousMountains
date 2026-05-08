@@ -18,7 +18,7 @@
   color: #ffffff;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  border-bottom: 3px solid #662D91;
+  border-bottom: 3px solid #9333ea;
   display: inline-block;
   padding-bottom: 0.5rem;
 }
@@ -51,6 +51,16 @@
   transition: opacity 200ms ease;
 }
 
+/* ── Zone image + overlay (B1) ───────────────────────────────────────────── */
+#behavior-image-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 /* ── Panneaux latéraux ───────────────────────────────────────────────────── */
 #behavior-panel-left,
 #behavior-panel-right {
@@ -69,7 +79,7 @@
   flex-direction: column;
   justify-content: center;
   color: #f0f0f0;
-  transition: transform 350ms ease-in;
+  transition: width 400ms ease, padding 400ms ease, transform 350ms ease-in;
 }
 
 #behavior-panel-left  { left: 0; }
@@ -95,24 +105,25 @@
   line-height: 1.5;
   pointer-events: none;
   z-index: 9999;
-  border-left: 3px solid #662D91;
+  border-left: 3px solid #9333ea;
   max-width: 200px;
 }
 
 /* ── Scroll driver ───────────────────────────────────────────────────────── */
 #behavior-scroll-driver {
   position: relative;
-  height: 400vh;
+  height: 200vh;
   pointer-events: none;
   opacity: 0;
 }
 
 .behavior-step {
-  height: 100vh;
+  height: 66vh;
 }
 
 .behavior-step--last {
-  padding-bottom: 15vh;
+  height: 66vh;
+  padding-bottom: 10vh;
 }
 
 /* ── Typographie panneaux ────────────────────────────────────────────────── */
@@ -129,15 +140,15 @@
   font-size: 0.82rem;
   color: #cccccc;
   line-height: 1.65;
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.5rem;
   flex-shrink: 1;
 }
 
 /* ── Stats grands chiffres ───────────────────────────────────────────────── */
 .behavior-stat-big {
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: 900;
-  color: #662D91;
+  color: #9333ea;
   line-height: 1;
   margin-bottom: 0.3rem;
   font-variant-numeric: tabular-nums;
@@ -195,7 +206,7 @@
 .behavior-stat-grid-value {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #662D91;
+  color: #9333ea;
   line-height: 1.1;
   margin-bottom: 0.2rem;
   white-space: nowrap;
@@ -229,7 +240,7 @@
   font-style: italic;
   font-size: 0.8rem;
   color: #dddddd;
-  border-left: 3px solid #662D91;
+  border-left: 3px solid #9333ea;
   padding-left: 0.75rem;
   margin: 0 0 0.8rem;
   line-height: 1.6;
@@ -322,8 +333,8 @@
 }
 
 .behavior-graph-nav button:hover {
-  background: #662D91;
-  border-color: #662D91;
+  background: #9333ea;
+  border-color: #9333ea;
 }
 
 .behavior-graph-counter {
@@ -333,11 +344,13 @@
 
 /* ── Wrapper graphiques ──────────────────────────────────────────────────── */
 .behavior-graph-wrapper {
+  overflow: hidden;   /* hidden pour masquer le graphique off-screen */
   flex: 1;
   min-height: 0;
-  overflow: visible;
   width: 100%;
-  padding-bottom: 3rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .behavior-graph-slide {
@@ -349,10 +362,18 @@
 .behavior-graph-item {
   min-width: 100%;
   flex-shrink: 0;
+  overflow: visible;  /* visible ici pour que SVG puisse déborder */
+  clip-path: none !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .behavior-graph-item svg {
-  overflow: visible;
+  overflow: visible !important;
+  clip-path: none !important;
+  display: block;
+  flex: 1;
+  min-height: 0;
 }
 
 .behavior-chart-title {
@@ -384,7 +405,182 @@
   display: none;
 }
 
-/* Axes X explicites (bar + line chart) */
+/* ── Cause 1 : D3 pose fill="none" sur le groupe — forcer les textes ────── */
+#behavior-panel-right g.behavior-axis-y text,
+#behavior-panel-right g.behavior-axis-x text {
+  fill: #cccccc !important;
+  font-family: 'SUSE', sans-serif !important;
+  font-size: 0.7rem !important;
+}
+
+#behavior-panel-right g.behavior-axis-x text {
+  font-size: 0.72rem !important;
+}
+
+/* ── Axes X/Y visibles (bar + line chart) ────────────────────────── */
 #behavior .behavior-axis-x .domain {
   display: block;
+}
+
+#behavior .behavior-axis-x path,
+#behavior .behavior-axis-y path,
+#behavior .behavior-axis-x line,
+#behavior .behavior-axis-y line {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+#behavior .behavior-axis-y text {
+  fill: #cccccc;
+  font-family: 'SUSE', sans-serif;
+  font-size: 0.68rem;
+}
+
+/* ── Overlay : inset:0 relatif à #behavior-image-zone ───────────── */
+#behavior-compare-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+#behavior-compare-overlay.is-visible {
+  opacity: 1;
+}
+
+#behavior-compare-content {
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(8px);
+  border-radius: 0;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  border-left: 3px solid #9333ea;
+  border-right: 3px solid #9333ea;
+  box-sizing: border-box;
+}
+
+#behavior-compare-text {
+  font-family: 'SUSE', sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+}
+
+/* Mots en gras toujours en violet */
+#behavior-compare-overlay strong,
+#behavior-compare-content strong {
+  color: #9333ea;
+  font-weight: 700;
+}
+
+/* ── B2/B3 — Zones visuelles panneau pollution ───────────────────── */
+.behavior-panel-zone {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.behavior-panel-zone:last-child {
+  border-bottom: none;
+}
+
+.behavior-pollution-headline {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #9333ea;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.3rem;
+  margin-bottom: 0.2rem;
+}
+
+/* ── B3 — Panneau explicatif (hover pollution → panneau droit) ───── */
+.behavior-explanation-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.behavior-explanation-panel strong {
+  color: #9333ea;
+}
+
+.behavior-explanation-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.behavior-explanation-body {
+  font-size: 0.85rem;
+  color: #cccccc;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.behavior-explanation-source {
+  font-size: 0.7rem;
+  color: #555555;
+  font-style: italic;
+  margin-top: auto;
+}
+
+/* ── B2 — Ligne de base graphiques ──────────────────────────────── */
+.behavior-axis-baseline {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1.5;
+}
+
+/* Axes visibles */
+.behavior-axis-x path,
+.behavior-axis-y path,
+.behavior-axis-x line,
+.behavior-axis-y line {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+.behavior-axis-x text,
+.behavior-axis-y text {
+  fill: #cccccc;
+  font-family: 'SUSE', sans-serif;
+  font-size: 0.7rem;
+}
+
+/* Graphiques non-clippés */
+.behavior-graph-item svg,
+.behavior-graph-item {
+  overflow: visible !important;
+}
+
+/* ── B3 — Donut callout labels ───────────────────────────────────── */
+.donut-callout-label {
+  font-size: 0.9rem;
+  font-family: 'SUSE', sans-serif;
+}
+
+/* ── B4 — Sources dans les comparaisons hover ────────────────────── */
+.behavior-hover-source {
+  display: block;
+  font-size: 0.7rem;
+  color: #777777;
+  font-style: italic;
+  font-family: 'SUSE', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
 }

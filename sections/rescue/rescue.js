@@ -38,22 +38,22 @@
     ARG:  { name: "Grisons",               values: [193, 256, 314, 439, 484] },
   };
 
-  // Palette violette pour les types de service OCVS
+  // Couleurs distinctes par type de service (fort contraste sur fond sombre)
   const TYPE_COLOR = {
-    ambulance:   "#9B59B6",
-    helicoptere: "#662D91",
-    smur:        "#C39BD3",
+    ambulance:   '#60a5fa',  // bleu  — terrestre
+    helicoptere: '#f472b6',  // rose  — aérien
+    smur:        '#34d399',  // vert  — médicalisation avancée
   };
 
   // Palette violette pour les régions SAS (ligne par région)
   const SAS_PALETTE = [
-    "#662D91",
-    "#8E44AD",
-    "#9B59B6",
-    "#7D3C98",
-    "#A569BD",
-    "#C39BD3",
-    "#5B2C6F",
+    "#9333ea",
+    "#c084fc",
+    "#a855f7",
+    "#7c3aed",
+    "#6d28d9",
+    "#8b5cf6",
+    "#4c1d95",
   ];
 
   const OCVS_COORD_MAP = {
@@ -107,24 +107,33 @@
 
   const VALAIS_ID = "23";
 
-  const CH_VIEW = { center: [8.2275, 46.8182], zoom: 7,  pitch: 45, bearing:   0 };
-  const VS_VIEW = { center: [7.60,   46.20  ], zoom: 9,  pitch: 55, bearing: -10 };
+  const CH_VIEW = { center: [8.3, 46.8], zoom: 7.2, pitch: 0, bearing: 0 };
+  const VS_VIEW = { center: [7.53, 46.15], zoom: 8.6, pitch: 25, bearing: 0 };
 
   // ── État ───────────────────────────────────────────────────────────────────
   const currentYearIdx = 4;
-  let currentTab = "nombre";
-  let cachedData = null;
+  let currentTab        = "nombre";
+  let cachedData        = null;
+  var rescue_valaisData  = null;     // var = portée IIFE entière, jamais remis à null
+  var rescue_activeMetric = 'nombre'; // métrique active persistée entre aller-retours
   let mapObj     = null;
   let mapReady   = false;
   let dataReady  = false;
   let redrawFn   = null;
   let svgLayer   = null;
 
-  // ── Échelle choroplèthe violette ───────────────────────────────────────────
-  const colorScale = d3
-    .scaleSequential()
-    .domain([40, 490])
-    .interpolator(d3.interpolate("#d4b8e0", "#662D91"));
+  // ── Source unique de vérité : seuils + couleurs + labels ────────────────
+  const RESCUE_COLOR_STOPS = [
+    { threshold: 0,   color: '#e9d5ff', label: '< 10' },
+    { threshold: 10,  color: '#a855f7', label: '10 – 50' },
+    { threshold: 50,  color: '#7e22ce', label: '50 – 150' },
+    { threshold: 150, color: '#4c1d95', label: '150 – 300' },
+    { threshold: 300, color: '#2e1065', label: '> 300' },
+  ];
+
+  const colorScale = d3.scaleThreshold()
+    .domain(RESCUE_COLOR_STOPS.slice(1).map(s => s.threshold))
+    .range(RESCUE_COLOR_STOPS.map(s => s.color));
 
   // ── DOM partagé ────────────────────────────────────────────────────────────
   const mapContainer = document.getElementById("rescue-map-container");
@@ -143,11 +152,85 @@
   function getId(feature) { return String(feature.properties.id || ""); }
 
   function getCantonFill(id) {
-    if (id === VALAIS_ID) return "#662D91";
+    if (id === VALAIS_ID) return "#9333ea";
     const region = CANTON_INFO[id]?.region;
-    if (!region) return "#2a1a35";
+    if (!region) return "#1a1a1a";
     const val = SAS_DATA[region]?.values[currentYearIdx];
-    return val ? colorScale(val) : "#2a1a35";
+    return val ? colorScale(val) : "#1a1a1a";
+  }
+
+  // ── Interactivité carte Mapbox ────────────────────────────────────────────
+  function rescue_enableMapInteraction() {
+    mapObj.dragPan.enable();
+    mapObj.scrollZoom.enable();
+    mapObj.doubleClickZoom.enable();
+    mapObj.touchZoomRotate.enable();
+  }
+
+  function rescue_disableMapInteraction() {
+    mapObj.dragPan.disable();
+    mapObj.scrollZoom.disable();
+    mapObj.doubleClickZoom.disable();
+    mapObj.touchZoomRotate.disable();
+  }
+
+  // ── Légende choroplèthe (source unique : RESCUE_COLOR_STOPS) ─────────────
+  function rescue_buildLegend() {
+    const legend = document.getElementById('rescue-legend');
+    if (!legend) return;
+    legend.innerHTML = '<div class="rescue-legend-title">Interventions / an</div>';
+    RESCUE_COLOR_STOPS.forEach(function(stop) {
+      const item = document.createElement('div');
+      item.className = 'rescue-legend-item';
+      item.innerHTML =
+        '<span class="rescue-legend-swatch" style="background:' + stop.color + '"></span>' +
+        '<span class="rescue-legend-label">' + stop.label + '</span>';
+      legend.appendChild(item);
+    });
+  }
+
+  // ── Contenu tabulaire : retourne du HTML (pas de manipulation DOM) ────────
+  function rescue_buildTabContent(bases, tab) {
+    if (tab === 'nombre') {
+      var sorted = bases.slice().sort(function (a, b) { return b.total - a.total; });
+      return sorted.map(function (b) {
+        return '<div class="rescue-base-row">' +
+          '<span style="width:10px;height:10px;border-radius:50%;background:' + TYPE_COLOR[b.type] + ';display:inline-block;flex-shrink:0"></span>' +
+          '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + b.nom + '</span>' +
+          '<strong>' + b.total.toLocaleString('fr-CH') + '</strong></div>';
+      }).join('');
+    }
+    if (tab === 'delai') {
+      var listD    = bases.filter(function (b) { return b.delai; }).sort(function (a, b) { return a.delai - b.delai; });
+      var maxDelai = d3.max(listD, function (d) { return d.delai; }) || 1;
+      var html = '<p style="font-size:11px;color:#aaaaaa;margin:0 0 10px">Délai de réponse P1 médian (minutes)</p>';
+      return html + listD.map(function (b) {
+        return '<div style="margin-bottom:8px">' +
+          '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px">' +
+            '<span style="display:flex;align-items:center;gap:6px">' +
+              '<span style="width:8px;height:8px;border-radius:50%;background:' + TYPE_COLOR[b.type] + ';display:inline-block"></span>' +
+              b.nom + '</span>' +
+            '<span style="color:#aaaaaa">' + b.delai.toFixed(1) + "'</span>" +
+          '</div>' +
+          '<div class="rescue-bar-track"><div class="rescue-bar-fill" style="width:' +
+            Math.round((b.delai / maxDelai) * 100) + '%;background:' + TYPE_COLOR[b.type] + '"></div></div></div>';
+      }).join('');
+    }
+    if (tab === 'dispo') {
+      var listDp = bases.filter(function (b) { return b.dispo !== null; }).sort(function (a, b) { return b.dispo - a.dispo; });
+      var html2 = '<p style="font-size:11px;color:#aaaaaa;margin:0 0 10px">Taux de disponibilité des véhicules</p>';
+      return html2 + listDp.map(function (b) {
+        return '<div style="margin-bottom:8px">' +
+          '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px">' +
+            '<span style="display:flex;align-items:center;gap:6px">' +
+              '<span style="width:8px;height:8px;border-radius:50%;background:' + TYPE_COLOR[b.type] + ';display:inline-block"></span>' +
+              b.nom + '</span>' +
+            '<strong>' + b.dispo.toFixed(1) + ' %</strong>' +
+          '</div>' +
+          '<div class="rescue-bar-track"><div class="rescue-bar-fill" style="width:' + b.dispo + '%;background:' + TYPE_COLOR[b.type] + '"></div></div></div>';
+      }).join('');
+    }
+    return '';
   }
 
   // ── Éléments DOM liés à une vue ────────────────────────────────────────────
@@ -308,6 +391,8 @@
 
   // ── VUE 1 — Carte nationale ────────────────────────────────────────────────
   function drawVue1() {
+    rescue_disableMapInteraction();
+
     // Fermeture explicite des éléments Vue 2 avant le clearVueElements
     mapContainer.querySelectorAll(".rescue-vue2-panel").forEach(p => {
       p.classList.remove("is-open");
@@ -386,7 +471,7 @@
     badgeG.append("rect")
       .attr("width", 126).attr("height", 28).attr("rx", 14)
       .attr("fill", "rgba(0,0,0,0.82)")
-      .attr("stroke", "#662D91").attr("stroke-width", 1.5);
+      .attr("stroke", "#9333ea").attr("stroke-width", 1.5);
     badgeG.append("text")
       .attr("x", 63).attr("y", 18)
       .attr("text-anchor", "middle")
@@ -414,16 +499,8 @@
 
     const legend = createVueEl("div");
     legend.id = "rescue-legend";
-    legend.innerHTML = `
-      <span class="rescue-legend-item">
-        <span class="rescue-legend-dot rescue-legend-gradient"></span>
-        Interventions SAS — faible à élevé
-      </span>
-      <span class="rescue-legend-item">
-        <span class="rescue-legend-dot" style="background:#662D91"></span>
-        Valais (OCVS) — cliquer pour le détail
-      </span>`;
     mapContainer.appendChild(legend);
+    rescue_buildLegend();
   }
 
   // ── Transitions de vue ─────────────────────────────────────────────────────
@@ -439,6 +516,7 @@
 
   // ── VUE 2 — Focus Valais ───────────────────────────────────────────────────
   function drawVue2() {
+    rescue_enableMapInteraction();
     clearVueElements();
     svgLayer.selectAll("*").remove();
     redrawFn = null;
@@ -446,7 +524,14 @@
     const { cantons, ocvsBases, ocvsTotals } = cachedData;
     let pathGen = makePathGen();
 
-    mapObj.flyTo({ ...VS_VIEW, duration: 1200 });
+    mapObj.fitBounds(
+      [[6.77, 45.83], [8.49, 46.64]],
+      {
+        padding:  { top: 60, bottom: 60, left: 60, right: 440 },
+        pitch:    20,
+        duration: 1200
+      }
+    );
 
     const valaisFeature = cantons.features.find(
       f => String(f.properties.id) === VALAIS_ID
@@ -457,9 +542,9 @@
       valaisPath = svgLayer.append("path")
         .datum(valaisFeature)
         .attr("d", pathGen)
-        .attr("fill", "rgba(102,45,145,0.08)")
+        .attr("fill", "rgba(147,51,234,0.08)")
         .attr("fill-opacity", 1)
-        .attr("stroke", "#662D91")
+        .attr("stroke", "#9333ea")
         .attr("stroke-width", 2)
         .attr("stroke-opacity", 0.7);
     }
@@ -497,15 +582,6 @@
         .attr("cy", d => mapObj.project([d.lng, d.lat]).y);
     };
 
-    const legend = createVueEl("div");
-    legend.id = "rescue-legend";
-    legend.innerHTML = Object.entries(TYPE_COLOR).map(([type, color]) => `
-      <span class="rescue-legend-item">
-        <span class="rescue-legend-dot" style="background:${color}"></span>
-        ${type.charAt(0).toUpperCase() + type.slice(1)}
-      </span>`).join("");
-    mapContainer.appendChild(legend);
-
     // Bouton retour avec gestion d'état explicite
     const backBtn = createVueEl("button");
     backBtn.className = "rescue-back-btn";
@@ -515,15 +591,33 @@
     backBtn.addEventListener("click", switchToVue1);
     mapContainer.appendChild(backBtn);
 
+    // Persister les données pour le clone pattern des boutons
+    rescue_valaisData = { bases: ocvsBases, totals: ocvsTotals };
+
     // Panneau métriques avec état is-open explicite
     const panel = createVueEl("div");
     panel.className = "rescue-vue2-panel is-open";
     panel.style.display = "block";
     mapContainer.appendChild(panel);
     renderPanelInto(panel, ocvsBases, ocvsTotals);
+
+    // Délégation d'événement sur panel — persiste même si renderPanelInto reconstruit le HTML
+    panel.addEventListener('click', function (e) {
+      var btn = e.target.closest('.rescue-metric-btn');
+      if (!btn) return;
+      panel.querySelectorAll('.rescue-metric-btn')
+        .forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentTab = btn.dataset.metric;
+      rescue_activeMetric = btn.dataset.metric;
+      var contentEl = panel.querySelector('.rescue-tab-content');
+      if (contentEl && rescue_valaisData) {
+        contentEl.innerHTML = rescue_buildTabContent(rescue_valaisData.bases, currentTab);
+      }
+    });
   }
 
-  // ── Panneau de détail OCVS ─────────────────────────────────────────────────
+  // ── Panneau de détail OCVS ────────────────────────────────────────────────
   function renderPanelInto(el, bases, totals) {
     const TABS = [
       { id: "nombre", label: "Nombre" },
@@ -531,65 +625,10 @@
       { id: "dispo",  label: "Disponibilité" },
     ];
 
-    let tabContent = "";
-
-    if (currentTab === "nombre") {
-      const sorted = [...bases].sort((a, b) => b.total - a.total);
-      tabContent = sorted.map(b => `
-        <div class="rescue-base-row">
-          <span style="width:10px;height:10px;border-radius:50%;
-                       background:${TYPE_COLOR[b.type]};display:inline-block"></span>
-          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.nom}</span>
-          <strong>${b.total.toLocaleString("fr-CH")}</strong>
-        </div>`).join("");
-
-    } else if (currentTab === "delai") {
-      const list     = bases.filter(b => b.delai).sort((a, b) => a.delai - b.delai);
-      const maxDelai = d3.max(list, d => d.delai) || 1;
-      tabContent = `<p style="font-size:11px;color:#aaaaaa;margin:0 0 10px">
-        Délai de réponse P1 médian (minutes)</p>`;
-      tabContent += list.map(b => `
-        <div style="margin-bottom:8px">
-          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px">
-            <span style="display:flex;align-items:center;gap:6px">
-              <span style="width:8px;height:8px;border-radius:50%;
-                           background:${TYPE_COLOR[b.type]};display:inline-block"></span>
-              ${b.nom}
-            </span>
-            <span style="color:#aaaaaa">${b.delai.toFixed(1)}'</span>
-          </div>
-          <div class="rescue-bar-track">
-            <div class="rescue-bar-fill"
-                 style="width:${Math.round((b.delai / maxDelai) * 100)}%;
-                        background:${TYPE_COLOR[b.type]}"></div>
-          </div>
-        </div>`).join("");
-
-    } else if (currentTab === "dispo") {
-      const list = bases.filter(b => b.dispo !== null).sort((a, b) => b.dispo - a.dispo);
-      tabContent = `<p style="font-size:11px;color:#aaaaaa;margin:0 0 10px">
-        Taux de disponibilité des véhicules (hors missions et entretien)</p>`;
-      tabContent += list.map(b => `
-        <div style="margin-bottom:8px">
-          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px">
-            <span style="display:flex;align-items:center;gap:6px">
-              <span style="width:8px;height:8px;border-radius:50%;
-                           background:${TYPE_COLOR[b.type]};display:inline-block"></span>
-              ${b.nom}
-            </span>
-            <strong>${b.dispo.toFixed(1)} %</strong>
-          </div>
-          <div class="rescue-bar-track">
-            <div class="rescue-bar-fill"
-                 style="width:${b.dispo}%;background:${TYPE_COLOR[b.type]}"></div>
-          </div>
-        </div>`).join("");
-    }
-
     el.innerHTML = `
       <div class="rescue-panel-header">
         <p class="rescue-panel-title">
-          Valais — Services d'urgence 2024
+          Valais — Services d’urgence 2024
           <span style="font-size:11px;font-weight:400;color:#aaaaaa">(OCVS)</span>
         </p>
       </div>
@@ -607,25 +646,20 @@
           <p class="rescue-metric-lbl">SMUR</p>
         </div>
         <div class="rescue-metric">
-          <p class="rescue-metric-val" style="color:#662D91">${totals.dispo.toFixed(1)} %</p>
+          <p class="rescue-metric-val" style="color:#9333ea">${totals.dispo.toFixed(1)} %</p>
           <p class="rescue-metric-lbl">Dispo. véhicules</p>
         </div>
       </div>
       <div class="rescue-tab-row">
         ${TABS.map(t => `
-          <button class="rescue-tab ${currentTab === t.id ? "active" : ""}"
-                  onclick="rescueSetTab('${t.id}')">${t.label}</button>
+          <button class="rescue-tab rescue-metric-btn ${currentTab === t.id ? "active" : ""}"
+                  data-metric="${t.id}">${t.label}</button>
         `).join("")}
       </div>
-      ${tabContent}
+      <div class="rescue-tab-content">${rescue_buildTabContent(bases, currentTab)}</div>
     `;
+    // Pas de rescue_bindMetricButtons() — la délégation sur panel gère tout
   }
-
-  window.rescueSetTab = function (tab) {
-    currentTab = tab;
-    const panel = mapContainer.querySelector(".rescue-vue2-panel");
-    if (panel) renderPanelInto(panel, cachedData.ocvsBases, cachedData.ocvsTotals);
-  };
 
   // ── Graphique comparatif SAS 2020–2024 ────────────────────────────────────
   function buildSASChart() {
@@ -655,16 +689,20 @@
     const y = d3.scaleLinear().domain([0, d3.max(allVals) * 1.1]).range([CH, 0]);
 
     svgChart.append("g")
+      .attr("class", "rescue-axis")
       .attr("transform", `translate(0,${CH})`)
       .call(d3.axisBottom(x).tickSize(0).tickPadding(6))
       .select(".domain").remove();
 
     svgChart.append("g")
-      .call(d3.axisLeft(y).ticks(4).tickSize(-CW))
-      .call(g => g.select(".domain").remove())
-      .call(g => g.selectAll(".tick line")
-        .attr("stroke", "rgba(255,255,255,0.07)")
-        .attr("stroke-dasharray", "2,2"));
+      .attr("class", "rescue-grid")
+      .call(d3.axisLeft(y).ticks(4).tickSize(-CW).tickFormat(""))
+      .select(".domain").remove();
+
+    svgChart.append("g")
+      .attr("class", "rescue-axis")
+      .call(d3.axisLeft(y).ticks(4))
+      .select(".domain").remove();
 
     const lineGen = d3.line()
       .x((_, i) => x(YEARS[i]))
@@ -706,5 +744,39 @@
         .attr("fill", color)
         .text(code);
     });
+
+    // Bloc éditorial narratif sous le graphique
+    const editorial = document.createElement('div');
+    editorial.id = 'rescue-editorial';
+    editorial.innerHTML =
+      '<div id="rescue-editorial-inner">' +
+        '<p class="rescue-story-lead">' +
+          'Il est 3h47 du matin. Quelque part sur les hauteurs de Zermatt,' +
+          ' une balise de détresse vient de s\'activer.' +
+        '</p>' +
+        '<div id="rescue-editorial-grid">' +
+          '<div class="rescue-editorial-item">' +
+            '<div class="rescue-editorial-num">+41%</div>' +
+            '<p>En dix ans, les interventions de secours en montagne valaisanne ont augmenté de plus de 40%. Pas parce que la montagne est devenue plus dangereuse — mais parce qu\'elle attire de plus en plus de monde, de plus en plus vite.</p>' +
+            '<span class="rescue-editorial-src">Source : OCVS 2024</span>' +
+          '</div>' +
+          '<div class="rescue-editorial-item">' +
+            '<div class="rescue-editorial-num">14 min</div>' +
+            '<p>C\'est le délai moyen d\'intervention d\'une ambulance en Valais. En haute montagne, chaque minute compte. L\'hélicoptère prend le relais là où les routes s\'arrêtent — parfois à plus de 4\'000 mètres d\'altitude.</p>' +
+            '<span class="rescue-editorial-src">Source : OCVS 2024</span>' +
+          '</div>' +
+          '<div class="rescue-editorial-item">' +
+            '<div class="rescue-editorial-num">365&nbsp;j</div>' +
+            '<p>Les équipes de secours valaisannes n\'ont pas de saison morte. Avalanches en hiver, chutes en été, épuisement au printemps. La montagne, elle, ne ferme jamais.</p>' +
+            '<span class="rescue-editorial-src">Source : CAS 2025</span>' +
+          '</div>' +
+          '<div class="rescue-editorial-item">' +
+            '<div class="rescue-editorial-num">~50%</div>' +
+            '<p>La moitié de toutes les urgences montagne de Suisse se concentrent en Valais. Un canton, quatre mille mètres, et des hommes et des femmes qui partent quand les autres rentrent.</p>' +
+            '<span class="rescue-editorial-src">Source : CAS, mars 2025</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    container.appendChild(editorial);
   }
 })();
