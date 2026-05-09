@@ -38,6 +38,7 @@
       { left: '30%', top: '55%', img: 'assets/img/dots/horspiste-1.jpg' },
       { left: '50%', top: '52%', img: 'assets/img/dots/horspiste-2.jpg' },
       { left: '68%', top: '58%', img: 'assets/img/dots/horspiste-3.jpg' },
+      { left: '42%', top: '70%', img: 'assets/img/dots/horspiste-4.jpg' },
     ],
     'Escalade': [
       { left: '35%', top: '46%', img: 'assets/img/dots/escalade-1.jpg' },
@@ -61,6 +62,15 @@
   function buildDOM(data) {
     const accident = document.getElementById('accident');
 
+    const titleScreen = document.createElement('div');
+    titleScreen.className = 'accident-title-screen';
+    titleScreen.innerHTML =
+      '<div class="accident-title-inner">' +      
+      '<h2 class="accident-title-heading">Accidents mortels</h2>' +
+      '<p class="accident-title-label">Données 2024 - CAS</p>'
+      '</div>';
+    accident.appendChild(titleScreen);
+
     const pin = document.createElement('div');
     pin.id = 'accident-pin-section';
 
@@ -82,8 +92,7 @@
     regSection.className = 'accident-regions-section';
     regSection.innerHTML =
       '<h3>Décès par région — 2024</h3>' +
-      '<p class="subtitle">Total : ' + data.meta.total_deces +
-      ' décès · Source : CAS</p>' +
+      '<p class="subtitle">Total : ' + data.meta.total_deces + ' décès</p>' +
       '<div id="accident-regions-chart"></div>';
     accident.appendChild(regSection);
   }
@@ -134,17 +143,17 @@
 
         /* Compteur décès — juste sous le label sport */
         const deathDiv = slide.append('div').attr('class', 'accident-death');
-        deathDiv.append('div').attr('class', 'accident-death-num').text(d.deces);        
+        deathDiv.append('div').attr('class', 'accident-death-num').text(d.deces + ' décès');        
         deathDiv.append('div')
           .attr('class', 'accident-death-pct')
-          .text('déces soit ' + Math.round(d.deces / data.meta.total_deces * 100) + '% des déces en 2024');
+          .text('soit ' + Math.round(d.deces / data.meta.total_deces * 100) + '% des décès en 2024');
       });
   }
 
   function buildRegionsChart(data) {
-    const margin = { top: 10, right: 20, bottom: 40, left: 220 };
+    const margin = { top: 10, right: 40, bottom: 40, left: 290 };
     const W = Math.min(760, window.innerWidth - 40);
-    const H = data.par_region.length * 42;
+    const H = data.par_region.length * 80;
     const innerW = W - margin.left - margin.right;
     const innerH = H - margin.top - margin.bottom;
 
@@ -164,7 +173,7 @@
     const y = d3.scaleBand()
       .domain(data.par_region.map(function (d) { return d.region; }))
       .range([0, innerH])
-      .padding(0.35);
+      .padding(0.1);
 
     g.append('g')
       .attr('transform', 'translate(0,' + innerH + ')')
@@ -172,11 +181,11 @@
       .call(function (ax) { ax.select('.domain').remove(); });
 
     g.append('g')
-      .call(d3.axisLeft(y).tickSize(0))
+      .call(d3.axisLeft(y).tickSize(0).tickPadding(30))
       .call(function (ax) { ax.select('.domain').remove(); })
       .selectAll('text')
       .style('fill', 'rgba(255,255,255,0.78)')
-      .style('font-size', '12px');
+      .style('font-size', '14px');
 
     const bars = g.selectAll('.acc-bar')
       .data(data.par_region)
@@ -186,7 +195,7 @@
       .attr('height', y.bandwidth())
       .attr('x', 0)
       .attr('width', 0)
-      .attr('fill', '#1a6b3a')
+      .attr('fill', '#9333ea')
       .attr('rx', 3);
 
     const labels = g.selectAll('.acc-bar-lbl')

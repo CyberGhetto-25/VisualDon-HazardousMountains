@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .intro-content {
   height: 100vh;
-  background: #ffffff;
+  background: #0a0a12;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,20 +37,20 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'SUSE', sans-serif;
   font-weight: 500;
   font-size: 64px;
-  color: #0a0a12;
-  text-align: center;
-  margin-bottom: 2rem;
+  color: #ffffff;
+  text-align: center;  
   line-height: 1.1;
+  margin-bottom: 4rem;
 }
 
 .intro-text {
   font-family: 'SUSE Mono', monospace;
   font-size: 20px;
   line-height: 1.7;
-  color: #222;
-  text-align: center;
-  margin-bottom: 3rem;
+  color: #ffffff;
+  text-align: center;  
   max-width: 900px;
+  margin-bottom: 10rem;
 }
 
 .intro-chevron {
@@ -65,17 +65,3 @@ h1, h2, h3, h4, h5, h6 {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(12px); }
 }
-
-/* Cloud en position absolue, déborde sur la section accident */
-/*#cloud-transition {
-  width: 100%;
-  background: linear-gradient(to bottom, #ffffff00 0%, #0a0a1200 100%);
-  line-height: 0;
-}
-
-#cloud-transition img {
-  width: 100%;
-  display: block;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, transparent 85%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, transparent 85%);
-}*/
