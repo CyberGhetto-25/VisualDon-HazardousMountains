@@ -1,9 +1,47 @@
+/* ── Section wrapper ─────────────────────────────────────────── */
 #accident {
   position: relative;
   z-index: 1;
   background: #0a0a12;
 }
 
+/* ── Écran titre ─────────────────────────────────────────────── */
+.accident-header {
+  background: #0a0a12;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accident-title-inner {
+  text-align: center;
+  color: #ffffff;
+}
+
+.accident-title-label {
+  font-family: 'SUSE Mono', monospace;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.accident-title-heading {
+  font-family: 'SUSE', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-bottom: 3px solid #9333ea;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Slides — layout ─────────────────────────────────────────── */
 #accident-pin-section {
   height: 100vh;
   overflow: hidden;
@@ -23,6 +61,7 @@
   flex-shrink: 0;
 }
 
+/* ── Slides — couleurs de fond ───────────────────────────────── */
 .slide-randonnee { background: linear-gradient(180deg, #9fd898 0%, #caedc4 50%, #e8f8e4 100%); }
 .slide-ski       { background: linear-gradient(180deg, #3060c8 0%, #7aaaf0 50%, #c0d8ff 100%); }
 .slide-alpinisme { background: linear-gradient(180deg, #7040a0 0%, #b080d0 50%, #dcc0f0 100%); }
@@ -30,6 +69,17 @@
 .slide-escalade  { background: linear-gradient(180deg, #c02808 0%, #e06030 50%, #f8b090 100%); }
 .slide-autres    { background: linear-gradient(180deg, #108870 0%, #40b0a0 50%, #90d8d0 100%); }
 
+/* ── Gradient noir → couleur sur la 1ère slide ───────────────── */
+.accident-slide:first-child::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #0a0a12 0%, transparent 42%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── Slides — éléments ───────────────────────────────────────── */
 .accident-mountain {
   position: absolute;
   bottom: 0;
@@ -68,7 +118,6 @@
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 
-/* ── Compteur décès — sous le label sport (haut gauche) ──────── */
 .accident-death {
   position: absolute;
   top: 8.5rem;
@@ -85,75 +134,14 @@
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 
-.accident-death-lbl {
+.accident-death-pct {
   font-family: 'SUSE Mono', monospace;
   font-size: 17px;
-  color: rgb(255, 255, 255);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 10px;
 }
 
-.accident-progress {
-  position: fixed;
-  bottom: 1.6rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.55rem;
-  z-index: 200;
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
-}
-
-.accident-progress.visible { opacity: 1; }
-
-.accident-progress-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
-  transition: background 0.3s, transform 0.3s;
-}
-
-.accident-progress-dot.active {
-  background: white;
-  transform: scale(1.55);
-}
-
-.accident-regions-section {
-  background: linear-gradient(to bottom, #90d8d0 0%, #0a0a12 18%);
-  padding: 7rem 2rem 9rem;
-  color: white;
-}
-
-.accident-regions-section h3 {
-  text-align: left;
-  font-size: clamp(1rem, 1.8vw, 1.4rem);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  margin-bottom: 0.4rem;
-}
-
-.accident-regions-section .subtitle {
-  text-align: left;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 1.05rem;
-  margin-bottom: 4rem;
-}
-
-#accident-regions-chart {
-  max-width: 960px;
-  margin: 0 auto;
-  overflow: visible;
-}
-
-#accident-regions-chart text {
-  font-family: inherit;
-}
-/* ── Ronds interactifs ──────────────────────────────────────── */
+/* ── Ronds interactifs ───────────────────────────────────────── */
 .accident-dot {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -191,58 +179,67 @@
 
 .accident-dot:hover .accident-dot-preview {
   opacity: 1;
-   transform: translateX(-50%) scale(2);
+  transform: translateX(-50%) scale(2);
 }
 
-.accident-death-pct {
-  font-family: 'SUSE Mono', monospace;
-  font-size: 17px;
-  color: rgba(255, 255, 255, 0.85);
-  margin-top: 10px;
-}
-
-/* ── Écran titre accident ──────────────────────────────────── */
-.accident-header {
-  background: #0a0a12;
-  height: 100vh;
+/* ── Indicateur de progression ───────────────────────────────── */
+.accident-progress {
+  position: fixed;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 0.55rem;
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
 }
 
-.accident-title-inner {
-  text-align: center;
-  color: #ffffff;
+.accident-progress.visible { opacity: 1; }
+
+.accident-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.3s, transform 0.3s;
 }
 
-.accident-title-label {
-  font-family: 'SUSE Mono', monospace;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.45);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
+.accident-progress-dot.active {
+  background: white;
+  transform: scale(1.55);
 }
 
-.accident-title-heading {
-  font-family: 'SUSE', sans-serif;
-  font-size: clamp(1.8rem, 3vw, 3rem);
-  font-weight: 900;
-  color: #ffffff;
+/* ── Section régions ─────────────────────────────────────────── */
+.accident-regions-section {
+  background: linear-gradient(to bottom, #90d8d0 0%, #0a0a12 18%);
+  padding: 7rem 2rem 9rem;
+  color: white;
+}
+
+.accident-regions-section h3 {
+  text-align: left;
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  border-bottom: 3px solid #9333ea;
-  display: inline-block;
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.4rem;
 }
 
-/* ── Gradient noir → vert sur la 1ère slide ────────────────── */
-.accident-slide:first-child::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, #0a0a12 0%, transparent 42%);
-  z-index: 2;
-  pointer-events: none;
+.accident-regions-section .subtitle {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.05rem;
+  margin-bottom: 4rem;
+}
+
+#accident-regions-chart {
+  max-width: 960px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+#accident-regions-chart text {
+  font-family: inherit;
 }
