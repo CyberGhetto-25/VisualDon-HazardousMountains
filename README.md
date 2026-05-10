@@ -244,7 +244,7 @@ Association de défense des montagnes : https://mountainwilderness.ch/fr/
 - OFEV, mai 2020 — 14'000 tonnes plastique infiltrées/an :
   https://www.bafu.admin.ch/bafu/fr/home/themes/biodiversite/en-bref.html
 - CAS — campagne #cleanmountains, déchets en cabane :
-  https://www.sac-cas.ch
+  https://www.sac-cas.ch/fr/environnement/sports-de-montagne-et-environnement/cleanmountains/
 
 ### Accidents de randonnée et surtourisme
 - BPA — Bureau de prévention des accidents, citation
