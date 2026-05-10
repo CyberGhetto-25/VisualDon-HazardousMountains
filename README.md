@@ -2,12 +2,40 @@
 Repo GitHub pour le projet dans le cadre du cours "Visualisation des données"
 
 # Contexte
-La pratique de la haute montagne est une quête d'adrénaline qui exige une profonde humilité. Si certains passionnés ont compris l'équilibre entre recherche de sensations et respect des enjeux naturels, d'autres ignorent encore les conséquences d'une préparation défaillante. Cette réalité invisible est pourtant documentée : des organismes comme le Secours Alpin Suisse (SAS), l'OCVS ou l'association de défense des montagnes récoltent chaque année des milliers de données sur les interventions et les accidents. Si ces statistiques existent, ce n'est pas seulement pour la gestion administrative des risques, mais pour transformer des tragédies vécues, comme celles qui touchent de nombreuses familles valaisannes, en outils de prévention concrets. En analysant ces chiffres, on réalise que la montagne ne se dompte pas ; on apprend à mieux la lire. Car derrière chaque point sur une carte ou chaque courbe de tendance, il y a un rappel essentiel : en altitude, l'improvisation est le premier facteur de danger.
+La pratique du sport en haute montagne est une quête d'adrénaline qui exige une profonde humilité. Si certains passionnés ont compris l'équilibre entre recherche de sensations et respect des enjeux naturels, d'autres ignorent encore les conséquences d'une préparation défaillante. Cette réalité invisible est pourtant documentée : des organismes comme le Secours Alpin Suisse (SAS), l'OCVS ou l'association de défense des montagnes récoltent chaque année des milliers de données sur les interventions et les accidents. Si ces statistiques existent, ce n'est pas seulement pour la gestion administrative des risques, mais pour transformer des tragédies vécues, comme celles qui touchent de nombreuses familles valaisannes, en outils de prévention concrets. En analysant ces chiffres, on réalise que la montagne ne se dompte pas ; on apprend à mieux la lire. Car derrière chaque point sur une carte ou chaque courbe de tendance, il y a un rappel essentiel : en altitude, l'improvisation est le premier facteur de danger.
+
+## Lancement du projet
+
+Le projet nécessite un token Mapbox personnel pour afficher 
+la carte terrain 3D de la section secourisme.
+
+Créer un fichier `config.js` à la racine du projet avec :
+
+​```javascript
+const MAPBOX_TOKEN = "votre_token_ici";
+​```
+
+Un token gratuit est disponible sur https://www.mapbox.com.
+Ce fichier est volontairement absent du repo (.gitignore) 
+pour ne pas exposer les clés d'API.
 
 ## Limites des données
 - Les données ne documentent pas les pratiques informelles
 - Les décès médiatisés sont surreprésentés
 - Les accidents bénins sont sous-déclarés
+
+## Librairies utilisées
+
+| Librairie   | Version | Chargement |Rôle                                              |
+|-------------|---------|------------|--------------------------------------------------|
+| D3.js       | v7.9.0  | local      | Toutes les visualisations (cartes,graphiques)    |
+| TopoJSON    | v3.1.0  | local      | Géométrie des cantons suisses                    |
+| Scrollama   | —       | local      | Scrollytelling section comportements toxiques    |
+| Mapbox GL JS| v3.3.0  | CDN        | Fond de carte terrain 3D (section secourisme)    |
+| GSAP        | v3.12.5 | CDN        | Scroll horizontal et animations section accidents|
+
+D3, TopoJSON et Scrollama sont chargés depuis `lib/` (fichiers locaux).
+Mapbox GL JS et GSAP sont chargés via CDN dans `index.html`.
 
 
 # Description
@@ -16,13 +44,30 @@ Deux idées:
 2. Scrollytelling montrant et rappelant les risques et accidents mortels en montagne. Nous y aborderons également les sujets de société liés au respect ou non de la montagne comme le surtourisme, la pratique de sports à risque malgré un niveau débutant, la déterioration des glaciers par l'homme dans un but économique, ...
 
 ## Formats et types de données
-Beaucoup de rapports PDF comportent des statistiques sur les variables suivantes: 
-- Date
-- Type d'accidents (ski, alpinisme, randonnée)
-- Causes (chutes, avalanches, malaise)
-- Gravité (blessé, mortel)
-- Coordonnées GPS
-- Région
+
+Les données brutes proviennent de rapports PDF officiels 
+(CAS, OCVS, SAS, OFEV, BPA). Comme aucune de ces 
+sources ne publie ses données en format structuré directement 
+exploitable, elles ont été extraites manuellement et organisées 
+en fichiers JSON dans le dossier `data/` :
+
+| Fichier                          | Source        |Contenu                              |
+|----------------------------------|---------------|-------------------------------------|
+| `accidentsMortels.JSON`          | CAS 2024      | Décès par sport et par région       |
+| `comportementsToxiques.json`     | Multi-sources | Héliski, pollution, accidents rando |
+| `OCVS_annual-report-rescue_2024.json`| OCVS 2024 | Interventions détaillées Valais     |
+| `SAS_annual-report-rescue.JSON`  | SAS 2020–24   | Interventions par région 2020–2024  |
+| `rescue_switzerland_unified.json`| CAS+OCVS+SAS  | Vue unifiée pour la carte D3        |
+| `canton-region-mapping.json`     | Manuel        | Correspondance cantons → régions SAS|
+| `switzerland-cantons.topojson`   | geo.admin.ch  | Géométrie des cantons suisses       |
+
+### Scalabilité
+
+La section accidents est entièrement pilotée par `data/accident/accidentsMortels.JSON`. La simple mise à jour de ce fichier avec les données CAS de l'année suivante 
+suffit sans modifier le code. Le CAS publie ses statistiques chaque année en mars :
+https://www.sac-cas.ch/fr/formation-et-securite/securite-en-chemin/urgences-en-montagne
+
+Les sections secourisme et comportements toxiques nécessitent une mise à jour des fichiers JSON et des constantes correspondantes dans `rescue.js` et `behavior.js`. La raison est qu'il nous a été difficile de trouver des statistiques pertinentes et comparables pour les sujets sur des années spécifiques, ce qui a conduit à intégrer certaines données directement dans le code.
 
 Voici un exemple d'objet JSON qui pourrait être utilisé dans le cadre de notre projet. (généré à l'aide de ChatGPT 5.2)
 
@@ -169,6 +214,52 @@ Statistiques 2019 des accidents de montagne : https://www.sac-cas.ch/fr/les-alpe
 Randonnée et sports de montagne : https://www.bfu.ch/fr/dossiers/sports-de-montagne-randonnee#:~:text=les%20accidents%20augmentent.-,Plus%20de%2045%20000,56%20d'entre%20elles%20mortellement
 
 Association de défense des montagnes : https://mountainwilderness.ch/fr/
+
+## Sources des données
+
+### Accidents mortels en montagne
+- CAS — Urgences en montagne 2024 (rapport principal) :
+  https://www.sac-cas.ch/fr/formation-et-securite/urgences-dans-les-montagnes-en-2024-44044/
+- CAS — Archive complète des rapports annuels :
+  https://www.sac-cas.ch/fr/formation-et-securite/securite-en-chemin/urgences-en-montagne
+- PDF rapport 2024 utilisé directement :
+  Bergnotfälle_Schweiz_2024_Version_mit_text_Internet-franz.pdf
+
+### Secourisme alpin
+- SAS — Secours Alpin Suisse, rapports 2020–2024 :
+  https://www.secoursalpin.ch/publications/rapport-annuel
+- OCVS — Organisation Cantonale Valaisanne des Secours 2024 :
+  https://www.ocvs.ch/documents/
+  (PDF Rapport_2024_OCVS_part1 et part2 utilisés directement)
+
+### Héliski
+- RTS Mise au Point, mai 2023 — chiffres OFAC vols héliski :
+  https://www.rts.ch/info/suisse/13852580-la-suisse-terre-dasile-controversee-de-lheliski-en-europe.html
+- Blick, mars 2024 — consommation énergie domaines skiables :
+  https://www.blick.ch/fr/suisse/remontees-mecaniques-neige-artificielle-les-domaines-skiables-consomment-autant-denergie-que-40000-menages-id17767095.html
+- Mountain Wilderness CH — pétition héliski, zones protégées :
+  https://mountainwilderness.ch/fr/
+
+### Pollution et déchets montagne
+- OFEV, mai 2020 — 14'000 tonnes plastique infiltrées/an :
+  https://www.bafu.admin.ch/bafu/fr/home/themes/biodiversite/en-bref.html
+- CAS — campagne #cleanmountains, déchets en cabane :
+  https://www.sac-cas.ch
+
+### Accidents de randonnée et surtourisme
+- BPA — Bureau de prévention des accidents, citation
+  Mara Zenhäuser, 2023 :
+  https://www.bfu.ch/fr/dossiers/sports-de-montagne-randonnee
+- RTS, février 2024 — durabilité stations de ski :
+  https://www.rts.ch/info/suisse/2024/article/des-stations-de-ski-misent-sur-davantage-de-durabilite-28408748.html
+
+### Géographie
+- Géométrie des cantons suisses (TopoJSON) :
+  https://geo.admin.ch
+
+### Crédits photos
+Photos issues de Adobe Stock (licence institutionnelle HEIG-VD) 
+et Pexels (https://www.pexels.com/ — licence gratuite).
 
 # Wireframe
 Lien du projet figma : https://www.figma.com/design/Grn8ji6KCugtJDIM52EEeX/VisualDon-HazardousMountains?node-id=0-1&t=5Id5V14uTAr5P8vq-1
