@@ -23,6 +23,11 @@ pour ne pas exposer les clés d'API.
 - Les données ne documentent pas les pratiques informelles
 - Les décès médiatisés sont surreprésentés
 - Les accidents bénins sont sous-déclarés
+- Les points affichés sur la carte de la section secourisme représentent les points de départ des            interventions, et non les points d'arrivée. Les statistiques valaisannes (OCVS) publient uniquement les lieux de départ des secours. Les points d'arrivée (lieu exact de l'accident) ne sont pas documentés.
+
+## Outils d'assistance
+L'IA a été utilisée comme outil d'aide au développement, principalement pour nous aider à intégrer correctement certaines librairies que nous avons utilisé ainsi que pour l'amélioration du rendu 
+visuel du scrollytelling, en particulier pour la section comportements toxiques.
 
 ## Librairies utilisées
 
@@ -263,3 +268,6 @@ et Pexels (https://www.pexels.com/ — licence gratuite).
 
 # Wireframe
 Lien du projet figma : https://www.figma.com/design/Grn8ji6KCugtJDIM52EEeX/VisualDon-HazardousMountains?node-id=0-1&t=5Id5V14uTAr5P8vq-1
+
+# Lien Canva de la présentation
+https://canva.link/asnye2h0i8q2i0c 
