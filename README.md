@@ -58,10 +58,10 @@ en fichiers JSON dans le dossier `data/` :
 
 | Fichier                          | Source        |Contenu                              |
 |----------------------------------|---------------|-------------------------------------|
-| `accidentsMortels.JSON`          | CAS 2024      | Décès par sport et par région       |
+| `accidentsMortels.json`          | CAS 2024      | Décès par sport et par région       |
 | `comportementsToxiques.json`     | Multi-sources | Héliski, pollution, accidents rando |
 | `OCVS_annual-report-rescue_2024.json`| OCVS 2024 | Interventions détaillées Valais     |
-| `SAS_annual-report-rescue.JSON`  | SAS 2020–24   | Interventions par région 2020–2024  |
+| `SAS_annual-report-rescue.json`  | SAS 2020–24   | Interventions par région 2020–2024  |
 | `rescue_switzerland_unified.json`| CAS+OCVS+SAS  | Vue unifiée pour la carte D3        |
 | `canton-region-mapping.json`     | Manuel        | Correspondance cantons → régions SAS|
 | `switzerland-cantons.topojson`   | geo.admin.ch  | Géométrie des cantons suisses       |
@@ -271,3 +271,9 @@ Lien du projet figma : https://www.figma.com/design/Grn8ji6KCugtJDIM52EEeX/Visua
 
 # Lien Canva de la présentation
 https://canva.link/asnye2h0i8q2i0c 
+
+# Lien du site web
+https://visualdon-hazardousmountains.onrender.com/
+
+## Note
+Nous vous recommandons de visualiser notre projet en plein écran (F11) pour profiter au mieux du scrollytelling.
