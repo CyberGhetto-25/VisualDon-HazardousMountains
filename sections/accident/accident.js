@@ -3,7 +3,7 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const DATA_URL = 'data/accident/accidentsMortels.JSON';
+  const DATA_URL = 'data/accident/accidentsMortels.json';
 
   const SPORTS_CONFIG = [
     { key: 'Randonnée en montagne', slug: 'randonnee', icon: 'assets/img/icon-randonnee.png' },
